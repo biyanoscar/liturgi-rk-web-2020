@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrontPageController;
 use App\Http\Controllers\MassScheduleController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('front_page');
+// });
+Route::get('/', [FrontPageController::class, 'index'])->name('front_page.index');
 
 Auth::routes();
 
