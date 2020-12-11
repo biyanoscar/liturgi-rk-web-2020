@@ -1,4 +1,6 @@
 <x-admin-master>
+    @section('title', 'Page Title')
+
     @section('content')
     <div class="row">
         <div class="col-lg-6">
