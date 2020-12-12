@@ -14,7 +14,8 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">
-                        <h3 class="text-center title-2">Susunan Lagu</h3>
+                        <h3 class="text-center title-2 mb-3">Susunan Lagu</h3>
+                        <p>Isi dengan nomor PS dan judul lagu</p>
                     </div>
                     <hr>
                     <form method="post" action="{{route('mass_schedules.update', $massSchedule->id)}}" enctype="multipart/form-data">

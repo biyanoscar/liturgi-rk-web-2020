@@ -28,10 +28,11 @@ Route::get('/cool', function () {
     return view('admin.cool');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/mass_schedules', [MassScheduleController::class, 'index'])->name('mass_schedules.index');
+    Route::get('/mass_schedules/{massSchedule}/edit', [MassScheduleController::class, 'edit'])->name('mass_schedules.edit');
+    Route::patch('/mass_schedules/{massSchedule}', [MassScheduleController::class, 'update'])->name('mass_schedules.update');
 
-Route::get('/mass_schedules', [MassScheduleController::class, 'index'])->name('mass_schedules.index');
-Route::get('/mass_schedules/{massSchedule}/edit', [MassScheduleController::class, 'edit'])->name('mass_schedules.edit');
-Route::patch('/mass_schedules/{massSchedule}', [MassScheduleController::class, 'update'])->name('mass_schedules.update');
-
-Route::get('/mass_schedules/day/{dayNum}', [MassScheduleController::class, 'getByDayNum'])->name('mass_schedules.day');
-Route::get('/mass_schedules/isidata/', [MassScheduleController::class, 'isiData'])->name('mass_schedules.isidata');
+    Route::get('/mass_schedules/day/{dayNum}', [MassScheduleController::class, 'getByDayNum'])->name('mass_schedules.day');
+    Route::get('/mass_schedules/isidata/', [MassScheduleController::class, 'isiData'])->name('mass_schedules.isidata');
+});

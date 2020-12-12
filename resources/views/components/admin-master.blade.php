@@ -44,6 +44,20 @@
             height: auto;
         }
 
+        #btn-logout {
+            display: block;
+            color: #333;
+            padding: 15px 25px;
+            font-size: 14px;
+        }
+
+        #icon-logout {
+            line-height: 1;
+            margin-right: 20px;
+            font-size: 18px;
+            vertical-align: middle;
+        }
+
         @media (max-width: 991px) {
             .header-desktop {
                 height: 70px;
@@ -130,22 +144,33 @@
                                     <div class="account-item clearfix js-item-menu">
 
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">john doe</a>
+                                            <a class="js-acc-btn" href="#">
+                                                @if(Auth::check())
+                                                {{auth()->user()->name}}
+                                                @endif
+
+                                            </a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
 
+                                                @if(Auth::check())
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">john doe</a>
+                                                        <a href="#">{{auth()->user()->name}}</a>
                                                     </h5>
-                                                    <span class="email">johndoe@example.com</span>
+                                                    <span class="email">{{auth()->user()->email}}</span>
                                                 </div>
+                                                @endif
                                             </div>
 
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                                <!-- <a href="/logout">
+                                                    <i class="zmdi zmdi-power"></i>Logout</a> -->
+                                                <form action="/logout" method="POST">
+                                                    @csrf
+                                                    <button id="btn-logout"><i class="zmdi zmdi-power" id="icon-logout"></i>Logout</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
