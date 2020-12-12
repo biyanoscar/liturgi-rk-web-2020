@@ -1,30 +1,35 @@
 <x-frontpage-master>
     @section('content')
-    <h1>List Misa Harian</h1>
-    <div class="accordion" id="accordionSchedules">
-        <?php $i = 0; ?>
-        @foreach($massSchedules as $schedule)
 
-        <div class="card">
-            <div class="card-header" id="heading{{$schedule->id}}">
-                <h2 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{$schedule->id}}" aria-expanded="true" aria-controls="collapse{{$schedule->id}}">
-                        {{$schedule->mass_title . '; Tanggal : '. $schedule->schedule_time}}
-                    </button>
-                </h2>
+
+    <!-- ======= Frequently Asked Questions Section ======= -->
+    <section id="faq" class="faq">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>List Misa Harian</h2>
             </div>
 
-            <div id="collapse{{$schedule->id}}" class="collapse <?php if ($i == 0) echo 'show' ?>" aria-labelledby="heading{{$schedule->id}}" data-parent="#accordionSchedules">
-                <div class="card-body">
-                    Lagu Pembukaan : {{$schedule->entrance_song}} <br>
-                    Aleluya : {{$schedule->alleluia_song}} <br>
-                    Lagu Penutup : {{$schedule->recessional_song}} <br>
-                </div>
-            </div>
+            <ul class="faq-list" data-aos="fade-up">
+
+                @foreach($massSchedules as $schedule)
+                <li>
+                    <a data-toggle="collapse" class="collapsed" href="#faq{{$schedule->id}}">{{$schedule->mass_title . '; Tanggal : '. $schedule->schedule_time}} <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
+                    <div id="faq{{$schedule->id}}" class="collapse" data-parent=".faq-list">
+                        <p>
+                            Lagu Pembukaan : {{$schedule->entrance_song}} <br>
+                            Aleluya : {{$schedule->alleluia_song}} <br>
+                            Lagu Penutup : {{$schedule->recessional_song}} <br>
+                        </p>
+                    </div>
+                </li>
+                @endforeach
+
+
+
+            </ul>
+
         </div>
-        <?php $i++; ?>
-        @endforeach
-
-    </div>
+    </section><!-- End Frequently Asked Questions Section -->
     @endsection
 </x-frontpage-master>

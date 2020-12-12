@@ -67,7 +67,7 @@ class MassScheduleController extends Controller
             "SELECT * FROM mass_schedules 
             WHERE 
             is_daily_mass = 1
-            and schedule_time >= CURDATE()
+            and schedule_time > CURDATE()
             and WEEKDAY(schedule_time) = :somevariable"
         ), array(
             'somevariable' => $dayNum,

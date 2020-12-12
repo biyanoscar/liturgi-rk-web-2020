@@ -9,7 +9,11 @@
     <!-- Bootstrap CSS -->
     <link href="{{asset('css/app.css')}}" rel="stylesheet" media="all">
 
-    <title>Hello, world!</title>
+    <link href="{{asset('css/front.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('vendor/aos/aos.css')}}" rel="stylesheet" media="all">
+    <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
+
+    <title>Liturgi RK</title>
 
     <style>
         /* Show it is fixed to the top */
@@ -52,10 +56,14 @@
         @yield('content')
     </main>
 
-    <link href="{{asset('js/app.js')}}" rel="stylesheet" media="all">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{{asset('js/app.js')}}"></script>
+
+    <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
+    <script src="{{asset('vendor/aos/aos.js')}}"></script>
+
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>
