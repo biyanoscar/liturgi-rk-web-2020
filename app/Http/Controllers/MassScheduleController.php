@@ -30,7 +30,14 @@ class MassScheduleController extends Controller
     public function update(MassSchedule $massSchedule)
     {
         $input = request()->all();
-        $massSchedule->update($input);
+        // $massSchedule->update($input);
+
+        $massSchedule->entrance_song = $input['entrance_song'];
+        $massSchedule->alleluia_song = $input['alleluia_song'];
+        $massSchedule->recessional_song = $input['recessional_song'];
+
+        //disave sesuai user yg login
+        auth()->user()->massSchedules()->save($massSchedule);
 
         session()->flash('schedule-updated-message', 'Berhasil update susunan lagu');
 
@@ -89,18 +96,21 @@ class MassScheduleController extends Controller
                 $schedule->schedule_time = $date->format('Y-m-d') . ' 08:00';
                 $schedule->mass_title = 'Misa ' . $date->format('d M');
                 $schedule->is_daily_mass = 0;
+                $schedule->user_id = 1; //default user biyan
                 $schedule->save();
 
                 $schedule = new MassSchedule();
                 $schedule->schedule_time = $date->format('Y-m-d') . ' 16:30';
                 $schedule->mass_title = 'Misa ' . $date->format('d M');
                 $schedule->is_daily_mass = 0;
+                $schedule->user_id = 1; //default user biyan
                 $schedule->save();
             } else {
                 $schedule = new MassSchedule();
                 $schedule->schedule_time = $date->format('Y-m-d') . ' 06:00';
                 $schedule->mass_title = 'Misa ' . $date->format('d M');
                 $schedule->is_daily_mass = 1;
+                $schedule->user_id = 1; //default user biyan
                 $schedule->save();
             }
         }

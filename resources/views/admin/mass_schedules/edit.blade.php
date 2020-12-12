@@ -22,6 +22,11 @@
                         @csrf
                         @method('PATCH')
                         <div class="form-group">
+                            <label for="schedule_time" class="control-label mb-1">Jadwal</label>
+                            <input id="schedule_time" name="schedule_time" type="text" class="form-control" value="{{$massSchedule->schedule_time}}" disabled>
+                        </div>
+
+                        <div class="form-group">
                             <label for="entrance_song" class="control-label mb-1">Pembukaan</label>
                             <input id="entrance_song" name="entrance_song" type="text" class="form-control" value="{{$massSchedule->entrance_song}}">
                         </div>

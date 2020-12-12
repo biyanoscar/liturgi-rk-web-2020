@@ -15,6 +15,7 @@ class CreateMassSchedulesTable extends Migration
     {
         Schema::create('mass_schedules', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->index();
             $table->dateTime('schedule_time');
             $table->string('mass_title');
             $table->integer('is_daily_mass')->default('1');

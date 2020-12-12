@@ -11,6 +11,11 @@ class MassSchedule extends Model
     use HasFactory;
     protected $guarded = [];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function getScheduleTimeAttribute($value)
     {
         // return ucfirst($value);
