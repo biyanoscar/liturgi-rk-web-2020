@@ -15,7 +15,10 @@ class MassScheduleController extends Controller
     {
         $massSchedules = MassSchedule::whereDate('schedule_time', '>', Carbon::today())
             ->where('is_daily_mass', '=', 1)
+            ->orderBy('schedule_time')
             ->get();
+
+        // dd($massSchedules);
         // $massSchedules = MassSchedule::all();
         // $massSchedules = MassSchedule::all()->sortByDesc('schedule_time');
         // $massSchedules = MassSchedule::orderBy('schedule_time', 'desc')->get();
@@ -27,7 +30,27 @@ class MassScheduleController extends Controller
         return view('admin.mass_schedules.edit', ['massSchedule' => $massSchedule]);
     }
 
+    public function editSong(MassSchedule $massSchedule)
+    {
+        return view('admin.mass_schedules.edit_song', ['massSchedule' => $massSchedule]);
+    }
+
+    public function editReading(MassSchedule $massSchedule)
+    {
+        return view('admin.mass_schedules.edit_reading', ['massSchedule' => $massSchedule]);
+    }
+
     public function update(MassSchedule $massSchedule)
+    {
+        $input = request()->all();
+        $massSchedule->update($input);
+
+        session()->flash('schedule-updated-message', 'Berhasil update jadwal');
+
+        return redirect()->route('mass_schedules.index');
+    }
+
+    public function updateSong(MassSchedule $massSchedule)
     {
         $input = request()->all();
         // $massSchedule->update($input);
@@ -94,25 +117,28 @@ class MassScheduleController extends Controller
                 //misa hari minggu
                 $schedule = new MassSchedule();
                 $schedule->schedule_time = $date->format('Y-m-d') . ' 08:00';
-                $schedule->mass_title = 'Misa ' . $date->format('d M');
+                // $schedule->mass_title = 'Misa ' . $date->format('d M');
+                $schedule->mass_title = 'Misa ' . $date->isoFormat('D MMM');
                 $schedule->is_daily_mass = 0;
                 $schedule->user_id = 1; //default user biyan
                 $schedule->save();
 
                 $schedule = new MassSchedule();
                 $schedule->schedule_time = $date->format('Y-m-d') . ' 16:30';
-                $schedule->mass_title = 'Misa ' . $date->format('d M');
+                $schedule->mass_title = 'Misa ' . $date->isoFormat('D MMM');
                 $schedule->is_daily_mass = 0;
                 $schedule->user_id = 1; //default user biyan
                 $schedule->save();
             } else {
                 $schedule = new MassSchedule();
                 $schedule->schedule_time = $date->format('Y-m-d') . ' 06:00';
-                $schedule->mass_title = 'Misa ' . $date->format('d M');
+                $schedule->mass_title = 'Misa ' . $date->isoFormat('D MMM');
                 $schedule->is_daily_mass = 1;
                 $schedule->user_id = 1; //default user biyan
                 $schedule->save();
             }
         }
+
+        return redirect()->route('mass_schedules.index');
     }
 }

@@ -1,5 +1,5 @@
 <x-admin-master>
-    @section('title', 'Mass Schedules')
+    @section('title', 'Jadwal Misa')
 
     @section('styles')
     <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -74,9 +74,11 @@
                             @foreach($massSchedules as $schedule)
                             <tr>
                                 <td>{{$schedule->mass_title}}</td>
-                                <td>{{$schedule->schedule_time}}</td>
+                                <!-- <td>{{$schedule->schedule_time}}</td> -->
+                                <td>{{ \Carbon\Carbon::parse($schedule->schedule_time)->isoFormat('D MMM Y') }}</td>
                                 <td>
-                                    <a class="btn btn-primary" href="{{route('mass_schedules.edit', $schedule->id) }}">Isi lagu</a>
+                                    <a class="btn btn-primary" href="{{route('mass_schedules.edit_song', $schedule->id) }}">Isi lagu</a>
+                                    <a class="btn btn-primary" href="{{route('mass_schedules.edit_reading', $schedule->id) }}">Isi Bacaan</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -102,7 +104,10 @@
         // Call the dataTables jQuery plugin
         $(document).ready(function() {
             $('#dataTable').DataTable({
-                "scrollX": false
+                "scrollX": false,
+                "order": [
+                    [1, "asc"]
+                ]
             });
         });
     </script>

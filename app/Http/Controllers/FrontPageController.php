@@ -12,7 +12,8 @@ class FrontPageController extends Controller
     public function index()
     {
         $massSchedules = MassSchedule::whereDate('schedule_time', '>=', Carbon::today())
-            ->where('is_daily_mass', '=', 1)
+            // ->where('is_daily_mass', '=', 1)
+            ->orderBy('schedule_time')
             ->get();
 
         return view('front_page', ['massSchedules' => $massSchedules]);

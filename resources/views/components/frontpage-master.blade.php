@@ -34,7 +34,7 @@
                 @if (Route::has('login'))
                 @auth
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/home') }}">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ route('mass_schedules.index') }}">Admin <span class="sr-only">(current)</span></a>
                 </li>
                 @else
                 <li class="nav-item">

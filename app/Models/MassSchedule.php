@@ -16,9 +16,9 @@ class MassSchedule extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getScheduleTimeAttribute($value)
-    {
-        // return ucfirst($value);
-        return Carbon::parse($value)->format('d M H:i');
-    }
+    // public function getScheduleTimeAttribute($value)
+    // {
+    //     // return Carbon::parse($value)->format('d M H:i');
+    //     return Carbon::parse($value)->isoFormat('D MMM Y');
+    // }
 }
