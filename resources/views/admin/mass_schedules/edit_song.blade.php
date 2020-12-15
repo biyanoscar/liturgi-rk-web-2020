@@ -12,6 +12,7 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="card">
+                <div class="card-header">{{($massSchedule->holy_day_of_obligation)?$massSchedule->holy_day_of_obligation:$massSchedule->mass_title}}</div>
                 <div class="card-body">
                     <div class="card-title">
                         <h3 class="text-center title-2 mb-3">Isi Susunan Lagu</h3>
@@ -34,10 +35,36 @@
                             <input id="entrance_song" name="entrance_song" type="text" class="form-control" value="{{$massSchedule->entrance_song}}">
                         </div>
                         <div class="form-group">
+                            <label for="gloria_song" class="control-label mb-1">Kemuliaan</label>
+                            <input id="gloria_song" name="gloria_song" type="text" class="form-control" value="{{$massSchedule->gloria_song}}">
+                        </div>
+                        <div class="form-group">
                             <label for="alleluia_song" class="control-label mb-1">Aleluya</label>
                             <input id="alleluia_song" name="alleluia_song" type="text" class="form-control" value="{{$massSchedule->alleluia_song}}">
-
                         </div>
+
+                        @if ($massSchedule->is_daily_mass == 0)
+                        <div class="form-group">
+                            <label for="offertory_song" class="control-label mb-1">Persembahan</label>
+                            <input id="offertory_song" name="offertory_song" type="text" class="form-control" value="{{$massSchedule->offertory_song}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sanctus_song" class="control-label mb-1">Kudus</label>
+                            <input id="sanctus_song" name="sanctus_song" type="text" class="form-control" value="{{$massSchedule->sanctus_song}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="communion_song" class="control-label mb-1">Komuni</label>
+                            <input id="communion_song" name="communion_song" type="text" class="form-control" value="{{$massSchedule->communion_song}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="song_of_praise" class="control-label mb-1">Komuni 2</label>
+                            <input id="song_of_praise" name="song_of_praise" type="text" class="form-control" value="{{$massSchedule->song_of_praise}}">
+                        </div>
+                        @endif
+
                         <div class="form-group">
                             <label for="recessional_song" class="control-label mb-1">Penutup</label>
                             <input id="recessional_song" name="recessional_song" type="text" class="form-control" value="{{$massSchedule->recessional_song}}">

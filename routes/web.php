@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/', [FrontPageController::class, 'index'])->name('front_page.index');
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -38,4 +38,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/mass_schedules/day/{dayNum}', [MassScheduleController::class, 'getByDayNum'])->name('mass_schedules.day');
     Route::get('/mass_schedules/isidata/', [MassScheduleController::class, 'isiData'])->name('mass_schedules.isidata');
+
+    Route::get('/sunday_masses', [MassScheduleController::class, 'sundayMassesIndex'])->name('mass_schedules.sunday_masses');
 });

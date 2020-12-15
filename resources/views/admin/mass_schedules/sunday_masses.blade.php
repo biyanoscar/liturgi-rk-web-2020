@@ -25,38 +25,8 @@
             <!-- USER DATA-->
             <div class="user-data m-b-30">
                 <h3 class="title-3 m-b-30">
-                    <i class="zmdi zmdi-calendar-alt"></i></i>Misa Harian</h3>
+                    <i class="zmdi zmdi-calendar-alt"></i></i>Misa Hari Minggu & Hari Raya</h3>
 
-                <div class="tool-3 table-data__tool">
-                    <div class="table-data__tool-left">
-
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Pilih Hari
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{route('mass_schedules.index' )}}">All</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{route('mass_schedules.day', 0 )}}">Senin</a>
-                                <a class="dropdown-item" href="{{route('mass_schedules.day', 1 )}}">Selasa</a>
-                                <a class="dropdown-item" href="{{route('mass_schedules.day', 2 )}}">Rabu</a>
-                                <a class="dropdown-item" href="{{route('mass_schedules.day', 3 )}}">Kamis</a>
-                                <a class="dropdown-item" href="{{route('mass_schedules.day', 4 )}}">Jumat</a>
-                                <a class="dropdown-item" href="{{route('mass_schedules.day', 5 )}}">Sabtu</a>
-
-
-                            </div>
-                        </div>
-                        <div class="rs-select2--dark">
-                            <span class="badge badge-primary">{{$dayName}}</span>
-                        </div>
-
-
-
-
-                    </div>
-
-                </div>
 
 
                 <div class="tool-3 table-responsive table-data m-b-40">

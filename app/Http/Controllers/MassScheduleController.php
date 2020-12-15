@@ -59,12 +59,24 @@ class MassScheduleController extends Controller
         $massSchedule->alleluia_song = $input['alleluia_song'];
         $massSchedule->recessional_song = $input['recessional_song'];
 
+        if ($massSchedule->is_daily_mass == 0) {
+            $massSchedule->gloria_song = $input['gloria_song'];
+            $massSchedule->offertory_song = $input['offertory_song'];
+            $massSchedule->sanctus_song = $input['sanctus_song'];
+            $massSchedule->communion_song = $input['communion_song'];
+            $massSchedule->song_of_praise = $input['song_of_praise'];
+        }
+
         //disave sesuai user yg login
         auth()->user()->massSchedules()->save($massSchedule);
 
         session()->flash('schedule-updated-message', 'Berhasil update susunan lagu');
 
-        return redirect()->route('mass_schedules.index');
+        if ($massSchedule->is_daily_mass == 0) {
+            return redirect()->route('mass_schedules.sunday_masses');
+        } else {
+            return redirect()->route('mass_schedules.index');
+        }
     }
 
     public function getByDayNum($dayNum)
@@ -106,10 +118,11 @@ class MassScheduleController extends Controller
         return view('admin.mass_schedules.index', ['massSchedules' => $schedules, 'dayName' => $dayName]);
     }
 
+    //untuk isi data otomatis
     public function isiData()
     {
         //tanggal periode awal dan akhir
-        $periods = CarbonPeriod::create('2020-12-01', '2020-12-31');
+        $periods = CarbonPeriod::create('2020-12-01', '2020-12-31'); //rentang tanggal yang diisikan misanya
 
         // Iterate over the period
         foreach ($periods as $date) {
@@ -140,5 +153,17 @@ class MassScheduleController extends Controller
         }
 
         return redirect()->route('mass_schedules.index');
+    }
+
+
+    //misa hari minggu
+    public function sundayMassesIndex()
+    {
+        $massSchedules = MassSchedule::whereDate('schedule_time', '>', Carbon::today())
+            ->where('is_daily_mass', '=', 0)
+            ->orderBy('schedule_time')
+            ->get();
+
+        return view('admin.mass_schedules.sunday_masses', ['massSchedules' => $massSchedules, 'dayName' => 'All']);
     }
 }

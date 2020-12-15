@@ -113,7 +113,7 @@
                                     <td>{{$schedule->gospel_reading}}</td>
                                 </tr>
 
-                                @if ($schedule->prayer_of_the_faithful)
+                                @if ($schedule->is_daily_mass == 0 and $schedule->prayer_of_the_faithful)
                                 <tr>
                                     <td>Doa Umat</td>
                                     <td>U: {{$schedule->prayer_of_the_faithful }}</td>

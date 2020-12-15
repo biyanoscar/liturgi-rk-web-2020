@@ -95,7 +95,12 @@
                     <ul class="navbar-mobile__list list-unstyled">
                         <li>
                             <a href="{{route('mass_schedules.index')}}">
-                                <i class="far fa-calendar-alt"></i>Jadwal</a>
+                                <i class="far fa-calendar-alt"></i>Misa Harian</a>
+                        </li>
+
+                        <li>
+                            <a href="{{route('mass_schedules.sunday_masses')}}">
+                                <i class="far fa-calendar"></i>Misa Hari Minggu</a>
                         </li>
 
                     </ul>
@@ -114,9 +119,14 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active">
+                        <li class="{{ request()->is('mass_schedules') ? 'active' : '' }}">
                             <a href="{{route('mass_schedules.index')}}">
-                                <i class="far fa-calendar-alt"></i>Jadwal</a>
+                                <i class="far fa-calendar-alt"></i>Misa Harian</a>
+                        </li>
+
+                        <li class="{{ request()->is('sunday_masses') ? 'active' : '' }}">
+                            <a href="{{route('mass_schedules.sunday_masses')}}">
+                                <i class="far fa-calendar"></i>Misa Hari Minggu</a>
                         </li>
 
                     </ul>
