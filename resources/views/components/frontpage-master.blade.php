@@ -56,6 +56,23 @@
         @yield('content')
     </main>
 
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+
+
+
+        <div class="container d-md-flex py-4">
+
+            <div class="mr-md-auto text-center text-md-left">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>Biyan</span></strong>. All Rights Reserved
+                </div>
+
+            </div>
+
+        </div>
+    </footer><!-- End Footer -->
+
     <script src="{{asset('js/app.js')}}"></script>
 
     <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->

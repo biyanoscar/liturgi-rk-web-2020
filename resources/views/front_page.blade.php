@@ -83,10 +83,10 @@
                                     <td>{{($schedule->kyrie_song)?$schedule->kyrie_song:'Tuhan kasihanilah kami'}}</td>
                                 </tr>
 
-                                @if ($schedule->gloria_song)
+                                @if ($schedule->show_gloria == 1)
                                 <tr>
                                     <td>Kemuliaan</td>
-                                    <td>{{$schedule->gloria_song }}</td>
+                                    <td>{{($schedule->gloria_song)?$schedule->gloria_song:'Kemuliaan'}}</td>
                                 </tr>
                                 @endif
 

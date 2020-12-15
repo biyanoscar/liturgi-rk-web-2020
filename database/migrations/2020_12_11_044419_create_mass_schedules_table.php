@@ -22,6 +22,7 @@ class CreateMassSchedulesTable extends Migration
             $table->string('holy_day_of_obligation')->nullable();
             $table->string('entrance_song')->nullable();
             $table->string('kyrie_song')->nullable();
+            $table->integer('show_gloria')->default('1');
             $table->string('gloria_song')->nullable();
             $table->string('psalm_song')->nullable();
             $table->string('alleluia_song')->nullable();

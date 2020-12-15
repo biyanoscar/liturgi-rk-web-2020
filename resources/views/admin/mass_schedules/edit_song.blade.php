@@ -34,10 +34,17 @@
                             <label for="entrance_song" class="control-label mb-1">Pembukaan</label>
                             <input id="entrance_song" name="entrance_song" type="text" class="form-control" value="{{$massSchedule->entrance_song}}">
                         </div>
+                        @if ($massSchedule->is_daily_mass == 0)
+                        <div class="form-group">
+                            <label for="kyrie_song" class="control-label mb-1">Tuhan Kasihanilah Kami</label>
+                            <input id="kyrie_song" name="kyrie_song" type="text" class="form-control" value="{{$massSchedule->kyrie_song}}">
+                        </div>
                         <div class="form-group">
                             <label for="gloria_song" class="control-label mb-1">Kemuliaan</label>
                             <input id="gloria_song" name="gloria_song" type="text" class="form-control" value="{{$massSchedule->gloria_song}}">
                         </div>
+                        @endif
+
                         <div class="form-group">
                             <label for="alleluia_song" class="control-label mb-1">Aleluya</label>
                             <input id="alleluia_song" name="alleluia_song" type="text" class="form-control" value="{{$massSchedule->alleluia_song}}">
@@ -52,6 +59,11 @@
                         <div class="form-group">
                             <label for="sanctus_song" class="control-label mb-1">Kudus</label>
                             <input id="sanctus_song" name="sanctus_song" type="text" class="form-control" value="{{$massSchedule->sanctus_song}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="agnus_dei_song" class="control-label mb-1">Anak Domba Allah</label>
+                            <input id="agnus_dei_song" name="agnus_dei_song" type="text" class="form-control" value="{{$massSchedule->agnus_dei_song}}">
                         </div>
 
                         <div class="form-group">

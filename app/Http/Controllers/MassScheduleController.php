@@ -43,11 +43,19 @@ class MassScheduleController extends Controller
     public function update(MassSchedule $massSchedule)
     {
         $input = request()->all();
+        $input['show_gloria'] = isset($input['check_gloria']) ? 1 : 0; //centang tampilkan kemuliaan
+        unset($input['check_gloria']); //dihilangkan, karena ini helper di form saja
+
+        // dd($input);
         $massSchedule->update($input);
 
         session()->flash('schedule-updated-message', 'Berhasil update jadwal');
 
-        return redirect()->route('mass_schedules.index');
+        if ($massSchedule->is_daily_mass == 0) {
+            return redirect()->route('mass_schedules.sunday_masses');
+        } else {
+            return redirect()->route('mass_schedules.index');
+        }
     }
 
     public function updateSong(MassSchedule $massSchedule)
@@ -60,9 +68,11 @@ class MassScheduleController extends Controller
         $massSchedule->recessional_song = $input['recessional_song'];
 
         if ($massSchedule->is_daily_mass == 0) {
+            $massSchedule->kyrie_song = $input['kyrie_song'];
             $massSchedule->gloria_song = $input['gloria_song'];
             $massSchedule->offertory_song = $input['offertory_song'];
             $massSchedule->sanctus_song = $input['sanctus_song'];
+            $massSchedule->agnus_dei_song = $input['agnus_dei_song'];
             $massSchedule->communion_song = $input['communion_song'];
             $massSchedule->song_of_praise = $input['song_of_praise'];
         }
@@ -134,6 +144,7 @@ class MassScheduleController extends Controller
                 $schedule->mass_title = 'Misa ' . $date->isoFormat('D MMM');
                 $schedule->is_daily_mass = 0;
                 $schedule->user_id = 1; //default user biyan
+                $schedule->show_gloria = 0;
                 $schedule->save();
 
                 $schedule = new MassSchedule();
@@ -141,6 +152,7 @@ class MassScheduleController extends Controller
                 $schedule->mass_title = 'Misa ' . $date->isoFormat('D MMM');
                 $schedule->is_daily_mass = 0;
                 $schedule->user_id = 1; //default user biyan
+                $schedule->show_gloria = 0;
                 $schedule->save();
             } else {
                 $schedule = new MassSchedule();
@@ -148,6 +160,7 @@ class MassScheduleController extends Controller
                 $schedule->mass_title = 'Misa ' . $date->isoFormat('D MMM');
                 $schedule->is_daily_mass = 1;
                 $schedule->user_id = 1; //default user biyan
+                $schedule->show_gloria = 0;
                 $schedule->save();
             }
         }

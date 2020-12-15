@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/', [FrontPageController::class, 'index'])->name('front_page.index');
 
-Auth::routes(['register' => false]);
+// Auth::routes(['register' => false]);
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

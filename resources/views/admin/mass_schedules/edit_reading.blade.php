@@ -34,6 +34,13 @@
                             <label for="holy_day_of_obligation" class="control-label mb-1">Nama HR / Pesta/ Peringatan</label>
                             <input id="holy_day_of_obligation" name="holy_day_of_obligation" type="text" class="form-control" value="{{$massSchedule->holy_day_of_obligation}}">
                         </div>
+                        <div class="form-group form-check-inline form-check">
+                            <label for="check_gloria" class="form-check-label ">
+                                <input type="checkbox" id="check_gloria" name="check_gloria" class="form-check-input" <?php if ($massSchedule->show_gloria == 1) echo 'checked' ?>>Tampilkan Kemuliaan
+                            </label>
+                        </div>
+
+
                         <div class="form-group">
                             <label for="first_reading" class="control-label mb-1">Bacaan 1</label>
                             <input id="first_reading" name="first_reading" type="text" class="form-control" value="{{$massSchedule->first_reading}}">
@@ -53,6 +60,7 @@
                             <input id="alleluia_song" name="alleluia_song" type="text" class="form-control" value="{{$massSchedule->alleluia_song}}">
                         </div>
                         @endif
+
                         <div class="form-group">
                             <label for="gospel_reading" class="control-label mb-1">Injil</label>
                             <input id="gospel_reading" name="gospel_reading" type="text" class="form-control" value="{{$massSchedule->gospel_reading}}">
