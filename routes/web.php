@@ -42,7 +42,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/mass_schedules/isidata/', [MassScheduleController::class, 'isiData'])->name('mass_schedules.isidata');
 
     Route::get('/sunday_masses', [MassScheduleController::class, 'sundayMassesIndex'])->name('mass_schedules.sunday_masses');
+});
 
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('roles', RoleController::class);
     Route::put('/roles/{role}/attach', [RoleController::class, 'attachUser'])->name('roles.user.attach');
     Route::put('/roles/{role}/detach', [RoleController::class, 'detachUser'])->name('roles.user.detach');

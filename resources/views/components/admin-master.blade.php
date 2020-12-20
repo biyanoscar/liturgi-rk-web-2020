@@ -103,10 +103,12 @@
                                 <i class="far fa-calendar"></i>Misa Hari Minggu</a>
                         </li>
 
+                        @if(auth()->user()->userHasRole('Admin'))
                         <li>
                             <a href="{{route('roles.index')}}">
                                 <i class="fa fa-globe"></i>Roles</a>
                         </li>
+                        @endif
 
                     </ul>
                 </div>
@@ -134,10 +136,12 @@
                                 <i class="far fa-calendar"></i>Misa Hari Minggu</a>
                         </li>
 
+                        @if(auth()->user()->userHasRole('Admin'))
                         <li class="{{ request()->is('roles') ? 'active' : '' }}">
                             <a href="{{route('roles.index')}}">
                                 <i class="fa fa-globe"></i>Roles</a>
                         </li>
+                        @endif
 
                     </ul>
                 </nav>

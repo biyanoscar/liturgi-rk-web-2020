@@ -58,7 +58,7 @@ class User extends Authenticatable
             if (Str::lower($role_name)  == Str::lower($role->name)) {
                 return true;
             }
-            return false;
         }
+        return false;
     }
 }

@@ -78,7 +78,9 @@
                                 <td>{{ \Carbon\Carbon::parse($schedule->schedule_time)->isoFormat('D MMM Y HH:mm') }}</td>
                                 <td>
                                     <a class="btn btn-primary" href="{{route('mass_schedules.edit_song', $schedule->id) }}">Isi lagu</a>
+                                    @if(auth()->user()->userHasRole('Liturgi'))
                                     <a class="btn btn-info" href="{{route('mass_schedules.edit_reading', $schedule->id) }}">Isi Bacaan</a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

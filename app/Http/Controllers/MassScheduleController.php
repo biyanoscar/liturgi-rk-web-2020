@@ -143,7 +143,7 @@ class MassScheduleController extends Controller
                 // $schedule->mass_title = 'Misa ' . $date->format('d M');
                 $schedule->mass_title = 'Misa ' . $date->isoFormat('D MMM');
                 $schedule->is_daily_mass = 0;
-                $schedule->user_id = 1; //default user biyan
+                $schedule->user_id = 1; //default user
                 $schedule->show_gloria = 0;
                 $schedule->save();
 
@@ -151,7 +151,7 @@ class MassScheduleController extends Controller
                 $schedule->schedule_time = $date->format('Y-m-d') . ' 16:30';
                 $schedule->mass_title = 'Misa ' . $date->isoFormat('D MMM');
                 $schedule->is_daily_mass = 0;
-                $schedule->user_id = 1; //default user biyan
+                $schedule->user_id = 1; //default user
                 $schedule->show_gloria = 0;
                 $schedule->save();
             } else {
@@ -159,7 +159,7 @@ class MassScheduleController extends Controller
                 $schedule->schedule_time = $date->format('Y-m-d') . ' 06:00';
                 $schedule->mass_title = 'Misa ' . $date->isoFormat('D MMM');
                 $schedule->is_daily_mass = 1;
-                $schedule->user_id = 1; //default user biyan
+                $schedule->user_id = 1; //default user
                 $schedule->show_gloria = 0;
                 $schedule->save();
             }
