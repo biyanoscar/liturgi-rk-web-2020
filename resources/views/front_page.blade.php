@@ -79,13 +79,13 @@
                                     <td>{{$schedule->entrance_song}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Ordinarium</td>
+                                    <td>{{($schedule->kyrie_song)?'Tuhan kasihanilah kami':'Ordinarium'}}</td>
                                     <td>{{($schedule->kyrie_song)?$schedule->kyrie_song:'Tuhan kasihanilah kami'}}</td>
                                 </tr>
 
                                 @if ($schedule->show_gloria == 1)
                                 <tr>
-                                    <td>Kemuliaan</td>
+                                    <td>{{($schedule->gloria_song)?'Kemuliaan':'Ordinarium'}}</td>
                                     <td>{{($schedule->gloria_song)?$schedule->gloria_song:'Kemuliaan'}}</td>
                                 </tr>
                                 @endif
@@ -141,12 +141,13 @@
                                     <td>Bapa Kami</td>
                                     <td>Bapa Kami</td>
                                 </tr>
-                                <tr>
-                                    <td>Ordinarium</td>
-                                    <td>{{($schedule->agnus_dei_song)?$schedule->agnus_dei_song:'Anak Domba Allah'}}</td>
-                                </tr>
+
 
                                 @if ($schedule->is_daily_mass == 0)
+                                <tr>
+                                    <td>Anak Domba Allah</td>
+                                    <td>{{($schedule->agnus_dei_song)?$schedule->agnus_dei_song:'Anak Domba Allah'}}</td>
+                                </tr>
                                 <tr>
                                     <td>Saat penerimaan komuni</td>
                                     <td>{{$schedule->communion_song}}</td>
@@ -156,6 +157,10 @@
                                     <td>{{$schedule->song_of_praise}}</td>
                                 </tr>
                                 @else
+                                <tr>
+                                    <td>Ordinarium</td>
+                                    <td>Anak Domba Allah</td>
+                                </tr>
                                 <tr>
                                     <td>Saat penerimaan komuni</td>
                                     <td>Saat penerimaan komuni Lagu Komuni Batin <span class="text-danger font-italic">(diperdengarkan sayup-sayup)</span>
