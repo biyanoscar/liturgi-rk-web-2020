@@ -128,40 +128,60 @@ class MassScheduleController extends Controller
         return view('admin.mass_schedules.index', ['massSchedules' => $schedules, 'dayName' => $dayName]);
     }
 
+    //function untuk insert jadwal misa. $hour -> format jam, misal 08:00
+    //isDailyMass=1 -> misa harian
+    public function createSchedule($date, $hour, $isDailyMass, $userId, $showGloria = 1)
+    {
+        $schedule = new MassSchedule();
+        $schedule->schedule_time = $date->format('Y-m-d') . $hour;
+        // $schedule->mass_title = 'Misa ' . $date->format('d M');
+        $schedule->mass_title = 'Misa ' . $date->isoFormat('D MMM');
+        $schedule->is_daily_mass = $isDailyMass;
+        $schedule->user_id = $userId; //default user
+        $schedule->show_gloria = $showGloria;
+        $schedule->save();
+    }
+
     //untuk isi data otomatis
     public function isiData()
     {
         //tanggal periode awal dan akhir
-        $periods = CarbonPeriod::create('2020-12-01', '2020-12-31'); //rentang tanggal yang diisikan misanya
+        $periods = CarbonPeriod::create('2021-01-01', '2021-01-31'); //rentang tanggal yang diisikan misanya
 
         // Iterate over the period
         foreach ($periods as $date) {
             if ($date->dayOfWeek == 0) {
                 //misa hari minggu
-                $schedule = new MassSchedule();
-                $schedule->schedule_time = $date->format('Y-m-d') . ' 08:00';
-                // $schedule->mass_title = 'Misa ' . $date->format('d M');
-                $schedule->mass_title = 'Misa ' . $date->isoFormat('D MMM');
-                $schedule->is_daily_mass = 0;
-                $schedule->user_id = 1; //default user
-                $schedule->show_gloria = 0;
-                $schedule->save();
+                $this->createSchedule($date, ' 08:00', 0, 1);
+                $this->createSchedule($date, ' 16:30', 0, 1);
+            } elseif ($date->dayOfWeek == 6) {
+                //misa hari sabtu
+                $userDefault = 10;
+                $this->createSchedule($date, ' 06:00', 1, $userDefault);
 
-                $schedule = new MassSchedule();
-                $schedule->schedule_time = $date->format('Y-m-d') . ' 16:30';
-                $schedule->mass_title = 'Misa ' . $date->isoFormat('D MMM');
-                $schedule->is_daily_mass = 0;
-                $schedule->user_id = 1; //default user
-                $schedule->show_gloria = 0;
-                $schedule->save();
+                $this->createSchedule($date, ' 17:30', 0, 1);
             } else {
-                $schedule = new MassSchedule();
-                $schedule->schedule_time = $date->format('Y-m-d') . ' 06:00';
-                $schedule->mass_title = 'Misa ' . $date->isoFormat('D MMM');
-                $schedule->is_daily_mass = 1;
-                $schedule->user_id = 1; //default user
-                $schedule->show_gloria = 0;
-                $schedule->save();
+                switch ($date->dayOfWeek) {
+                    case 1: //'Senin'
+                        $userDefault = 2;
+                        break;
+                    case 2: //Selasa
+                        $userDefault = 3;
+                        break;
+                    case 3:
+                        $userDefault = 4;
+                        break;
+                    case 4:
+                        $userDefault = 5;
+                        break;
+                    case 5:
+                        $userDefault = 6;
+                        break;
+                    default:
+                        $userDefault = 1;
+                }
+
+                $this->createSchedule($date, ' 06:00', 1, $userDefault);
             }
         }
 

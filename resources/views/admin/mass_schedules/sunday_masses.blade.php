@@ -33,7 +33,7 @@
                     <table class="table" id="dataTable">
                         <thead>
                             <tr>
-
+                                <td>Time</td>
                                 <td>Misa</td>
                                 <td>Waktu</td>
                                 <td>Action</td>
@@ -45,9 +45,9 @@
                             ?>
                             @foreach($massSchedules as $schedule)
                             <tr>
+                                <td>{{$schedule->schedule_time}}</td>
                                 <td>{{$schedule->mass_title}}</td>
-                                <!-- <td>{{$schedule->schedule_time}}</td> -->
-                                <td>{{ \Carbon\Carbon::parse($schedule->schedule_time)->isoFormat('D MMM Y HH:mm') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($schedule->schedule_time)->isoFormat('DD MMM Y HH:mm') }}</td>
                                 <td>
                                     <a class="btn btn-primary" href="{{route('mass_schedules.edit_song', $schedule->id) }}">Isi lagu</a>
                                     @if(auth()->user()->userHasRole('Liturgi'))
@@ -80,8 +80,13 @@
             $('#dataTable').DataTable({
                 "scrollX": false,
                 "order": [
-                    [1, "asc"]
-                ]
+                    [0, "asc"]
+                ],
+                "columnDefs": [{
+                    "targets": [0],
+                    "visible": false,
+                    "searchable": false
+                }]
             });
         });
     </script>
