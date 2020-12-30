@@ -72,7 +72,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="song_of_praise" class="control-label mb-1">Komuni 2</label>
+                            <label for="song_of_praise" class="control-label mb-1">Madah Syukur</label>
                             <input id="song_of_praise" name="song_of_praise" type="text" class="form-control" value="{{$massSchedule->song_of_praise}}">
                         </div>
                         @endif

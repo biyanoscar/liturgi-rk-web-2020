@@ -132,7 +132,7 @@
                                 @else
                                 <tr>
                                     <td>Ordinarium</td>
-                                    <td>Kudus</td>
+                                    <td>{{($schedule->sanctus_song)?$schedule->sanctus_song:'Kudus'}}</td>
                                 </tr>
                                 @endif
 
@@ -150,12 +150,14 @@
                                 </tr>
                                 <tr>
                                     <td>Saat penerimaan komuni</td>
-                                    <td>{{$schedule->communion_song}}</td>
+                                    <td>{{$schedule->communion_song?$schedule->communion_song:'Lagu Komuni Batin (diperdengarkan sayup-sayup)'}}</td>
                                 </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>{{$schedule->song_of_praise}}</td>
-                                </tr>
+                                <?php if ($schedule->song_of_praise) : ?>
+                                    <tr>
+                                        <td></td>
+                                        <td>{{$schedule->song_of_praise}}</td>
+                                    </tr>
+                                <?php endif ?>
                                 @else
                                 <tr>
                                     <td>Ordinarium</td>
@@ -163,7 +165,7 @@
                                 </tr>
                                 <tr>
                                     <td>Saat penerimaan komuni</td>
-                                    <td>Saat penerimaan komuni Lagu Komuni Batin <span class="text-danger font-italic">(diperdengarkan sayup-sayup)</span>
+                                    <td>Lagu Komuni Batin <span class="text-danger font-italic">(diperdengarkan sayup-sayup)</span>
                                     </td>
                                 </tr>
                                 @endif
