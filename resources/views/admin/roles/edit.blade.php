@@ -42,47 +42,49 @@
     <div class="row">
         <div class="col-lg-12">
             @if($users->isNotEmpty())
-            <div class="tool-3 table-responsive table-data m-b-40">
-                <table class="table" id="dataTable">
-                    <thead>
-                        <tr>
-                            <td>Nama</td>
-                            <td>Email</td>
-                            <th>Attach</th>
-                            <th>Detach</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($users as $user)
-                        <tr>
-                            <td>{{$user->name}} </td>
-                            <td>{{$user->email}}</td>
-                            <td>
-                                <form method="post" action="{{route('roles.user.attach', $role) }}">
-                                    @method('PUT')
-                                    @csrf
-                                    <input type="hidden" name="user" value="{{$user->id}}">
-                                    <button type="submit" class="btn btn-primary" @if($role->users->contains($user))
-                                        disabled
-                                        @endif
-                                        >Attach</button>
-                                </form>
-                            </td>
-                            <td>
-                                <form method="post" action="{{route('roles.user.detach', $role) }}">
-                                    @method('PUT')
-                                    @csrf
-                                    <input type="hidden" name="user" value="{{$user->id}}">
-                                    <button type="submit" class="btn btn-danger" @if(!$role->users->contains($user))
-                                        disabled
-                                        @endif
-                                        >Detach</button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+            <div class="card">
+                <div class="tool-3 table-responsive table-data m-b-40">
+                    <table class="table" id="dataTable">
+                        <thead>
+                            <tr>
+                                <td>Nama</td>
+                                <td>Email</td>
+                                <td>Attach</td>
+                                <td>Detach</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($users as $user)
+                            <tr>
+                                <td>{{$user->name}} </td>
+                                <td>{{$user->email}}</td>
+                                <td>
+                                    <form method="post" action="{{route('roles.user.attach', $role) }}">
+                                        @method('PUT')
+                                        @csrf
+                                        <input type="hidden" name="user" value="{{$user->id}}">
+                                        <button type="submit" class="btn btn-primary" @if($role->users->contains($user))
+                                            disabled
+                                            @endif
+                                            >Attach</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form method="post" action="{{route('roles.user.detach', $role) }}">
+                                        @method('PUT')
+                                        @csrf
+                                        <input type="hidden" name="user" value="{{$user->id}}">
+                                        <button type="submit" class="btn btn-danger" @if(!$role->users->contains($user))
+                                            disabled
+                                            @endif
+                                            >Detach</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
             @endif
 
