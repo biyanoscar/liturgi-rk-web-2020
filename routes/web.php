@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FrontPageController;
+use App\Http\Controllers\MassScheduleAllController;
 use App\Http\Controllers\MassScheduleController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
@@ -48,4 +49,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('roles', RoleController::class);
     Route::put('/roles/{role}/attach', [RoleController::class, 'attachUser'])->name('roles.user.attach');
     Route::put('/roles/{role}/detach', [RoleController::class, 'detachUser'])->name('roles.user.detach');
+
+    Route::get('/mass_schedules_all/{massSchedule}/edit', [MassScheduleAllController::class, 'edit'])->name('mass_schedules_all.edit'); //supaya route edit mengandung data
+    Route::patch('/mass_schedules_all/{massSchedule}', [MassScheduleAllController::class, 'update'])->name('mass_schedules_all.update');
+    Route::delete('/mass_schedules_all/{massSchedule}', [MassScheduleAllController::class, 'destroy'])->name('mass_schedules_all.destroy');
+    Route::resource('mass_schedules_all', MassScheduleAllController::class);
 });
