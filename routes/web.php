@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/mass_schedules/{massSchedule}/song', [MassScheduleController::class, 'updateSong'])->name('mass_schedules.update_song');
 
     Route::get('/mass_schedules/day/{dayNum}', [MassScheduleController::class, 'getByDayNum'])->name('mass_schedules.day');
-    Route::get('/mass_schedules/isidata/', [MassScheduleController::class, 'isiData'])->name('mass_schedules.isidata');
+    // Route::get('/mass_schedules/isidata/', [MassScheduleController::class, 'isiData'])->name('mass_schedules.isidata');
 
     Route::get('/sunday_masses', [MassScheduleController::class, 'sundayMassesIndex'])->name('mass_schedules.sunday_masses');
 });
@@ -49,6 +49,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('roles', RoleController::class);
     Route::put('/roles/{role}/attach', [RoleController::class, 'attachUser'])->name('roles.user.attach');
     Route::put('/roles/{role}/detach', [RoleController::class, 'detachUser'])->name('roles.user.detach');
+});
+
+Route::middleware(['auth', 'role:liturgi'])->group(function () {
+    Route::get('/mass_schedules_all/create_by_date_range', [MassScheduleAllController::class, 'createByDateRange'])->name('mass_schedules_all.create_by_date_range');
+    Route::post('/mass_schedules_all/store_by_date_range', [MassScheduleAllController::class, 'storeByDateRange'])->name('mass_schedules_all.store_by_date_range');
+
 
     Route::get('/mass_schedules_all/{massSchedule}/edit', [MassScheduleAllController::class, 'edit'])->name('mass_schedules_all.edit'); //supaya route edit mengandung data
     Route::patch('/mass_schedules_all/{massSchedule}', [MassScheduleAllController::class, 'update'])->name('mass_schedules_all.update');

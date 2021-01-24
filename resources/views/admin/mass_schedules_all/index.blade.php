@@ -45,7 +45,8 @@
                     <div class="table-data__tool-right">
 
 
-                        <a class="au-btn au-btn-icon au-btn--green au-btn--small" href="{{route('mass_schedules_all.create') }}">Tambah Jadwal</a>
+                        <a class="btn btn-success" href="{{route('mass_schedules_all.create') }}">Tambah Jadwal</a>
+                        <a class="btn btn-primary" href="{{route('mass_schedules_all.create_by_date_range') }}" role="button">Tambah by Range</a>
                     </div>
 
                 </div>
