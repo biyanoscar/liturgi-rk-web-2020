@@ -34,6 +34,13 @@
                             <label for="holy_day_of_obligation" class="control-label mb-1">Nama HR / Pesta/ Peringatan</label>
                             <input id="holy_day_of_obligation" name="holy_day_of_obligation" type="text" class="form-control" value="{{$massSchedule->holy_day_of_obligation}}">
                         </div>
+
+                        <div class="form-group form-check-inline form-check">
+                            <label for="check_is_daily_mass" class="form-check-label ">
+                                <input type="checkbox" id="check_is_daily_mass" name="check_is_daily_mass" class="form-check-input" <?php if ($massSchedule->is_daily_mass == 1) echo 'checked' ?>>Misa Harian
+                            </label>
+                        </div>
+
                         <div class="form-group form-check-inline form-check">
                             <label for="check_gloria" class="form-check-label ">
                                 <input type="checkbox" id="check_gloria" name="check_gloria" class="form-check-input" <?php if ($massSchedule->show_gloria == 1) echo 'checked' ?>>Tampilkan Kemuliaan
@@ -49,7 +56,7 @@
                             <label for="psalm_song" class="control-label mb-1">Mazmur</label>
                             <input id="psalm_song" name="psalm_song" type="text" class="form-control" value="{{$massSchedule->psalm_song}}">
                         </div>
-                        @if ($massSchedule->is_daily_mass == 0)
+
                         <div class="form-group">
                             <label for="second_reading" class="control-label mb-1">Bacaan 2</label>
                             <input id="second_reading" name="second_reading" type="text" class="form-control" value="{{$massSchedule->second_reading}}">
@@ -59,19 +66,19 @@
                             <label for="alleluia_song" class="control-label mb-1">Aleluya</label>
                             <input id="alleluia_song" name="alleluia_song" type="text" class="form-control" value="{{$massSchedule->alleluia_song}}">
                         </div>
-                        @endif
+
 
                         <div class="form-group">
                             <label for="gospel_reading" class="control-label mb-1">Injil</label>
                             <input id="gospel_reading" name="gospel_reading" type="text" class="form-control" value="{{$massSchedule->gospel_reading}}">
                         </div>
 
-                        @if ($massSchedule->is_daily_mass == 0)
+
                         <div class="form-group">
                             <label for="prayer_of_the_faithful" class="control-label mb-1">Doa Umat</label>
                             <input id="prayer_of_the_faithful" name="prayer_of_the_faithful" type="text" class="form-control" value="{{$massSchedule->prayer_of_the_faithful}}">
                         </div>
-                        @endif
+
 
 
                         <div>

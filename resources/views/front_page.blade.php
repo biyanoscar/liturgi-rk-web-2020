@@ -98,7 +98,7 @@
                                     <td>Mazmur Tanggapan</td>
                                     <td>U: {{$schedule->psalm_song}}</td>
                                 </tr>
-                                @if ($schedule->is_daily_mass == 0)
+                                @if ($schedule->second_reading)
                                 <tr>
                                     <td>Liturgi Sabda: Bacaan 2</td>
                                     <td>{{$schedule->second_reading}}</td>

@@ -25,7 +25,8 @@
             <!-- USER DATA-->
             <div class="user-data m-b-30">
                 <h3 class="title-3 m-b-30">
-                    <i class="zmdi zmdi-calendar-alt"></i></i>Misa Harian</h3>
+                    <i class="zmdi zmdi-calendar-alt"></i></i>Misa Harian
+                </h3>
 
                 <div class="tool-3 table-data__tool">
                     <div class="table-data__tool-left">
@@ -51,9 +52,9 @@
                             <span class="badge badge-primary">{{$dayName}}</span>
                         </div>
 
-
-
-
+                    </div>
+                    <div class="table-data__tool-right">
+                        <a href="{{route('mass_schedules.sunday_masses')}}" class="btn btn-success">Misa Hari Minggu</a>
                     </div>
 
                 </div>

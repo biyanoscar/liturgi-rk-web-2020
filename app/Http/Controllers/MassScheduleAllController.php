@@ -97,14 +97,17 @@ class MassScheduleAllController extends Controller
      */
     public function update(MassSchedule $massSchedule)
     {
-        $input = request()->all();
-        $input['show_gloria'] = isset($input['check_gloria']) ? 1 : 0; //centang tampilkan kemuliaan
-        unset($input['check_gloria']); //dihilangkan, karena ini helper di form saja
+        $formData = request()->all();
+        // $input['show_gloria'] = isset($input['check_gloria']) ? 1 : 0; //centang tampilkan kemuliaan
+        // unset($input['check_gloria']); //dihilangkan, karena ini helper di form saja
+
+        $formData = $this->getCheckBoxValue($formData, 'check_gloria', 'show_gloria');
+        $formData = $this->getCheckBoxValue($formData, 'check_is_daily_mass', 'is_daily_mass');
 
         // dd($input);
-        $massSchedule->update($input);
+        $massSchedule->update($formData);
 
-        session()->flash('schedule-updated-message', 'Berhasil update jadwal');
+        session()->flash('schedule-updated-message', 'Berhasil update jadwal ' . $formData['mass_title']);
 
         return redirect()->route('mass_schedules_all.index');
     }
