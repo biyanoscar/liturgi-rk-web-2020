@@ -23,7 +23,7 @@
                         @method('PATCH')
                         <div class="form-group">
                             <label for="schedule_time" class="control-label mb-1">Jadwal</label>
-                            <input id="schedule_time" name="schedule_time" type="text" class="form-control" value="{{$massSchedule->schedule_time}}" disabled>
+                            <input id="schedule_time" name="schedule_time" type="text" class="form-control" value="{{$massSchedule->schedule_time}}">
                         </div>
 
                         <div class="form-group">
@@ -94,6 +94,19 @@
         </div>
 
     </div>
+    @endsection
+
+    @section('scripts')
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+    <script>
+        $('#schedule_time').datetimepicker({
+            footer: true,
+            modal: true,
+            format: 'yyyy-mm-dd HH:MM'
+        });
+    </script>
     @endsection
 
 
