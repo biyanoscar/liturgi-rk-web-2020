@@ -148,6 +148,11 @@
                             <a href="{{route('roles.index')}}">
                                 <i class="fa fa-globe"></i>Roles</a>
                         </li>
+
+                        <li class="{{ request()->is('users') ? 'active' : '' }}">
+                            <a href="{{route('users.index')}}">
+                                <i class="fa fa-users"></i>Users</a>
+                        </li>
                         @endif
 
                     </ul>

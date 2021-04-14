@@ -4,6 +4,7 @@ use App\Http\Controllers\FrontPageController;
 use App\Http\Controllers\MassScheduleAllController;
 use App\Http\Controllers\MassScheduleController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,6 +50,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('roles', RoleController::class);
     Route::put('/roles/{role}/attach', [RoleController::class, 'attachUser'])->name('roles.user.attach');
     Route::put('/roles/{role}/detach', [RoleController::class, 'detachUser'])->name('roles.user.detach');
+
+    Route::resource('users', UserController::class);
 });
 
 Route::middleware(['auth', 'role:liturgi'])->group(function () {
