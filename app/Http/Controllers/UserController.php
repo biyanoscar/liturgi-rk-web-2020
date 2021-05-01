@@ -78,13 +78,20 @@ class UserController extends Controller
      */
     public function update(User $user)
     {
-        $input = request()->all();
+        // $input = request()->all();
         // dd($input);
         $inputs = request()->validate([
-            'name' => ['required', 'string', 'max:255', 'alpha_dash'],
+            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'password' => 'sometimes|confirmed', //'sometimes|required|between:5,20|confirmed'
         ]);
+
+        $inputs = array_filter($inputs); //get rid of empty fields
+
+        if (!empty($inputs['password'])) {
+            $inputs['password'] = bcrypt($inputs['password']); // enkrip password
+        }
+
         // dd($inputs);
 
         $user->update($inputs);

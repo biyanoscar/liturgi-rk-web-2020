@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ChoirController;
+use App\Http\Controllers\ChoirMemberController;
 use App\Http\Controllers\FrontPageController;
 use App\Http\Controllers\MassScheduleAllController;
 use App\Http\Controllers\MassScheduleController;
@@ -44,6 +46,9 @@ Route::middleware('auth')->group(function () {
     // Route::get('/mass_schedules/isidata/', [MassScheduleController::class, 'isiData'])->name('mass_schedules.isidata');
 
     Route::get('/sunday_masses', [MassScheduleController::class, 'sundayMassesIndex'])->name('mass_schedules.sunday_masses');
+
+    Route::resource('choir_members', ChoirMemberController::class);
+    Route::get('/choir_members/{choir}/create-by-parent', [ChoirMemberController::class, 'createByParent'])->name('choir_members.create_by_parent');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -63,4 +68,6 @@ Route::middleware(['auth', 'role:liturgi'])->group(function () {
     Route::patch('/mass_schedules_all/{massSchedule}', [MassScheduleAllController::class, 'update'])->name('mass_schedules_all.update');
     Route::delete('/mass_schedules_all/{massSchedule}', [MassScheduleAllController::class, 'destroy'])->name('mass_schedules_all.destroy');
     Route::resource('mass_schedules_all', MassScheduleAllController::class);
+
+    Route::resource('choirs', ChoirController::class);
 });

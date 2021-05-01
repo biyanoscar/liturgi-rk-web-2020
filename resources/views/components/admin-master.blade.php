@@ -141,6 +141,11 @@
                             <a href="{{route('mass_schedules_all.index')}}">
                                 <i class="far fa-calendar-alt"></i>Misa All</a>
                         </li>
+
+                        <li class="{{ request()->is('choirs') ? 'active' : '' }}">
+                            <a href="{{route('choirs.index')}}">
+                                <i class="fa fa-music"></i>Paduan Suara</a>
+                        </li>
                         @endif
 
                         @if(auth()->user()->userHasRole('Admin'))
