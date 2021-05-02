@@ -67,4 +67,23 @@ class User extends Authenticatable
     //     if ($value)
     //         $this->attributes['password'] = bcrypt($value);
     // }
+
+
+    /**
+     * Get the choirs for the user.
+     */
+    public function choirs()
+    {
+        return $this->hasMany(Choir::class);
+    }
+
+    public function userHasChoir($choirId)
+    {
+        foreach ($this->choirs as $choir) {
+            if ($choirId  == $choir->id) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

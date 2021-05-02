@@ -37,10 +37,10 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
                     <a class="nav-link" href="/">Home </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item {{ request()->is('jadwal') ? 'active' : '' }}">
                     <a class="nav-link" href="/jadwal">Jadwal</a>
                   </li>
 

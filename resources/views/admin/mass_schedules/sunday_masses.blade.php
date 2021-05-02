@@ -49,13 +49,18 @@
                                 <td>{{$schedule->mass_title}}</td>
                                 <td>{{ \Carbon\Carbon::parse($schedule->schedule_time)->isoFormat('DD MMM Y HH:mm') }}</td>
                                 <td>
-                                    <a class="btn btn-primary" href="{{route('mass_schedules.edit_song', $schedule->id) }}">Isi lagu</a>
-                                    @if(auth()->user()->userHasRole('Liturgi'))
-                                    <a class="btn btn-info" href="{{route('mass_schedules.edit_reading', $schedule->id) }}">Isi Bacaan</a>
+                                    @if (isset($schedule->ministrySchedule->id))
+                                        @if(auth()->user()->userHasChoir($schedule->ministrySchedule->choir_id)or auth()->user()->userHasRole('Liturgi'))
+                                            <a class="btn btn-primary" href="{{route('mass_schedules.edit_song', $schedule->id) }}">Isi lagu</a>
+                                            <a class="btn btn-secondary" href="{{route('ministry_schedules.show', $schedule->ministrySchedule->id) }}">Padus</a>
+                                        @endif
+                                    @elseif (auth()->user()->userHasRole('Liturgi'))
+                                        <a class="btn btn-primary" href="{{route('mass_schedules.edit_song', $schedule->id) }}">Isi lagu</a>
                                     @endif
 
-                                    @if (isset($schedule->ministrySchedule->id))
-                                    <a class="btn btn-secondary" href="{{route('ministry_schedules.show', $schedule->ministrySchedule->id) }}">Padus</a>
+
+                                    @if(auth()->user()->userHasRole('Liturgi'))
+                                    <a class="btn btn-info" href="{{route('mass_schedules.edit_reading', $schedule->id) }}">Isi Bacaan</a>
                                     @endif
                                 </td>
                             </tr>

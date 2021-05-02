@@ -44,9 +44,9 @@
 
                     <div class="table-data__tool-right">
 
-
+                        @if(auth()->user()->userHasRole('Liturgi'))
                         <a class="btn btn-success" href="{{route('choirs.create') }}">Tambah Padus</a>
-
+                        @endif
                     </div>
 
                 </div>
@@ -69,17 +69,24 @@
                                 <td>{{$choir->name}}</td>
                                 <td>{{$choir->user->name}}</td>
                                 <td>
-                                    <a class="btn btn-primary" href="{{route('choirs.show', $choir->id) }}">Members</a>
-                                    <a class="btn btn-info" href="{{route('choirs.edit', $choir->id) }}">Edit</a>
+                                    @if((auth()->user()->userHasChoir($choir->id))or auth()->user()->userHasRole('Liturgi'))
+                                        <a class="btn btn-primary" href="{{route('choirs.show', $choir->id) }}">Members</a>
+                                    @endif
+
+                                    @if(auth()->user()->userHasRole('Liturgi'))
+                                        <a class="btn btn-info" href="{{route('choirs.edit', $choir->id) }}">Edit</a>
+                                    @endif
 
 
                                 </td>
                                 <td>
+                                    @if(auth()->user()->userHasRole('Liturgi'))
                                     <form method="POST" action="{{route('choirs.destroy', $choir->id) }}">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
