@@ -45,7 +45,7 @@
                     <div class="table-data__tool-right">
 
 
-                        <a class="btn btn-success" href="{{route('choir_members.create_by_parent', $choir->id) }}">Tambah Padus</a>
+                        <a class="btn btn-success" href="{{route('choir_members.create_by_parent', $choir->id) }}">Tambah Anggota</a>
 
                     </div>
 

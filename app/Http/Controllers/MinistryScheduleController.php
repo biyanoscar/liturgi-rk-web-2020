@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Choir;
+use App\Models\MassSchedule;
 use App\Models\MinistrySchedule;
 use Illuminate\Http\Request;
 
@@ -35,7 +37,17 @@ class MinistryScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $input['user_id'] = Choir::find($input['choir_id'])->user_id;
+        // $userId = Choir::find($input['choir_id'])->user_id;
+        // dd($input);
+        // dd($request->all());
+
+
+        MinistrySchedule::create($input);
+
+        return redirect()->route('mass_schedules_all.index')
+            ->with('schedule-updated-message', 'Minister Schedule created successfully.');;
     }
 
     /**
@@ -57,7 +69,11 @@ class MinistryScheduleController extends Controller
      */
     public function edit(MinistrySchedule $ministrySchedule)
     {
-        //
+        // dd($ministrySchedule->massSchedule->mass_title);
+        return view('admin.ministry_schedules.edit', [
+            'ministrySchedule' => $ministrySchedule,
+            'choirs' => Choir::all()
+        ]);
     }
 
     /**
@@ -69,7 +85,12 @@ class MinistryScheduleController extends Controller
      */
     public function update(Request $request, MinistrySchedule $ministrySchedule)
     {
-        //
+        $input = $request->all();
+        $input['user_id'] = Choir::find($input['choir_id'])->user_id;
+
+        $ministrySchedule->update($input);
+        return redirect()->route('mass_schedules_all.index')
+            ->with('schedule-updated-message', 'Minister Schedule updated successfully.');
     }
 
     /**
@@ -81,5 +102,28 @@ class MinistryScheduleController extends Controller
     public function destroy(MinistrySchedule $ministrySchedule)
     {
         //
+    }
+
+    public function createByMassSchedule(MassSchedule $schedule)
+    {
+        // dd($schedule->id);
+        // return view('admin.choir_members.create_by_parent', ['schedule' => $schedule]);
+
+        return view('admin.ministry_schedules.create_by_mass_schedule', [
+            'schedule' => $schedule,
+            'choirs' => Choir::all()
+        ]);
+    }
+
+    public function fillByMassSchedule(MassSchedule $schedule)
+    {
+        $ministrySchedule = MassSchedule::find($schedule->id)->ministrySchedule;
+        if ($ministrySchedule) {
+            $view = $this->edit($ministrySchedule);
+            return $view;
+        } else {
+            $view = $this->createByMassSchedule($schedule);
+            return $view;
+        }
     }
 }

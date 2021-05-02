@@ -71,8 +71,8 @@
                                 <td>{{$schedule->mass_title}}</td>
                                 <td>{{ \Carbon\Carbon::parse($schedule->schedule_time)->isoFormat('DD MMM Y HH:mm') }}</td>
                                 <td>
-                                    <a class="btn btn-info" href="{{route('mass_schedules_all.edit', $schedule->id) }}">Edit</a>
-
+                                    <a class="btn btn-primary" href="{{route('mass_schedules_all.edit', $schedule->id) }}">Edit</a>
+                                    <a class="btn btn-secondary" href="{{route('ministry_schedules.fill_by_mass_schedule', $schedule->id) }}">Jadwal Petugas</a>
 
                                 </td>
                                 <td>

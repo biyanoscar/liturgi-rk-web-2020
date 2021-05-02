@@ -21,4 +21,12 @@ class MassSchedule extends Model
     //     // return Carbon::parse($value)->format('d M H:i');
     //     return Carbon::parse($value)->isoFormat('D MMM Y');
     // }
+
+    /**
+     * Get the ministry schedules associated with the mass schedules.
+     */
+    public function ministrySchedule()
+    {
+        return $this->hasOne(MinistrySchedule::class);
+    }
 }
