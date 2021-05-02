@@ -18,14 +18,14 @@ class CreateMinistrySchedulesTable extends Migration
             $table->foreignId('mass_schedule_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('choir_id')->constrained();
-            $table->foreignId('organist_id')->constrained();
-            $table->foreignId('lector_id')->constrained();
-            $table->unsignedBigInteger('lector2_id');
+            $table->foreignId('organist_id')->nullable()->constrained();
+            $table->foreignId('lector_id')->nullable()->constrained();
+            $table->unsignedBigInteger('lector2_id')->nullable();
             $table->foreign('lector2_id')->references('id')->on('lectors');
-            $table->foreignId('psalmist_id')->constrained();
+            $table->foreignId('psalmist_id')->nullable()->constrained();
 
-            $table->foreignId('eucharistic_ministry_id')->constrained();
-            $table->unsignedBigInteger('eucharistic_ministry2_id');
+            $table->foreignId('eucharistic_ministry_id')->nullable()->constrained();
+            $table->unsignedBigInteger('eucharistic_ministry2_id')->nullable();
             $table->foreign('eucharistic_ministry2_id')->references('id')->on('eucharistic_ministries');
             $table->timestamps();
         });

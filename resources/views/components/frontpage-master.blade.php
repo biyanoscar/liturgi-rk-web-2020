@@ -20,6 +20,11 @@
         body {
             padding-top: 4.5rem;
         }
+        .blank_row
+        {
+            height: 10px !important; /* overwrites any other rules */
+            background-color: #FFFFFF;
+        }
     </style>
 </head>
 
@@ -30,6 +35,17 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
+            <!-- Left Side Of Navbar -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/jadwal">Jadwal</a>
+                  </li>
+
+            </ul>
+
             <ul class="navbar-nav ml-auto">
                 @if (Route::has('login'))
                 @auth

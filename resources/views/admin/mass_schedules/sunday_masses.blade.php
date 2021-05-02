@@ -41,7 +41,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php //dd(auth()->user()->roles) 
+                            <?php //dd(auth()->user()->roles)
                             ?>
                             @foreach($massSchedules as $schedule)
                             <tr>
@@ -52,6 +52,10 @@
                                     <a class="btn btn-primary" href="{{route('mass_schedules.edit_song', $schedule->id) }}">Isi lagu</a>
                                     @if(auth()->user()->userHasRole('Liturgi'))
                                     <a class="btn btn-info" href="{{route('mass_schedules.edit_reading', $schedule->id) }}">Isi Bacaan</a>
+                                    @endif
+
+                                    @if (isset($schedule->ministrySchedule->id))
+                                    <a class="btn btn-secondary" href="{{route('ministry_schedules.show', $schedule->ministrySchedule->id) }}">Padus</a>
                                     @endif
                                 </td>
                             </tr>

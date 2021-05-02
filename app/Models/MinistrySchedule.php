@@ -14,4 +14,14 @@ class MinistrySchedule extends Model
     {
         return $this->belongsTo(MassSchedule::class);
     }
+
+    public function choir()
+    {
+        return $this->belongsTo(Choir::class);
+    }
+
+    public function choirMember()
+    {
+        return $this->belongsToMany(ChoirMember::class);
+    }
 }

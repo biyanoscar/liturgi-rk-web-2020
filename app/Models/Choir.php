@@ -17,4 +17,12 @@ class Choir extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the members for the choir
+     */
+    public function choirMembers()
+    {
+        return $this->hasMany(ChoirMember::class);
+    }
 }

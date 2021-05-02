@@ -116,8 +116,8 @@ class MassScheduleController extends Controller
         }
 
         $schedules = DB::select(DB::raw(
-            "SELECT * FROM mass_schedules 
-            WHERE 
+            "SELECT * FROM mass_schedules
+            WHERE
             is_daily_mass = 1
             and schedule_time > CURDATE()
             and WEEKDAY(schedule_time) = :somevariable"
@@ -196,6 +196,11 @@ class MassScheduleController extends Controller
             ->where('is_daily_mass', '=', 0)
             ->orderBy('schedule_time')
             ->get();
+
+        // foreach ($massSchedules as $schedule) {
+        //     var_dump($schedule->ministrySchedule);
+        // }
+        // exit;
 
         return view('admin.mass_schedules.sunday_masses', ['massSchedules' => $massSchedules, 'dayName' => 'All']);
     }

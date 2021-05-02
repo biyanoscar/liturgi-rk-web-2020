@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('front_page');
 // });
 Route::get('/', [FrontPageController::class, 'index'])->name('front_page.index');
+Route::get('/jadwal', [FrontPageController::class, 'schedule'])->name('front_page.schedule');
 
 // Auth::routes(['register' => false]);
 Auth::routes();
@@ -56,6 +57,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('ministry_schedules', MinistryScheduleController::class);
     Route::get('/ministry_schedules/{schedule}/create-by-mass-schedule', [MinistryScheduleController::class, 'createByMassSchedule'])->name('ministry_schedules.create_by_mass_schedule');
     Route::get('/ministry_schedules/{schedule}/fill-by-mass-schedule', [MinistryScheduleController::class, 'fillByMassSchedule'])->name('ministry_schedules.fill_by_mass_schedule');
+
+    //route tambahkan petugas ke jadwal misa
+    Route::put('/ministry_schedules/{ministrySchedule}/attach', [MinistryScheduleController::class, 'attachChoirMember'])->name('ministrySchedules.choirMember.attach');
+    Route::put('/ministry_schedules/{ministrySchedule}/detach', [MinistryScheduleController::class, 'detachChoirMember'])->name('ministrySchedules.choirMember.detach');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
