@@ -92,13 +92,15 @@ class ChoirMemberController extends Controller
     public function update(Request $request, ChoirMember $choirMember)
     {
         // Validasi jumlah anggota yg diset sebagai default max 5 orang
-        if ($request->check_is_default == 'on') {
+        if (($request->check_is_default == 'on') and ($request->old_is_default == 0)) {
             $defaultCounts = ChoirMember::where('choir_id', $request->choir_id)->where('is_default', 1)->count();
             if ($defaultCounts >= 5) {
                 session()->flash('error-message', 'Default jumlah orang yang tugas maksimum 5. Silahkan hilangkan centang');
                 return redirect()->back()->withInput();
             }
         }
+
+        unset($request['old_is_default']); //unset helper old input
 
         $request->validate([
             'name' => 'required',
@@ -112,7 +114,7 @@ class ChoirMemberController extends Controller
         // ChoirMember::create($request->all());
 
         return redirect()->route('choirs.show', $request['choir_id'])
-            ->with('success-msg', 'Choir Member created successfully.');
+            ->with('success-msg', 'Choir Member updated successfully.');
     }
 
     /**

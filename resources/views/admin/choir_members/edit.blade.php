@@ -67,6 +67,8 @@
                             <label for="check_is_default" class="form-check-label ">
                                 <input type="checkbox" id="check_is_default" name="check_is_default" class="form-check-input" <?php if ($choirMember->is_default == 1) echo 'checked' ?>>Default
                             </label>
+
+                            <input type="hidden" id="old_is_default" name="old_is_default" value="<?= $choirMember->is_default; ?>">
                         </div>
 
 
