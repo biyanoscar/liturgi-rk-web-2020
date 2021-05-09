@@ -1,6 +1,47 @@
 <x-admin-master>
     @section('title', 'Anggota Bertugas')
 
+    @section('styles')
+    <style>
+        body{
+            font-size: 0.8rem;
+        }
+
+        .btn {
+            font-size: 0.8rem;
+        }
+
+        .table-data .table td {
+            padding-left: 10px;
+        }
+
+
+        @media only screen and (min-width: 600px) {
+            body{
+                font-size: 16px;
+            }
+            .btn {
+                font-size: 1rem;
+            }
+
+            .table-data .table td {
+                padding-left: 40px;
+            }
+        }
+
+        @media all and (max-width: 767px) {
+            td.col_2{
+                display:none;
+                width:0;
+                height:0;
+                opacity:0;
+                visibility: collapse
+            }
+        }
+    </style>
+    @endsection
+
+
     @section('content')
     @if(session()->has('msg-success'))
     <div class="alert alert-success">
@@ -8,9 +49,9 @@
     </div>
     @endif
 
-    @if(session()->has('msg-deleted'))
+    @if(session()->has('msg-error'))
     <div class="alert alert-danger">
-        {{session('msg-deleted')}}
+        {{session('msg-error')}}
     </div>
     @endif
 
@@ -27,7 +68,7 @@
                             <thead>
                                 <tr>
                                     <td>Nama</td>
-                                    <td>No KK</td>
+                                    <td class="col_2">No KK</td>
                                     <td>Tugasin</td>
                                     <td>Liburin</td>
                                 </tr>
@@ -36,7 +77,7 @@
                                 @foreach($choirMembers as $choirMember)
                                 <tr>
                                     <td>{{$choirMember->name}} </td>
-                                    <td>{{$choirMember->no_kk}}</td>
+                                    <td class="col_2">{{$choirMember->no_kk}}</td>
                                     <td>
                                         <form method="post" action="{{route('ministrySchedules.choirMember.attach', $ministrySchedule) }}">
                                             @method('PUT')

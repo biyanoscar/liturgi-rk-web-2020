@@ -164,6 +164,13 @@ class MinistryScheduleController extends Controller
 
     public function attachChoirMember(MinistrySchedule $ministrySchedule)
     {
+        $membersOnDutyCounts = $ministrySchedule->getChoirMemberCounts();
+        if ($membersOnDutyCounts >= 5) {
+            session()->flash('msg-error', 'Sorry. Kursinya ga cukup bosss!!!');
+            return redirect()->back()->withInput();
+        }
+        // dd(count($ministrySchedule->choirMember));
+
         $ministrySchedule->choirMember()->attach(request('choir_member'));
         session()->flash('msg-success', 'Anggota berhasil ditugasin');
         return back();
@@ -172,7 +179,7 @@ class MinistryScheduleController extends Controller
     public function detachChoirMember(MinistrySchedule $ministrySchedule)
     {
         $ministrySchedule->choirMember()->detach(request('choir_member'));
-        session()->flash('msg-deleted', 'Anggota berhasil diliburin');
+        session()->flash('msg-error', 'Anggota berhasil diliburin');
         return back();
     }
 }

@@ -19,6 +19,12 @@
     </div>
     @endif
 
+    @if(session()->has('error-message'))
+    <div class="alert alert-danger">
+        {{session('error-message')}}
+    </div>
+    @endif
+
     <div class="row">
         <div class="col-lg-6">
             <div class="card">
@@ -38,7 +44,7 @@
 
                         <div class="form-group">
                             <label for="name" class="control-label mb-1">Nama</label>
-                            <input id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{$choirMember->name}}">
+                            <input id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{old('name') ? old('name') :$choirMember->name}}">
                             @error('name')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -48,7 +54,7 @@
 
                         <div class="form-group">
                             <label for="no_kk" class="control-label mb-1">No KK</label>
-                            <input id="no_kk" name="no_kk" type="text" class="form-control @error('no_kk') is-invalid @enderror" value="{{$choirMember->no_kk}}">
+                            <input id="no_kk" name="no_kk" type="text" class="form-control @error('no_kk') is-invalid @enderror" value="{{old('no_kk') ? old('no_kk') : $choirMember->no_kk}}">
                             @error('no_kk')
                             <div class="invalid-feedback">
                                 {{ $message }}

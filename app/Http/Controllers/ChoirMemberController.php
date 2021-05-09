@@ -36,6 +36,16 @@ class ChoirMemberController extends Controller
      */
     public function store(Request $request)
     {
+        // Validasi jumlah anggota yg diset sebagai default max 5 orang
+        if ($request->check_is_default == 'on') {
+            $defaultCounts = ChoirMember::where('choir_id', $request->choir_id)->where('is_default', 1)->count();
+            // dd($defaultCounts);
+            if ($defaultCounts >= 5) {
+                session()->flash('error-message', 'Default jumlah orang yang tugas maksimum 5. Silahkan hilangkan centang');
+                return redirect()->back()->withInput();
+            }
+        }
+
         $request->validate([
             'name' => 'required',
             'no_kk' => 'required',
@@ -81,6 +91,15 @@ class ChoirMemberController extends Controller
      */
     public function update(Request $request, ChoirMember $choirMember)
     {
+        // Validasi jumlah anggota yg diset sebagai default max 5 orang
+        if ($request->check_is_default == 'on') {
+            $defaultCounts = ChoirMember::where('choir_id', $request->choir_id)->where('is_default', 1)->count();
+            if ($defaultCounts >= 5) {
+                session()->flash('error-message', 'Default jumlah orang yang tugas maksimum 5. Silahkan hilangkan centang');
+                return redirect()->back()->withInput();
+            }
+        }
+
         $request->validate([
             'name' => 'required',
             'no_kk' => 'required',
@@ -112,8 +131,14 @@ class ChoirMemberController extends Controller
 
     public function createByParent(Choir $choir)
     {
-        // dd($choir);
-        return view('admin.choir_members.create_by_parent', ['choir' => $choir]);
+        $defaultCounts = ChoirMember::where('choir_id', $choir->id)->where('is_default', 1)->count();
+        $checkedDefaultStyle = '';
+        if ($defaultCounts < 5) {
+            $checkedDefaultStyle = 'checked';
+        }
+        // dd($checkedDefaultStyle);
+
+        return view('admin.choir_members.create_by_parent', ['choir' => $choir, 'checkedDefaultStyle' => $checkedDefaultStyle]);
     }
 
     //function untuk rubah centangan html jadi value field yg sesuai

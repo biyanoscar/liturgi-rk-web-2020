@@ -21,6 +21,12 @@
     </div>
     @endif
 
+    @if(session()->has('error-message'))
+    <div class="alert alert-danger">
+        {{session('error-message')}}
+    </div>
+    @endif
+
     <div class="row">
         <div class="col-lg-6">
             <div class="card">
@@ -61,7 +67,7 @@
 
                         <div class="form-group form-check-inline form-check">
                             <label for="check_is_default" class="form-check-label ">
-                                <input type="checkbox" id="check_is_default" name="check_is_default" class="form-check-input" checked>Default
+                                <input type="checkbox" id="check_is_default" name="check_is_default" class="form-check-input" <?= $checkedDefaultStyle; ?>>Default
                             </label>
                         </div>
 

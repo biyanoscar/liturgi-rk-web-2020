@@ -24,4 +24,10 @@ class MinistrySchedule extends Model
     {
         return $this->belongsToMany(ChoirMember::class);
     }
+
+    //function untuk hitung jumlah anggota koor yg tugas
+    public function getChoirMemberCounts()
+    {
+        return count($this->choirMember);
+    }
 }

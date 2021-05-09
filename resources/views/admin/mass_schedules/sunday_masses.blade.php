@@ -8,6 +8,24 @@
             padding-left: 40px;
             padding-right: 55px;
         }
+
+        body{
+            font-size: 0.8rem;
+        }
+
+        .table-data .table td {
+            padding-left: 10px;
+        }
+
+        @media only screen and (min-width: 600px) {
+            body{
+                font-size: 16px;
+            }
+
+            .table-data .table td {
+                padding-left: 40px;
+            }
+        }
     </style>
 
     @endsection
