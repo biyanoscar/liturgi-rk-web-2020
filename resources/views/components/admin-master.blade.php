@@ -103,10 +103,27 @@
                                 <i class="far fa-calendar"></i>Misa Hari Minggu</a>
                         </li>
 
+                        @if(auth()->user()->userHasRole('Liturgi'))
+                        <li>
+                            <a href="{{route('mass_schedules_all.index')}}">
+                                <i class="far fa-calendar-alt"></i>Misa All</a>
+                        </li>
+                        @endif
+
+                        <li>
+                            <a href="{{route('choirs.index')}}">
+                                <i class="fa fa-music"></i>Paduan Suara</a>
+                        </li>
+
                         @if(auth()->user()->userHasRole('Admin'))
                         <li>
                             <a href="{{route('roles.index')}}">
                                 <i class="fa fa-globe"></i>Roles</a>
+                        </li>
+
+                        <li>
+                            <a href="{{route('users.index')}}">
+                                <i class="fa fa-users"></i>Users</a>
                         </li>
                         @endif
 

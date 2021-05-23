@@ -16,7 +16,7 @@ class CreateChoirMembersTable extends Migration
         Schema::create('choir_members', function (Blueprint $table) {
             $table->id();
             $table->foreignId('choir_id')->constrained()->onDelete('cascade');
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('no_kk');
             $table->integer('is_default')->default('1');
             $table->timestamps();
