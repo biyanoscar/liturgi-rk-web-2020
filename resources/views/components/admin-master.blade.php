@@ -15,7 +15,7 @@
     <!-- Fontfaces CSS-->
     <link href="{{asset('css/font-face.css')}}" rel="stylesheet" media="all">
     <link href="{{asset('vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('vendor/font-awesome-5/css/fontawesome-all.min.css')}}" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{asset('vendor/mdi-font/css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
@@ -104,10 +104,20 @@
                         </li>
 
                         @if(auth()->user()->userHasRole('Liturgi'))
-                        <li>
-                            <a href="{{route('mass_schedules_all.index')}}">
-                                <i class="far fa-calendar-alt"></i>Misa All</a>
-                        </li>
+                            <li>
+                                <a href="{{route('mass_schedules_all.index')}}">
+                                    <i class="far fa-calendar-alt"></i>Misa All</a>
+                            </li>
+
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-user-friends"></i>Petugas</a>
+                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                    <li>
+                                        <a href="{{route('organists.index')}}">Organis</a>
+                                    </li>
+                                </ul>
+                            </li>
                         @endif
 
                         <li>
@@ -156,10 +166,21 @@
 
 
                         @if(auth()->user()->userHasRole('Liturgi'))
-                        <li class="{{ request()->is('mass_schedules_all') ? 'active' : '' }}">
-                            <a href="{{route('mass_schedules_all.index')}}">
-                                <i class="far fa-calendar-alt"></i>Misa All</a>
-                        </li>
+                            <li class="{{ request()->is('mass_schedules_all') ? 'active' : '' }}">
+                                <a href="{{route('mass_schedules_all.index')}}">
+                                    <i class="far fa-calendar-alt"></i>Misa All</a>
+                            </li>
+
+                            <li class="has-sub {{ request()->is('organists') ? 'active' : '' }}">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-user-friends"></i>Petugas</a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                        <a href="{{route('organists.index')}}">Organis</a>
+                                    </li>
+                                    
+                                </ul>
+                            </li>
 
                         @endif
 

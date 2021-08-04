@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrganistRequest;
 use App\Models\Organist;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class OrganistController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.organists.index', [
+            'organists' => Organist::all(),
+        ]);
     }
 
     /**
@@ -24,7 +27,7 @@ class OrganistController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.organists.create');
     }
 
     /**
@@ -33,9 +36,12 @@ class OrganistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrganistRequest $request)
     {
-        //
+        auth()->user()->organists()->create( $request->all());
+
+        return redirect()->route('organists.index')
+            ->with('success-message', 'Organist created successfully!');
     }
 
     /**
@@ -57,7 +63,9 @@ class OrganistController extends Controller
      */
     public function edit(Organist $organist)
     {
-        //
+        return view('admin.organists.edit', [
+            'organist' => $organist
+        ]);
     }
 
     /**
@@ -67,9 +75,12 @@ class OrganistController extends Controller
      * @param  \App\Models\Organist  $organist
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Organist $organist)
+    public function update(OrganistRequest $request, Organist $organist)
     {
-        //
+        $organist->update($request->all());
+
+        return redirect()->route('organists.index')
+            ->with('success-message', 'Organist updated successfully!');
     }
 
     /**
@@ -80,6 +91,9 @@ class OrganistController extends Controller
      */
     public function destroy(Organist $organist)
     {
-        //
+        $organist->delete();
+
+        return redirect()->route('organists.index')
+            ->with('success-message', 'Organist deleted successfully!');
     }
 }

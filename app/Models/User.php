@@ -86,4 +86,12 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    /**
+     * Get the choirs for the user.
+     */
+    public function organists()
+    {
+        return $this->hasMany(Organist::class);
+    }
 }

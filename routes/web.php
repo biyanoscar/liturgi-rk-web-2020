@@ -9,6 +9,7 @@ use App\Http\Controllers\MinistryScheduleController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrganistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,4 +81,6 @@ Route::middleware(['auth', 'role:liturgi'])->group(function () {
     Route::patch('/mass_schedules_all/{massSchedule}', [MassScheduleAllController::class, 'update'])->name('mass_schedules_all.update');
     Route::delete('/mass_schedules_all/{massSchedule}', [MassScheduleAllController::class, 'destroy'])->name('mass_schedules_all.destroy');
     Route::resource('mass_schedules_all', MassScheduleAllController::class);
+
+    Route::resource('organists', OrganistController::class);
 });
