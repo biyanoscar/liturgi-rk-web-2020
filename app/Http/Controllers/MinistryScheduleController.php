@@ -6,6 +6,7 @@ use App\Models\Choir;
 use App\Models\ChoirMember;
 use App\Models\MassSchedule;
 use App\Models\MinistrySchedule;
+use App\Models\Organist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -40,11 +41,7 @@ class MinistryScheduleController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $input['user_id'] = Choir::find($input['choir_id'])->user_id;
-        // $userId = Choir::find($input['choir_id'])->user_id;
-        // dd($input);
-        // dd($request->all());
-
+        $input['user_id'] = Choir::findOrFail($input['choir_id'])->user_id;
 
         $ministrySchedule = MinistrySchedule::create($input); // insert data
 
@@ -93,7 +90,8 @@ class MinistryScheduleController extends Controller
         // dd($ministrySchedule->massSchedule->mass_title);
         return view('admin.ministry_schedules.edit', [
             'ministrySchedule' => $ministrySchedule,
-            'choirs' => Choir::all()
+            'choirs' => Choir::all(),
+            'organists' => Organist::all(),
         ]);
     }
 
@@ -108,7 +106,6 @@ class MinistryScheduleController extends Controller
     {
         $input = $request->all();
         $input['user_id'] = Choir::find($input['choir_id'])->user_id; //user_id dari choir yang baru dipilih
-
 
         //delete anggota koor lama yg bertugas
         DB::table('choir_member_ministry_schedule')->where('ministry_schedule_id', '=', $ministrySchedule->id)->delete();
@@ -141,12 +138,10 @@ class MinistryScheduleController extends Controller
 
     public function createByMassSchedule(MassSchedule $schedule)
     {
-        // dd($schedule->id);
-        // return view('admin.choir_members.create_by_parent', ['schedule' => $schedule]);
-
         return view('admin.ministry_schedules.create_by_mass_schedule', [
             'schedule' => $schedule,
-            'choirs' => Choir::all()
+            'choirs' => Choir::all(),
+            'organists' => Organist::all(),
         ]);
     }
 

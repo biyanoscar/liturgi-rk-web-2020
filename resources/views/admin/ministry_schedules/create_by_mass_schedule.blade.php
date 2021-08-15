@@ -56,6 +56,26 @@
                             @enderror
                         </div>
 
+                        <div class="row form-group">
+                            <div class="col">
+                                <label for="organist_id" class=" form-control-label">Organis</label>
+                            </div>
+                            <div class="col-12">
+                                <select name="organist_id" id="organist_id" class="form-control @error('organist_id') is-invalid @enderror">
+                                    <option disabled selected value>Please select</option>
+                                    @foreach ($organists as $organist)
+                                    <option value="{{$organist->id}}">{{$organist->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            @error('organist_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
 
 
                         <div>
