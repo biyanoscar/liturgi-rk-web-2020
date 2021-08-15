@@ -10,6 +10,7 @@ use App\Models\MassSchedule;
 use Illuminate\Http\Request;
 use App\Models\MinistrySchedule;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Repositories\MinistrySchedulesRepository;
 
 class MinistryScheduleController extends Controller
@@ -51,9 +52,13 @@ class MinistryScheduleController extends Controller
     {
         try {
             $item = $this->repository->store($request);
+            
             return redirect()->route('mass_schedules_all.index')
                 ->with('schedule-updated-message', 'Minister Schedule created successfully.');
         } catch (Exception $e) {
+            Log::error($e->getMessage());
+            Log::error($e->__toString());
+
             return redirect()->route('mass_schedules_all.index')
                 ->with('schedule-deleted', $e->getMessage());
         }
@@ -102,9 +107,13 @@ class MinistryScheduleController extends Controller
     {
         try {
             $item = $this->repository->update($ministrySchedule->id, $request);
+
             return redirect()->route('mass_schedules_all.index')
                 ->with('schedule-updated-message', 'Minister Schedule updated successfully.');
         } catch (Exception $e) {
+            Log::error($e->getMessage());
+            Log::error($e->__toString());
+
             return redirect()->route('mass_schedules_all.index')
                 ->with('schedule-deleted', $e->getMessage());
         }
