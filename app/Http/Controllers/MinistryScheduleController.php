@@ -49,24 +49,6 @@ class MinistryScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        // $input = $request->all();
-        // $input['user_id'] = Choir::findOrFail($input['choir_id'])->user_id;
-
-        // $ministrySchedule = MinistrySchedule::create($input); // insert data
-
-        // //get data anggota koor
-        // $choirMembers = ChoirMember::where('choir_id', $input['choir_id'])
-        //     ->where('is_default', '=', 1)
-        //     ->get();
-
-        // //tiap anggota koor default diattach ke jadwal tugas
-        // foreach ($choirMembers as $key => $member) {
-        //     $ministrySchedule->choirMember()->attach($member->id);
-        // }
-
-        // return redirect()->route('mass_schedules_all.index')
-        //     ->with('schedule-updated-message', 'Minister Schedule created successfully.');
-
         try {
             $item = $this->repository->store($request);
             return redirect()->route('mass_schedules_all.index')
@@ -87,11 +69,6 @@ class MinistryScheduleController extends Controller
      */
     public function show(MinistrySchedule $ministrySchedule)
     {
-        // $choirMembers = Choir::find($ministrySchedule->choir_id)->choirMembers;
-        // dd($choirMembers);
-
-
-
         return view('admin.ministry_schedules.show', [
             'ministrySchedule' => $ministrySchedule,
             'choirMembers' => Choir::find($ministrySchedule->choir_id)->choirMembers
@@ -107,7 +84,6 @@ class MinistryScheduleController extends Controller
      */
     public function edit(MinistrySchedule $ministrySchedule)
     {
-        // dd($ministrySchedule->massSchedule->mass_title);
         return view('admin.ministry_schedules.edit', [
             'ministrySchedule' => $ministrySchedule,
             'choirs' => Choir::all(),
@@ -124,26 +100,6 @@ class MinistryScheduleController extends Controller
      */
     public function update(Request $request, MinistrySchedule $ministrySchedule)
     {
-        // $input = $request->all();
-        // $input['user_id'] = Choir::find($input['choir_id'])->user_id; //user_id dari choir yang baru dipilih
-
-        // //delete anggota koor lama yg bertugas
-        // DB::table('choir_member_ministry_schedule')->where('ministry_schedule_id', '=', $ministrySchedule->id)->delete();
-
-        // $ministrySchedule->update($input); //update data
-
-        // //get data anggota koor
-        // $choirMembers = ChoirMember::where('choir_id', $input['choir_id'])
-        //     ->where('is_default', '=', 1)
-        //     ->get();
-        // //tiap anggota koor default diattach ke jadwal tugas
-        // foreach ($choirMembers as $key => $member) {
-        //     $ministrySchedule->choirMember()->attach($member->id);
-        // }
-
-        // return redirect()->route('mass_schedules_all.index')
-        //     ->with('schedule-updated-message', 'Minister Schedule updated successfully.');
-
         try {
             $item = $this->repository->update($ministrySchedule->id, $request);
             return redirect()->route('mass_schedules_all.index')

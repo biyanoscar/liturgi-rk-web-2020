@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class MassScheduleController extends Controller
 {
-    //
     public function index()
     {
         $massSchedules = MassSchedule::whereDate('schedule_time', '>', Carbon::today())
@@ -18,10 +17,6 @@ class MassScheduleController extends Controller
             ->orderBy('schedule_time')
             ->get();
 
-        // dd($massSchedules);
-        // $massSchedules = MassSchedule::all();
-        // $massSchedules = MassSchedule::all()->sortByDesc('schedule_time');
-        // $massSchedules = MassSchedule::orderBy('schedule_time', 'desc')->get();
         return view('admin.mass_schedules.index', ['massSchedules' => $massSchedules, 'dayName' => 'All']);
     }
 
@@ -46,7 +41,6 @@ class MassScheduleController extends Controller
         $input['show_gloria'] = isset($input['check_gloria']) ? 1 : 0; //centang tampilkan kemuliaan
         unset($input['check_gloria']); //dihilangkan, karena ini helper di form saja
 
-        // dd($input);
         $massSchedule->update($input);
 
         session()->flash('schedule-updated-message', 'Berhasil update jadwal');
@@ -61,7 +55,6 @@ class MassScheduleController extends Controller
     public function updateSong(MassSchedule $massSchedule)
     {
         $input = request()->all();
-        // $massSchedule->update($input);
 
         $massSchedule->entrance_song = $input['entrance_song'];
         $massSchedule->alleluia_song = $input['alleluia_song'];
@@ -124,7 +117,6 @@ class MassScheduleController extends Controller
         ), array(
             'somevariable' => $dayNum,
         ));
-        // dd($schedules);
         return view('admin.mass_schedules.index', ['massSchedules' => $schedules, 'dayName' => $dayName]);
     }
 
@@ -134,7 +126,6 @@ class MassScheduleController extends Controller
     {
         $schedule = new MassSchedule();
         $schedule->schedule_time = $date->format('Y-m-d') . $hour;
-        // $schedule->mass_title = 'Misa ' . $date->format('d M');
         $schedule->mass_title = 'Misa ' . $date->isoFormat('D MMM');
         $schedule->is_daily_mass = $isDailyMass;
         $schedule->user_id = $userId; //default user
@@ -196,11 +187,6 @@ class MassScheduleController extends Controller
             ->where('is_daily_mass', '=', 0)
             ->orderBy('schedule_time')
             ->get();
-
-        // foreach ($massSchedules as $schedule) {
-        //     var_dump($schedule->ministrySchedule);
-        // }
-        // exit;
 
         return view('admin.mass_schedules.sunday_masses', ['massSchedules' => $massSchedules, 'dayName' => 'All']);
     }

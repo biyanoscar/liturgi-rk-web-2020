@@ -62,10 +62,9 @@ class ChoirController extends Controller
      */
     public function show(Choir $choir)
     {
-        // dd($choir->id);
         $choirMembers = ChoirMember::where('choir_id', $choir->id)
             ->get();
-        // dd($choirMembers);
+
         return view('admin.choir_members.index', ['choirMembers' => $choirMembers, 'choir' => $choir]);
     }
 
@@ -92,7 +91,6 @@ class ChoirController extends Controller
      */
     public function update(Request $request, Choir $choir)
     {
-        //
         $request->validate([
             'name' => 'required',
         ]);

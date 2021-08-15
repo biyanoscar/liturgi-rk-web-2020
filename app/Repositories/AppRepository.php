@@ -11,6 +11,7 @@ class AppRepository
      * Eloquent model instance.
      */
     protected $model;
+
     /**
      * load default class dependencies.
      * 
@@ -20,6 +21,7 @@ class AppRepository
     {
         $this->model = $model;
     }
+
     /**
      * get all the items collection from database table using model.
      * 
@@ -29,6 +31,7 @@ class AppRepository
     {
         return $this->model->get();
     }
+
     /**
      * get collection of items in paginate format.
      * 
@@ -38,6 +41,7 @@ class AppRepository
     {
         return $this->model->paginate($request->input('limit', 10));
     }
+
     /**
      * create new record in database.
      * 
@@ -52,6 +56,7 @@ class AppRepository
         $item->save();
          return $item;
     }
+
     /**
      * update existing item.
      * 
@@ -67,6 +72,7 @@ class AppRepository
         $item->save();
         return $item;
     }
+
     /**
      * get requested item and send back.
      * 
@@ -77,6 +83,7 @@ class AppRepository
     {
         return $this->model->findOrFail($id);
     }
+
     /**
      * Delete item by primary key id.
      * 
@@ -87,6 +94,7 @@ class AppRepository
     {
         return $this->model->destroy($id);
     }
+    
     /**
      * set data for saving
      * 

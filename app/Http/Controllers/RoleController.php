@@ -42,11 +42,12 @@ class RoleController extends Controller
         request()->validate([
             'name' => ['required']
         ]);
-        //
+
         Role::create([
             'name' => Str::ucfirst(request('name')),
             'slug' => Str::slug(request('name'), '-'),
         ]);
+        
         return back();
     }
 
@@ -69,7 +70,6 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
         return view('admin.roles.edit', [
             'role' => $role,
             'users' => User::all(),
@@ -107,7 +107,6 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
         $role->delete();
         session()->flash('role-deleted', 'Deleted Role ' . $role->name);
         return back();

@@ -54,11 +54,9 @@ class MinistrySchedulesRepository extends AppRepository
     {
         return [
             'mass_schedule_id' => $request->input('mass_schedule_id'),
-            // 'author_id' => $request->user()->id,
             'choir_id' => $request->input('choir_id'),
             'user_id' => Choir::findOrFail($request->input('choir_id'))->user_id,
             'organist_id' => $request->input('organist_id'),
-            // 'organist_id' => $request->has('organist_id') ? $request->input('organist_id') : NULL,
         ];
     }
 

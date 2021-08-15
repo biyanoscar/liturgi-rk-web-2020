@@ -18,7 +18,6 @@ class MassScheduleAllController extends Controller
     public function index()
     {
         // show semua jadwal
-        // $massSchedules = MassSchedule::all();
         $massSchedules = MassSchedule::whereDate('schedule_time', '>', Carbon::today())
             ->orderBy('schedule_time')
             ->get();
@@ -51,10 +50,6 @@ class MassScheduleAllController extends Controller
         //masukan user yg sedang login
         $user = auth()->user();
         $formData['user_id'] = $user->id;
-
-        //rubah centangan html jadi value
-        // $formData['show_gloria'] = isset($formData['check_gloria']) ? 1 : 0; //centang tampilkan kemuliaan
-        // unset($formData['check_gloria']); //dihilangkan, karena ini helper di form saja
 
         $formData = $this->getCheckBoxValue($formData, 'check_gloria', 'show_gloria');
         $formData = $this->getCheckBoxValue($formData, 'check_is_daily_mass', 'is_daily_mass');
@@ -98,13 +93,10 @@ class MassScheduleAllController extends Controller
     public function update(MassSchedule $massSchedule)
     {
         $formData = request()->all();
-        // $input['show_gloria'] = isset($input['check_gloria']) ? 1 : 0; //centang tampilkan kemuliaan
-        // unset($input['check_gloria']); //dihilangkan, karena ini helper di form saja
 
         $formData = $this->getCheckBoxValue($formData, 'check_gloria', 'show_gloria');
         $formData = $this->getCheckBoxValue($formData, 'check_is_daily_mass', 'is_daily_mass');
 
-        // dd($input);
         $massSchedule->update($formData);
 
         session()->flash('schedule-updated-message', 'Berhasil update jadwal ' . $formData['mass_title']);
@@ -128,10 +120,6 @@ class MassScheduleAllController extends Controller
     //function untuk rubah centangan html jadi value field yg sesuai
     public function getCheckBoxValue($formData, $checkBoxName, $fieldName)
     {
-        // //rubah centangan html jadi value
-        // $formData['show_gloria'] = isset($formData['check_gloria']) ? 1 : 0; //centang tampilkan kemuliaan
-        // unset($formData['check_gloria']); //dihilangkan, karena ini helper di form saja
-
         //rubah centangan html jadi value
         $formData[$fieldName] = isset($formData[$checkBoxName]) ? 1 : 0; //centang tampilkan kemuliaan
         unset($formData[$checkBoxName]); //dihilangkan, karena ini helper di form saja
@@ -160,7 +148,6 @@ class MassScheduleAllController extends Controller
         ]);
 
         $input = request()->all();
-        // dd($input['start_date']);
 
         //tanggal periode awal dan akhir ambil dari form
         $periods = CarbonPeriod::create($input['start_date'], $input['end_date']); //rentang tanggal yang diisikan misanya
@@ -212,7 +199,6 @@ class MassScheduleAllController extends Controller
     {
         $schedule = new MassSchedule();
         $schedule->schedule_time = $date->format('Y-m-d') . $hour;
-        // $schedule->mass_title = 'Misa ' . $date->format('d M');
         $schedule->mass_title = 'Misa ' . $date->isoFormat('D MMM');
         $schedule->is_daily_mass = $isDailyMass;
         $schedule->user_id = $userId; //default user

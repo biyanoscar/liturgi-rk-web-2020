@@ -39,7 +39,7 @@ class ChoirMemberController extends Controller
         // Validasi jumlah anggota yg diset sebagai default max 5 orang
         if ($request->check_is_default == 'on') {
             $defaultCounts = ChoirMember::where('choir_id', $request->choir_id)->where('is_default', 1)->count();
-            // dd($defaultCounts);
+
             if ($defaultCounts >= 5) {
                 session()->flash('error-message', 'Default jumlah orang yang tugas maksimum 5. Silahkan hilangkan centang');
                 return redirect()->back()->withInput();
@@ -111,7 +111,6 @@ class ChoirMemberController extends Controller
 
 
         $choirMember->update($request->all());
-        // ChoirMember::create($request->all());
 
         return redirect()->route('choirs.show', $request['choir_id'])
             ->with('success-msg', 'Choir Member updated successfully.');
@@ -138,7 +137,6 @@ class ChoirMemberController extends Controller
         if ($defaultCounts < 5) {
             $checkedDefaultStyle = 'checked';
         }
-        // dd($checkedDefaultStyle);
 
         return view('admin.choir_members.create_by_parent', ['choir' => $choir, 'checkedDefaultStyle' => $checkedDefaultStyle]);
     }
