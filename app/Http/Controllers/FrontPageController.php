@@ -62,4 +62,9 @@ class FrontPageController extends Controller
 
         return view('schedule_page', ['massSchedules' => $massSchedules]);
     }
+
+    public function showMassText()
+    {
+        return view('show_mass_text_page', ['driveLinkId' => "1DLpmGMJXHHpFL9KynT_dAqQXJ-d_C29_"]);
+    }
 }

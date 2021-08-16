@@ -43,6 +43,9 @@
                   <li class="nav-item {{ request()->is('jadwal') ? 'active' : '' }}">
                     <a class="nav-link" href="/jadwal">Jadwal</a>
                   </li>
+                  <li class="nav-item {{ request()->is('teks-misa') ? 'active' : '' }}">
+                    <a class="nav-link" href="/teks-misa">Teks Misa</a>
+                  </li>
 
             </ul>
 

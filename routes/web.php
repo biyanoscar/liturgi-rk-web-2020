@@ -27,6 +27,7 @@ use App\Http\Controllers\OrganistController;
 // });
 Route::get('/', [FrontPageController::class, 'index'])->name('front_page.index');
 Route::get('/jadwal', [FrontPageController::class, 'schedule'])->name('front_page.schedule');
+Route::get('/teks-misa', [FrontPageController::class, 'showMassText'])->name('front_page.show_mass_text');
 
 // Auth::routes(['register' => false]);
 Auth::routes();
