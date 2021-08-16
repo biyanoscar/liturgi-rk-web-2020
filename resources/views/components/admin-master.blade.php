@@ -118,6 +118,11 @@
                                     </li>
                                 </ul>
                             </li>
+
+                            <li>
+                                <a href="{{route('settings.index')}}">
+                                    <i class="fa fa-cog"></i>Setting</a>
+                            </li>
                         @endif
 
                         <li>
@@ -180,6 +185,11 @@
                                     </li>
                                     
                                 </ul>
+                            </li>
+
+                            <li class="{{ request()->is('settings') ? 'active' : '' }}">
+                                <a href="{{route('settings.index')}}">
+                                    <i class="fa fa-cog"></i>Setting</a>
                             </li>
 
                         @endif

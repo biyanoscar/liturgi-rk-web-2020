@@ -6,6 +6,7 @@ use App\Models\Choir;
 use App\Models\ChoirMember;
 use App\Models\MassSchedule;
 use App\Models\Organist;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -65,6 +66,6 @@ class FrontPageController extends Controller
 
     public function showMassText()
     {
-        return view('show_mass_text_page', ['driveLinkId' => "1DLpmGMJXHHpFL9KynT_dAqQXJ-d_C29_"]);
+        return view('show_mass_text_page', ['driveLinkId' => Setting::first()->drive_link_id]);
     }
 }
