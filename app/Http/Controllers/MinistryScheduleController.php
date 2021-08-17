@@ -142,7 +142,7 @@ class MinistryScheduleController extends Controller
     //buka form create/edit tergantung apakah data ada/tdk
     public function fillByMassSchedule(MassSchedule $schedule)
     {
-        $ministrySchedule = MassSchedule::find($schedule->id)->ministrySchedule;
+        $ministrySchedule = $schedule->ministrySchedule;
         if ($ministrySchedule) {
             $view = $this->edit($ministrySchedule);
             return $view;

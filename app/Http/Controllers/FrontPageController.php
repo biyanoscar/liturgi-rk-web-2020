@@ -27,27 +27,22 @@ class FrontPageController extends Controller
     public function schedule()
     {
         $massSchedules = MassSchedule::whereDate('schedule_time', '>=', Carbon::today())
+            ->with(['ministrySchedule', 'ministrySchedule.choir', 'ministrySchedule.organist', 'ministrySchedule.choirMember' ])
             ->orderBy('schedule_time')
             ->get();
 
-        $choirMember = new ChoirMember();
-
-
         foreach ($massSchedules as $key => $schedule) {
+            $ministrySchedule = $schedule->ministrySchedule;
+            
             //add choir on schedule list table
-            $choirName = '';
-            if (isset($schedule->ministrySchedule->choir_id)) {
-                $choirId = $schedule->ministrySchedule->choir_id;
-                $choirName = Choir::find($choirId)->name;
-            }
+            $choirName = (isset($ministrySchedule->choir_id)) ? $ministrySchedule->choir->name : '' ;
             $massSchedules[$key]['choir_name'] = $choirName;
 
             //add organist on schedule list table
             $organistName = '';
             $organistNoKK = '';
-            if (isset($schedule->ministrySchedule->organist_id)) {
-                $organistId = $schedule->ministrySchedule->organist_id;
-                $organist = Organist::find($organistId);
+            if (isset($ministrySchedule->organist_id)) {
+                $organist = $ministrySchedule->organist;
                 $organistName = $organist->name;
                 $organistNoKK = $organist->no_kk;
             }
@@ -55,8 +50,8 @@ class FrontPageController extends Controller
             $massSchedules[$key]['organist_no_kk'] = $organistNoKK;
             
             //tambahkan anggota koor
-            if ($schedule->ministrySchedule) {
-                $members = $choirMember->getChoirMembersMinistry($schedule->ministrySchedule->id); //get list anggota padus yg tugas
+            if ($ministrySchedule) {
+                $members = $ministrySchedule->choirMember;
                 $massSchedules[$key]['choir_members'] = $members;
             }
         }
@@ -66,6 +61,8 @@ class FrontPageController extends Controller
 
     public function showMassText()
     {
-        return view('show_mass_text_page', ['driveLinkId' => Setting::first()->drive_link_id]);
+        $setting = Setting::first();
+        $driveLinkId = ($setting) ? $setting->drive_link_id : '1DLpmGMJXHHpFL9KynT_dAqQXJ-d_C29_' ;
+        return view('show_mass_text_page', ['driveLinkId' => $driveLinkId]);
     }
 }

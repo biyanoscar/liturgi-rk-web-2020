@@ -20,6 +20,11 @@ class MinistrySchedule extends Model
         return $this->belongsTo(Choir::class);
     }
 
+    public function organist()
+    {
+        return $this->belongsTo(Organist::class);
+    }
+
     public function choirMember()
     {
         return $this->belongsToMany(ChoirMember::class);

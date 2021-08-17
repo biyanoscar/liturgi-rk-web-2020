@@ -18,7 +18,7 @@ class ChoirController extends Controller
     {
         //
         return view('admin.choirs.index', [
-            'choirs' => Choir::all(),
+            'choirs' => Choir::with('user')->get(),
         ]);
     }
 
