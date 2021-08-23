@@ -183,11 +183,12 @@ class MassScheduleController extends Controller
     //misa hari minggu
     public function sundayMassesIndex()
     {
-        $massSchedules = MassSchedule::with('ministrySchedule')
+        $massSchedules = MassSchedule::with(['ministrySchedule', 'ministrySchedule.choir'])
             ->whereDate('schedule_time', '>', Carbon::today())
             ->where('is_daily_mass', '=', 0)
             ->orderBy('schedule_time')
             ->get();
+        // dd($massSchedules[0]->ministrySchedule->choir->name);
 
         return view('admin.mass_schedules.sunday_masses', ['massSchedules' => $massSchedules, 'dayName' => 'All']);
     }

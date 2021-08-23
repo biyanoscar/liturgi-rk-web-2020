@@ -54,6 +54,7 @@
                                 <td>Time</td>
                                 <td>Misa</td>
                                 <td>Waktu</td>
+                                <td>Padus</td>
                                 <td>Action</td>
 
                             </tr>
@@ -66,6 +67,7 @@
                                 <td>{{$schedule->schedule_time}}</td>
                                 <td>{{$schedule->mass_title}}</td>
                                 <td>{{ \Carbon\Carbon::parse($schedule->schedule_time)->isoFormat('DD MMM Y HH:mm') }}</td>
+                                <td>{{ ($schedule->ministrySchedule) ? $schedule->ministrySchedule->choir->name : '' }}</td>
                                 <td>
                                     @if (isset($schedule->ministrySchedule->id))
                                         @if(auth()->user()->userHasChoir($schedule->ministrySchedule->choir_id)or auth()->user()->userHasRole('Liturgi'))

@@ -37,14 +37,9 @@
                 <div class="tool-3 table-data__tool">
                     <div class="table-data__tool-left">
 
-
-
-
                     </div>
 
                     <div class="table-data__tool-right">
-
-
                         <a class="btn btn-success" href="{{route('mass_schedules_all.create') }}">Tambah Jadwal</a>
                         <a class="btn btn-primary" href="{{route('mass_schedules_all.create_by_date_range') }}" role="button">Tambah by Range</a>
                     </div>
@@ -59,6 +54,7 @@
                                 <td>Time</td>
                                 <td>Misa</td>
                                 <td>Waktu</td>
+                                <td>Padus</td>
                                 <td>Action</td>
                                 <td></td>
 
@@ -70,6 +66,7 @@
                                 <td>{{$schedule->schedule_time}}</td>
                                 <td>{{$schedule->mass_title}}</td>
                                 <td>{{ \Carbon\Carbon::parse($schedule->schedule_time)->isoFormat('DD MMM Y HH:mm') }}</td>
+                                <td>{{ ($schedule->ministrySchedule) ? $schedule->ministrySchedule->choir->name : '' }}</td>
                                 <td>
                                     <a class="btn btn-primary" href="{{route('mass_schedules_all.edit', $schedule->id) }}">Edit</a>
                                     <a class="btn btn-secondary" href="{{route('ministry_schedules.fill_by_mass_schedule', $schedule->id) }}">Jadwal Petugas</a>
