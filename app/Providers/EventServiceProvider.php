@@ -29,6 +29,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        MinistrySchedule::observe(MinistryScheduleObserver::class);
+        // MinistrySchedule::observe(MinistryScheduleObserver::class);
     }
 }
