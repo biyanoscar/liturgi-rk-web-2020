@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCreatedByToMinistrySchedulesTable extends Migration
+class AddCreatedByToMassSchedulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddCreatedByToMinistrySchedulesTable extends Migration
      */
     public function up()
     {
-        Schema::table('ministry_schedules', function (Blueprint $table) {
+        Schema::table('mass_schedules', function (Blueprint $table) {
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
         });
@@ -26,7 +26,7 @@ class AddCreatedByToMinistrySchedulesTable extends Migration
      */
     public function down()
     {
-        Schema::table('ministry_schedules', function (Blueprint $table) {
+        Schema::table('mass_schedules', function (Blueprint $table) {
             $table->dropColumn(['created_by', 'updated_by']);
         });
     }
