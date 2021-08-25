@@ -61,8 +61,8 @@ class FrontPageController extends Controller
 
     public function showMassText()
     {
-        $setting = Setting::first();
-        $driveLinkId = ($setting) ? $setting->drive_link_id : '1DLpmGMJXHHpFL9KynT_dAqQXJ-d_C29_' ;
+        $setting = Setting::where('slug', '=', 'drive-link-id')->first();
+        $driveLinkId = ($setting) ? $setting->value : '1DLpmGMJXHHpFL9KynT_dAqQXJ-d_C29_' ;
         return view('show_mass_text_page', ['driveLinkId' => $driveLinkId]);
     }
 }

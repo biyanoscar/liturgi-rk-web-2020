@@ -44,7 +44,7 @@
                         @endif
 
                     <tr class="blank_row">
-                        <td colspan="4"></td>
+                        <td colspan="5"></td>
                     </tr>
                     @endforeach
 

@@ -83,9 +83,8 @@ Route::middleware(['auth', 'role:liturgi'])->group(function () {
     Route::patch('/mass_schedules_all/{massSchedule}', [MassScheduleAllController::class, 'update'])->name('mass_schedules_all.update');
     Route::delete('/mass_schedules_all/{massSchedule}', [MassScheduleAllController::class, 'destroy'])->name('mass_schedules_all.destroy');
     Route::resource('mass_schedules_all', MassScheduleAllController::class);
-
-    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
-    Route::patch('/settings/{setting}', [SettingController::class, 'update'])->name('settings.update');
+    
+    Route::resource('settings', SettingController::class);
 
     Route::resource('organists', OrganistController::class);
 });

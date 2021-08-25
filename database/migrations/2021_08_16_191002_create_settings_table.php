@@ -15,7 +15,9 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string('drive_link_id');
+            $table->string('slug', 500)->unique()->index();
+            $table->string('name', 500);
+            $table->string('value', 250)->nullable();;
             $table->timestamps();
         });
     }
