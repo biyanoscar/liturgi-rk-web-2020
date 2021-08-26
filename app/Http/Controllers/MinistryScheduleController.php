@@ -76,8 +76,8 @@ class MinistryScheduleController extends Controller
     {
         return view('admin.ministry_schedules.show', [
             'ministrySchedule' => $ministrySchedule,
-            'choirMembers' => Choir::find($ministrySchedule->choir_id)->choirMembers
-
+            'choirMembers' => Choir::find($ministrySchedule->choir_id)->choirMembers,
+            'organists' => Organist::all(),
         ]);
     }
 
@@ -171,5 +171,20 @@ class MinistryScheduleController extends Controller
         $ministrySchedule->choirMember()->detach(request('choir_member'));
         session()->flash('msg-error', 'Anggota berhasil diliburin');
         return back();
+    }
+
+    public function updatedByChoir(Request $request, MinistrySchedule $ministrySchedule)
+    {
+        try {
+            $ministrySchedule->update($request->all());
+            return redirect()->route('ministry_schedules.show', $ministrySchedule)
+                ->with('msg-success', 'Jadwal berhasil diupdate');
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            Log::error($e->__toString());
+
+            return redirect()->route('ministry_schedules.show', $ministrySchedule)
+                ->with('msg-error', $e->getMessage());
+        }
     }
 }

@@ -57,6 +57,60 @@
 
     <div class="row">
         <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">{{$ministrySchedule->massSchedule->mass_title}}</div>
+                <div class="card-body">
+                    <form method="post" action="{{route('ministry_schedules.updated_by_choir', $ministrySchedule->id)}}" enctype="multipart/form-data">
+                        @csrf
+                        @method('PATCH')
+
+                        <div class="form-group">
+                            <input type="hidden" id="mass_schedule_id" name="mass_schedule_id" value="{{$ministrySchedule->mass_schedule_id}}">
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col">
+                                <label for="organist_id" class=" form-control-label">Organis</label>
+                            </div>
+                            <div class="col-12">
+                                <select name="organist_id" id="organist_id" class="form-control @error('organist_id') is-invalid @enderror">
+                                    <option disabled selected value>Please select</option>
+                                    @foreach ($organists as $organist)
+                                    <option value="{{$organist->id}}"
+                                        @if ($organist->id == $ministrySchedule->organist_id)
+                                            selected
+                                        @endif>
+                                        {{$organist->name}}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            @error('organist_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
+
+
+                        <div>
+                            <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                                <i class="fa fa-save fa-lg"></i>&nbsp;
+                                <span id="payment-button-amount">Simpan</span>
+                                <span id="payment-button-sending" style="display:none;">Sending…</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
             @if($choirMembers->isNotEmpty())
             <div class="card">
                 <div class="card-header">
@@ -79,7 +133,7 @@
                                     <td>{{$choirMember->name}} </td>
                                     <td class="col_2">{{$choirMember->no_kk}}</td>
                                     <td>
-                                        <form method="post" action="{{route('ministrySchedules.choirMember.attach', $ministrySchedule) }}">
+                                        <form method="post" action="{{route('ministry_schedules.choirMember.attach', $ministrySchedule) }}">
                                             @method('PUT')
                                             @csrf
                                             <input type="hidden" name="choir_member" value="{{$choirMember->id}}">
@@ -90,7 +144,7 @@
                                         </form>
                                     </td>
                                     <td>
-                                        <form method="post" action="{{route('ministrySchedules.choirMember.detach', $ministrySchedule) }}">
+                                        <form method="post" action="{{route('ministry_schedules.choirMember.detach', $ministrySchedule) }}">
                                             @method('PUT')
                                             @csrf
                                             <input type="hidden" name="choir_member" value="{{$choirMember->id}}">

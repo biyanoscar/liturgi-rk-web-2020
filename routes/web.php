@@ -40,15 +40,15 @@ Route::get('/cool', function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/mass_schedules', [MassScheduleController::class, 'index'])->name('mass_schedules.index');
-    // Route::get('/mass_schedules/{massSchedule}/edit', [MassScheduleController::class, 'edit'])->name('mass_schedules.edit');
-    Route::get('/mass_schedules/{massSchedule}/edit-reading', [MassScheduleController::class, 'editReading'])->name('mass_schedules.edit_reading');
-    Route::get('/mass_schedules/{massSchedule}/edit-song', [MassScheduleController::class, 'editSong'])->name('mass_schedules.edit_song');
-    Route::patch('/mass_schedules/{massSchedule}', [MassScheduleController::class, 'update'])->name('mass_schedules.update');
-    Route::patch('/mass_schedules/{massSchedule}/song', [MassScheduleController::class, 'updateSong'])->name('mass_schedules.update_song');
+    Route::prefix('mass_schedules')->name('mass_schedules.')->group(function () {
+        Route::get('/', [MassScheduleController::class, 'index'])->name('index');
+        Route::get('/{massSchedule}/edit-reading', [MassScheduleController::class, 'editReading'])->name('edit_reading');
+        Route::get('/{massSchedule}/edit-song', [MassScheduleController::class, 'editSong'])->name('edit_song');
+        Route::patch('/{massSchedule}', [MassScheduleController::class, 'update'])->name('update');
+        Route::patch('/{massSchedule}/song', [MassScheduleController::class, 'updateSong'])->name('update_song');
 
-    Route::get('/mass_schedules/day/{dayNum}', [MassScheduleController::class, 'getByDayNum'])->name('mass_schedules.day');
-    // Route::get('/mass_schedules/isidata/', [MassScheduleController::class, 'isiData'])->name('mass_schedules.isidata');
+        Route::get('/day/{dayNum}', [MassScheduleController::class, 'getByDayNum'])->name('day');
+    });
 
     Route::get('/sunday_masses', [MassScheduleController::class, 'sundayMassesIndex'])->name('mass_schedules.sunday_masses');
 
@@ -58,12 +58,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/choir_members/{choir}/create-by-parent', [ChoirMemberController::class, 'createByParent'])->name('choir_members.create_by_parent');
 
     Route::resource('ministry_schedules', MinistryScheduleController::class);
-    Route::get('/ministry_schedules/{schedule}/create-by-mass-schedule', [MinistryScheduleController::class, 'createByMassSchedule'])->name('ministry_schedules.create_by_mass_schedule');
-    Route::get('/ministry_schedules/{schedule}/fill-by-mass-schedule', [MinistryScheduleController::class, 'fillByMassSchedule'])->name('ministry_schedules.fill_by_mass_schedule');
 
-    //route tambahkan petugas ke jadwal misa
-    Route::put('/ministry_schedules/{ministrySchedule}/attach', [MinistryScheduleController::class, 'attachChoirMember'])->name('ministrySchedules.choirMember.attach');
-    Route::put('/ministry_schedules/{ministrySchedule}/detach', [MinistryScheduleController::class, 'detachChoirMember'])->name('ministrySchedules.choirMember.detach');
+    Route::group(['prefix' => 'ministry_schedules', 'as' => 'ministry_schedules.'], function () {
+        Route::get('/{schedule}/create-by-mass-schedule', [MinistryScheduleController::class, 'createByMassSchedule'])->name('create_by_mass_schedule');
+        Route::get('/{schedule}/fill-by-mass-schedule', [MinistryScheduleController::class, 'fillByMassSchedule'])->name('fill_by_mass_schedule');
+
+        //route tambahkan petugas ke jadwal misa
+        Route::put('/{ministrySchedule}/attach', [MinistryScheduleController::class, 'attachChoirMember'])->name('choirMember.attach');
+        Route::put('/{ministrySchedule}/detach', [MinistryScheduleController::class, 'detachChoirMember'])->name('choirMember.detach');
+
+        Route::patch('/{ministrySchedule}/updated-by-choir', [MinistryScheduleController::class, 'updatedByChoir'])->name('updated_by_choir');
+    });
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -75,13 +80,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:liturgi'])->group(function () {
-    Route::get('/mass_schedules_all/create_by_date_range', [MassScheduleAllController::class, 'createByDateRange'])->name('mass_schedules_all.create_by_date_range');
-    Route::post('/mass_schedules_all/store_by_date_range', [MassScheduleAllController::class, 'storeByDateRange'])->name('mass_schedules_all.store_by_date_range');
+    Route::prefix('mass_schedules_all')->name('mass_schedules_all.')->group(function () {
+        Route::get('/create_by_date_range', [MassScheduleAllController::class, 'createByDateRange'])->name('create_by_date_range');
+        Route::post('/store_by_date_range', [MassScheduleAllController::class, 'storeByDateRange'])->name('store_by_date_range');
 
-
-    Route::get('/mass_schedules_all/{massSchedule}/edit', [MassScheduleAllController::class, 'edit'])->name('mass_schedules_all.edit'); //supaya route edit mengandung data
-    Route::patch('/mass_schedules_all/{massSchedule}', [MassScheduleAllController::class, 'update'])->name('mass_schedules_all.update');
-    Route::delete('/mass_schedules_all/{massSchedule}', [MassScheduleAllController::class, 'destroy'])->name('mass_schedules_all.destroy');
+        Route::get('/{massSchedule}/edit', [MassScheduleAllController::class, 'edit'])->name('edit'); //supaya route edit mengandung data
+        Route::patch('/{massSchedule}', [MassScheduleAllController::class, 'update'])->name('update');
+        Route::delete('/{massSchedule}', [MassScheduleAllController::class, 'destroy'])->name('destroy');
+    });
     Route::resource('mass_schedules_all', MassScheduleAllController::class);
     
     Route::resource('settings', SettingController::class);
