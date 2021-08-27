@@ -77,7 +77,7 @@ class MinistryScheduleController extends Controller
         return view('admin.ministry_schedules.show', [
             'ministrySchedule' => $ministrySchedule,
             'choirMembers' => Choir::find($ministrySchedule->choir_id)->choirMembers,
-            'organists' => Organist::all(),
+            'organists' => Organist::orderBy('name')->get(),
         ]);
     }
 
@@ -92,7 +92,7 @@ class MinistryScheduleController extends Controller
         return view('admin.ministry_schedules.edit', [
             'ministrySchedule' => $ministrySchedule,
             'choirs' => Choir::all(),
-            'organists' => Organist::all(),
+            'organists' => Organist::orderBy('name')->get(),
         ]);
     }
 
@@ -135,7 +135,7 @@ class MinistryScheduleController extends Controller
         return view('admin.ministry_schedules.create_by_mass_schedule', [
             'schedule' => $schedule,
             'choirs' => Choir::all(),
-            'organists' => Organist::all(),
+            'organists' => Organist::orderBy('name')->get(),
         ]);
     }
 

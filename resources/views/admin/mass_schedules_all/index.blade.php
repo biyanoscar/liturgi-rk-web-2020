@@ -63,13 +63,13 @@
                         <tbody>
                             @foreach($massSchedules as $schedule)
                             <tr>
-                                <td>{{$schedule->schedule_time}}</td>
-                                <td>{{$schedule->mass_title}}</td>
+                                <td>{{ $schedule->schedule_time }}</td>
+                                <td>{{ Str::limit($schedule->mass_title, 20) }}</td>
                                 <td>{{ \Carbon\Carbon::parse($schedule->schedule_time)->isoFormat('DD MMM Y HH:mm') }}</td>
                                 <td>{{ ($schedule->ministrySchedule) ? $schedule->ministrySchedule->choir->name : '' }}</td>
                                 <td>
                                     <a class="btn btn-primary" href="{{route('mass_schedules_all.edit', $schedule->id) }}">Edit</a>
-                                    <a class="btn btn-secondary" href="{{route('ministry_schedules.fill_by_mass_schedule', $schedule->id) }}">Jadwal Petugas</a>
+                                    <a class="btn btn-secondary" href="{{route('ministry_schedules.fill_by_mass_schedule', $schedule->id) }}">Petugas</a>
 
                                 </td>
                                 <td>

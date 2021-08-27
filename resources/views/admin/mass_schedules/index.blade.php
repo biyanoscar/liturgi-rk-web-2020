@@ -92,8 +92,8 @@
                         <tbody>
                             @foreach($massSchedules as $schedule)
                             <tr>
-                                <td>{{$schedule->schedule_time}}</td>
-                                <td>{{$schedule->mass_title}}</td>
+                                <td>{{ $schedule->schedule_time }}</td>
+                                <td>{{ Str::limit($schedule->mass_title, 20) }}</td>
                                 <td>{{ \Carbon\Carbon::parse($schedule->schedule_time)->isoFormat('DD MMM Y HH:mm') }}</td>
                                 <td>
                                     <a class="btn btn-primary" href="{{route('mass_schedules.edit_song', $schedule->id) }}">Isi lagu</a>
