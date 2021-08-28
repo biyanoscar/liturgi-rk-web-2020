@@ -15,6 +15,10 @@
             padding-left: 10px;
         }
 
+        .select2 {
+            width:100%!important;
+        }
+
 
         @media only screen and (min-width: 600px) {
             body{
@@ -39,6 +43,10 @@
             }
         }
     </style>
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+
     @endsection
 
 
@@ -73,7 +81,7 @@
                                 <label for="organist_id" class=" form-control-label">Organis</label>
                             </div>
                             <div class="col-12">
-                                <select name="organist_id" id="organist_id" class="form-control @error('organist_id') is-invalid @enderror">
+                                <select name="organist_id" id="organist_id" class="select2-single form-control @error('organist_id') is-invalid @enderror">
                                     <option disabled selected value>Please select</option>
                                     @foreach ($organists as $organist)
                                     <option value="{{$organist->id}}"
@@ -166,6 +174,18 @@
 
         </div>
     </div>
+    @endsection
+
+
+    @section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2-single').select2({
+                theme: "bootstrap4"
+            });
+        });
+    </script>
     @endsection
 
 
