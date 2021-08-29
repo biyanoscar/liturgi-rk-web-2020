@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrganistController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SongController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +70,8 @@ Route::middleware('auth')->group(function () {
 
         Route::patch('/{ministrySchedule}/updated-by-choir', [MinistryScheduleController::class, 'updatedByChoir'])->name('updated_by_choir');
     });
+
+    Route::resource('songs', SongController::class);
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

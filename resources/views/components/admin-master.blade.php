@@ -103,6 +103,16 @@
                                 <i class="far fa-calendar"></i>Misa Hari Minggu</a>
                         </li>
 
+                        <li>
+                            <a href="{{route('choirs.index')}}">
+                                <i class="fa fa-music"></i>Paduan Suara</a>
+                        </li>
+
+                        <li>
+                            <a href="{{route('songs.index')}}">
+                                <i class="fa fa-book"></i>Lagu</a>
+                        </li>
+
                         @if(auth()->user()->userHasRole('Liturgi'))
                             <li>
                                 <a href="{{route('mass_schedules_all.index')}}">
@@ -124,11 +134,6 @@
                                     <i class="fa fa-cog"></i>Setting</a>
                             </li>
                         @endif
-
-                        <li>
-                            <a href="{{route('choirs.index')}}">
-                                <i class="fa fa-music"></i>Paduan Suara</a>
-                        </li>
 
                         @if(auth()->user()->userHasRole('Admin'))
                         <li>
@@ -168,6 +173,16 @@
                                 <i class="far fa-calendar"></i>Misa Hari Minggu</a>
                         </li>
 
+                        <li class="{{ request()->is('choirs') ? 'active' : '' }}">
+                            <a href="{{route('choirs.index')}}">
+                                <i class="fa fa-music"></i>Paduan Suara</a>
+                        </li>
+
+                        <li class="{{ request()->is('songs') ? 'active' : '' }}">
+                            <a href="{{route('songs.index')}}">
+                                <i class="fa fa-book"></i>Lagu</a>
+                        </li>
+
 
 
                         @if(auth()->user()->userHasRole('Liturgi'))
@@ -193,11 +208,7 @@
                             </li>
 
                         @endif
-
-                        <li class="{{ request()->is('choirs') ? 'active' : '' }}">
-                            <a href="{{route('choirs.index')}}">
-                                <i class="fa fa-music"></i>Paduan Suara</a>
-                        </li>
+                        
 
                         @if(auth()->user()->userHasRole('Admin'))
                         <li class="{{ request()->is('roles') ? 'active' : '' }}">
