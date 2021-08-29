@@ -26,6 +26,8 @@
             background-color: #FFFFFF;
         }
     </style>
+    
+    @yield('styles')
 </head>
 
 <body>

@@ -40,6 +40,8 @@ Route::get('/cool', function () {
     return view('admin.cool');
 });
 
+Route::get('lyrics/{massSchedule}', [MassScheduleController::class, 'showLyrics'])->name('lyrics');
+
 Route::middleware('auth')->group(function () {
     Route::prefix('mass_schedules')->name('mass_schedules.')->group(function () {
         Route::get('/', [MassScheduleController::class, 'index'])->name('index');

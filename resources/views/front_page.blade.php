@@ -29,7 +29,9 @@
                 <li>
                     <a data-toggle="collapse" class="collapsed" href="#faq{{$schedule->id}}">{{$schedule->mass_title . '; '. $scheduleTime->isoFormat('dddd, D MMM Y HH:mm')}} <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
                     <div id="faq{{$schedule->id}}" class="collapse" data-parent=".faq-list">
-                        <h4 class="text-center text-uppercase mt-3">{{$title}} : {{$scheduleTime->isoFormat('D MMMM Y')}}</h4>
+                        <a href="{{ route('lyrics', $schedule->id) }}">
+                            <h4 class="text-center text-uppercase mt-3">{{$title}} : {{$scheduleTime->isoFormat('D MMMM Y')}}</h4>
+                        </a>
                         <table>
                             <thead>
                                 <th>
@@ -139,7 +141,7 @@
 
                                 <tr>
                                     <td>Bapa Kami</td>
-                                    <td>Bapa Kami</td>
+                                    <td>{{ ($schedule->lords_prayer_song) ? $schedule->lords_prayer_song: 'Bapa Kami' }}</td>
                                 </tr>
 
 

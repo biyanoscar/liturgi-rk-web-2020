@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\MassSchedule;
+use App\Models\Song;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
@@ -27,7 +28,11 @@ class MassScheduleController extends Controller
 
     public function editSong(MassSchedule $massSchedule)
     {
-        return view('admin.mass_schedules.edit_song', ['massSchedule' => $massSchedule]);
+        $songs = Song::pluck('title', 'id' );
+        return view('admin.mass_schedules.edit_song', [
+            'massSchedule' => $massSchedule,
+            'songs' => $songs,
+        ]);
     }
 
     public function editReading(MassSchedule $massSchedule)
@@ -54,24 +59,10 @@ class MassScheduleController extends Controller
 
     public function updateSong(MassSchedule $massSchedule)
     {
-        $input = request()->all();
-
-        $massSchedule->entrance_song = $input['entrance_song'];
-        $massSchedule->alleluia_song = $input['alleluia_song'];
-        $massSchedule->recessional_song = $input['recessional_song'];
-
-        if ($massSchedule->is_daily_mass == 0) {
-            $massSchedule->kyrie_song = $input['kyrie_song'];
-            $massSchedule->gloria_song = $input['gloria_song'];
-            $massSchedule->offertory_song = $input['offertory_song'];
-            $massSchedule->sanctus_song = $input['sanctus_song'];
-            $massSchedule->agnus_dei_song = $input['agnus_dei_song'];
-            $massSchedule->communion_song = $input['communion_song'];
-            $massSchedule->song_of_praise = $input['song_of_praise'];
-        }
-
         //disave sesuai user yg login
-        auth()->user()->massSchedules()->save($massSchedule);
+        // auth()->user()->massSchedules()->save($massSchedule);
+
+        $massSchedule->update(request()->all());
 
         session()->flash('schedule-updated-message', 'Berhasil update susunan lagu');
 
@@ -191,5 +182,11 @@ class MassScheduleController extends Controller
         // dd($massSchedules[0]->ministrySchedule->choir->name);
 
         return view('admin.mass_schedules.sunday_masses', ['massSchedules' => $massSchedules, 'dayName' => 'All']);
+    }
+
+    //show song lyrics for one mass schedule
+    public function showLyrics(MassSchedule $massSchedule)
+    {
+        return view('lyrics_page', ['massSchedule' => $massSchedule]);
     }
 }
