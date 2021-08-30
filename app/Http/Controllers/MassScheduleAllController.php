@@ -191,7 +191,7 @@ class MassScheduleAllController extends Controller
             }
         }
 
-        return redirect()->route('mass_schedules.index');
+        return redirect()->route('mass_schedules_all.index');
     }
 
     //function untuk insert jadwal misa. $hour -> format jam, misal 08:00

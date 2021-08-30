@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class OrganistRequest extends FormRequest
 {
@@ -23,8 +24,12 @@ class OrganistRequest extends FormRequest
      */
     public function rules()
     {
+        $organistId =($this->organist) ? $this->organist->id : '' ;
         return [
-            'name' => 'required|unique:App\Models\Organist',
+            'name' => [
+                'required',
+                Rule::unique('organists')->ignore($organistId),
+            ],
             'no_kk' => 'required',
         ];
     }
