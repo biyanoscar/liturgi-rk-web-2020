@@ -76,7 +76,7 @@
                                     <form method="POST" action="{{route('mass_schedules_all.destroy', $schedule->id) }}">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                                     </form>
                                 </td>
                             </tr>
