@@ -162,7 +162,7 @@ class MinistryScheduleController extends Controller
         // dd(count($ministrySchedule->choirMember));
 
         $ministrySchedule->choirMember()->attach(request('choir_member'));
-        session()->flash('msg-success', 'Anggota berhasil ditugasin');
+        session()->flash('msg-success', 'Anggota berhasil didaftarkan');
         return back();
     }
 

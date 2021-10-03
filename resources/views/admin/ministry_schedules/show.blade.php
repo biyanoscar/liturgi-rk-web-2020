@@ -131,8 +131,9 @@
                                 <tr>
                                     <td>Nama</td>
                                     <td class="col_2">No KK</td>
-                                    <td>Tugasin</td>
-                                    <td>Liburin</td>
+                                    <td>Bertugas</td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -140,6 +141,10 @@
                                 <tr>
                                     <td>{{$choirMember->name}} </td>
                                     <td class="col_2">{{$choirMember->no_kk}}</td>
+                                    <td>@if($ministrySchedule->choirMember->contains($choirMember))
+                                        &#10004;
+                                    @endif
+                                    </td>
                                     <td>
                                         <form method="post" action="{{route('ministry_schedules.choirMember.attach', $ministrySchedule) }}">
                                             @method('PUT')
@@ -148,7 +153,7 @@
                                             <button type="submit" class="btn btn-primary" @if($ministrySchedule->choirMember->contains($choirMember))
                                                 disabled
                                                 @endif
-                                                >Tugasin</button>
+                                                >Daftarkan</button>
                                         </form>
                                     </td>
                                     <td>
@@ -159,7 +164,7 @@
                                             <button type="submit" class="btn btn-danger" @if(!$ministrySchedule->choirMember->contains($choirMember))
                                                 disabled
                                                 @endif
-                                                >Liburin</button>
+                                                >Batal Tugas</button>
                                         </form>
 
                                     </td>
