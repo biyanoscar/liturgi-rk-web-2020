@@ -28,7 +28,7 @@ use App\Http\Controllers\SongController;
 //     return view('front_page');
 // });
 Route::get('/', [FrontPageController::class, 'index'])->name('front_page.index');
-Route::get('/jadwal', [FrontPageController::class, 'schedule'])->name('front_page.schedule');
+Route::get('/jadwal-petugas', [FrontPageController::class, 'schedule'])->name('front_page.schedule');
 Route::get('/teks-misa', [FrontPageController::class, 'showMassText'])->name('front_page.show_mass_text');
 
 // Auth::routes(['register' => false]);

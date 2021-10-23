@@ -40,13 +40,13 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
-                    <a class="nav-link" href="/">Home </a>
+                    <a class="nav-link" href="{{route('front_page.index')}}">Home </a>
                   </li>
-                  <li class="nav-item {{ request()->is('jadwal') ? 'active' : '' }}">
-                    <a class="nav-link" href="/jadwal">Jadwal</a>
+                  <li class="nav-item {{ request()->is('jadwal-petugas') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{route('front_page.schedule')}}">Jadwal Petugas</a>
                   </li>
                   <li class="nav-item {{ request()->is('teks-misa') ? 'active' : '' }}">
-                    <a class="nav-link" href="/teks-misa">Teks Misa</a>
+                    <a class="nav-link" href="{{route('front_page.show_mass_text')}}">Teks Misa</a>
                   </li>
 
             </ul>
