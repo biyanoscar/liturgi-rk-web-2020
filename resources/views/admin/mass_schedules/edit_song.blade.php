@@ -36,9 +36,7 @@
 
                         <div class="form-group">
                             <label for="entrance_song" class="control-label mb-1">Pembukaan</label>
-                            <input id="entrance_song" name="entrance_song" type="hidden" class="form-control" value="{{$massSchedule->entrance_song}}">
-
-                            <select name="entrance_song_id" id="entrance_song_id" onchange="setSongText(this, 'entrance_song')" class="select2-single form-control @error('entrance_song_id') is-invalid @enderror">
+                            <select name="entrance_song_id" id="entrance_song_id" class="select2-single form-control @error('entrance_song_id') is-invalid @enderror">
                                 <option disabled selected value>Please select</option>
                                 @foreach ($songs as $key => $song)
                                     <option value="{{ $key }}"
@@ -54,9 +52,8 @@
                         @if ($massSchedule->is_daily_mass == 0)
                         <div class="form-group">
                             <label for="kyrie_song" class="control-label mb-1">Tuhan Kasihanilah Kami</label>
-                            <input id="kyrie_song" name="kyrie_song" type="hidden" class="form-control" value="{{$massSchedule->kyrie_song}}">
 
-                            <select name="kyrie_song_id" id="kyrie_song_id" onchange="setSongText(this, 'kyrie_song')" class="select2-single form-control @error('kyrie_song_id') is-invalid @enderror">
+                            <select name="kyrie_song_id" id="kyrie_song_id" class="select2-single form-control @error('kyrie_song_id') is-invalid @enderror">
                                 <option disabled selected value>Please select</option>
                                 @foreach ($songs as $key => $song)
                                     <option value="{{ $key }}"
@@ -70,9 +67,8 @@
                         </div>
                         <div class="form-group">
                             <label for="gloria_song" class="control-label mb-1">Kemuliaan</label>
-                            <input id="gloria_song" name="gloria_song" type="hidden" class="form-control" value="{{$massSchedule->gloria_song}}">
 
-                            <select name="gloria_song_id" id="gloria_song_id" onchange="setSongText(this, 'gloria_song')" class="select2-single form-control @error('gloria_song_id') is-invalid @enderror">
+                            <select name="gloria_song_id" id="gloria_song_id" class="select2-single form-control @error('gloria_song_id') is-invalid @enderror">
                                 <option disabled selected value>Please select</option>
                                 @foreach ($songs as $key => $song)
                                     <option value="{{ $key }}"
@@ -94,9 +90,8 @@
                         @if ($massSchedule->is_daily_mass == 0)
                         <div class="form-group">
                             <label for="offertory_song" class="control-label mb-1">Persembahan</label>
-                            <input id="offertory_song" name="offertory_song" type="hidden" class="form-control" value="{{$massSchedule->offertory_song}}">
 
-                            <select name="offertory_song_id" id="offertory_song_id" onchange="setSongText(this, 'offertory_song')" class="select2-single form-control @error('offertory_song_id') is-invalid @enderror">
+                            <select name="offertory_song_id" id="offertory_song_id" class="select2-single form-control @error('offertory_song_id') is-invalid @enderror">
                                 <option disabled selected value>Please select</option>
                                 @foreach ($songs as $key => $song)
                                     <option value="{{ $key }}"
@@ -111,9 +106,8 @@
 
                         <div class="form-group">
                             <label for="sanctus_song" class="control-label mb-1">Kudus</label>
-                            <input id="sanctus_song" name="sanctus_song" type="hidden" class="form-control" value="{{$massSchedule->sanctus_song}}">
 
-                            <select name="sanctus_song_id" id="sanctus_song_id" onchange="setSongText(this, 'sanctus_song')" class="select2-single form-control @error('sanctus_song_id') is-invalid @enderror">
+                            <select name="sanctus_song_id" id="sanctus_song_id" class="select2-single form-control @error('sanctus_song_id') is-invalid @enderror">
                                 <option disabled selected value>Please select</option>
                                 @foreach ($songs as $key => $song)
                                     <option value="{{ $key }}"
@@ -133,9 +127,8 @@
 
                         <div class="form-group">
                             <label for="agnus_dei_song" class="control-label mb-1">Anak Domba Allah</label>
-                            <input id="agnus_dei_song" name="agnus_dei_song" type="hidden" class="form-control" value="{{$massSchedule->agnus_dei_song}}">
 
-                            <select name="agnus_dei_song_id" id="agnus_dei_song_id" onchange="setSongText(this, 'agnus_dei_song')" class="select2-single form-control @error('agnus_dei_song_id') is-invalid @enderror">
+                            <select name="agnus_dei_song_id" id="agnus_dei_song_id" class="select2-single form-control @error('agnus_dei_song_id') is-invalid @enderror">
                                 <option disabled selected value>Please select</option>
                                 @foreach ($songs as $key => $song)
                                     <option value="{{ $key }}"
@@ -150,9 +143,8 @@
 
                         <div class="form-group">
                             <label for="communion_song" class="control-label mb-1">Komuni</label>
-                            <input id="communion_song" name="communion_song" type="hidden" class="form-control" value="{{$massSchedule->communion_song}}">
 
-                            <select name="communion_song_id" id="communion_song_id" onchange="setSongText(this, 'communion_song')" class="select2-single form-control @error('communion_song_id') is-invalid @enderror">
+                            <select name="communion_song_id" id="communion_song_id" class="select2-single form-control @error('communion_song_id') is-invalid @enderror">
                                 <option disabled selected value>Please select</option>
                                 @foreach ($songs as $key => $song)
                                     <option value="{{ $key }}"
@@ -167,9 +159,8 @@
 
                         <div class="form-group">
                             <label for="song_of_praise" class="control-label mb-1">Madah Syukur</label>
-                            <input id="song_of_praise" name="song_of_praise" type="hidden" class="form-control" value="{{$massSchedule->song_of_praise}}">
 
-                            <select name="song_of_praise_id" id="song_of_praise_id" onchange="setSongText(this, 'song_of_praise')" class="select2-single form-control @error('song_of_praise_id') is-invalid @enderror">
+                            <select name="song_of_praise_id" id="song_of_praise_id" class="select2-single form-control @error('song_of_praise_id') is-invalid @enderror">
                                 <option disabled selected value>Please select</option>
                                 @foreach ($songs as $key => $song)
                                     <option value="{{ $key }}"
@@ -185,9 +176,8 @@
 
                         <div class="form-group">
                             <label for="recessional_song" class="control-label mb-1">Penutup</label>
-                            <input id="recessional_song" name="recessional_song" type="hidden" class="form-control" value="{{$massSchedule->recessional_song}}">
 
-                            <select name="recessional_song_id" id="recessional_song_id" onchange="setSongText(this, 'recessional_song')" class="select2-single form-control @error('recessional_song_id') is-invalid @enderror">
+                            <select name="recessional_song_id" id="recessional_song_id" class="select2-single form-control @error('recessional_song_id') is-invalid @enderror">
                                 <option disabled selected value>Please select</option>
                                 @foreach ($songs as $key => $song)
                                     <option value="{{ $key }}"

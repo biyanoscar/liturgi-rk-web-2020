@@ -57,12 +57,23 @@ class MassScheduleController extends Controller
         }
     }
 
-    public function updateSong(MassSchedule $massSchedule)
+    public function updateSong(Request $request, MassSchedule $massSchedule)
     {
         //disave sesuai user yg login
         // auth()->user()->massSchedules()->save($massSchedule);
+        $data = $request->all();
 
-        $massSchedule->update(request()->all());
+        $data['entrance_song'] = isset($data['entrance_song_id']) ? Song::findOrFail($data['entrance_song_id'])->title : null;
+        $data['kyrie_song'] = isset($data['kyrie_song_id']) ? Song::findOrFail($data['kyrie_song_id'])->title : null;
+        $data['gloria_song'] = isset($data['gloria_song_id']) ? Song::findOrFail($data['gloria_song_id'])->title : null;
+        $data['offertory_song'] = isset($data['offertory_song_id']) ? Song::findOrFail($data['offertory_song_id'])->title : null;
+        $data['sanctus_song'] = isset($data['sanctus_song_id']) ? Song::findOrFail($data['sanctus_song_id'])->title : null;
+        $data['agnus_dei_song'] = isset($data['agnus_dei_song_id']) ? Song::findOrFail($data['agnus_dei_song_id'])->title : null;
+        $data['communion_song'] = isset($data['communion_song_id']) ? Song::findOrFail($data['communion_song_id'])->title : null;
+        $data['song_of_praise'] = isset($data['song_of_praise_id']) ? Song::findOrFail($data['song_of_praise_id'])->title : null;
+        $data['recessional_song'] = isset($data['recessional_song_id']) ? Song::findOrFail($data['recessional_song_id'])->title : null;
+
+        $massSchedule->update($data);
 
         session()->flash('schedule-updated-message', 'Berhasil update susunan lagu');
 
