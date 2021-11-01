@@ -154,12 +154,12 @@ class MinistryScheduleController extends Controller
 
     public function attachChoirMember(MinistrySchedule $ministrySchedule)
     {
+        $membersLimit = config('general.choir_members_limit');
         $membersOnDutyCounts = $ministrySchedule->getChoirMemberCounts();
-        if ($membersOnDutyCounts >= 5) {
+        if ($membersOnDutyCounts >= $membersLimit) {
             session()->flash('msg-error', 'Sorry. Kursinya ga cukup bosss!!!');
             return redirect()->back()->withInput();
         }
-        // dd(count($ministrySchedule->choirMember));
 
         $ministrySchedule->choirMember()->attach(request('choir_member'));
         session()->flash('msg-success', 'Anggota berhasil didaftarkan');

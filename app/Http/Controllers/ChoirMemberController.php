@@ -36,12 +36,13 @@ class ChoirMemberController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi jumlah anggota yg diset sebagai default max 5 orang
+        $membersLimit = config('general.choir_members_limit');
+        // Validasi jumlah anggota yg diset sebagai default, max sesuai config
         if ($request->check_is_default == 'on') {
             $defaultCounts = ChoirMember::where('choir_id', $request->choir_id)->where('is_default', 1)->count();
 
-            if ($defaultCounts >= 5) {
-                session()->flash('error-message', 'Default jumlah orang yang tugas maksimum 5. Silahkan hilangkan centang');
+            if ($defaultCounts >= $membersLimit) {
+                session()->flash('error-message', "Default jumlah orang yang tugas maksimum $membersLimit. Silahkan hilangkan centang");
                 return redirect()->back()->withInput();
             }
         }
@@ -91,11 +92,12 @@ class ChoirMemberController extends Controller
      */
     public function update(Request $request, ChoirMember $choirMember)
     {
-        // Validasi jumlah anggota yg diset sebagai default max 5 orang
+        $membersLimit = config('general.choir_members_limit');
+        // Validasi jumlah anggota yg diset sebagai default, max sesuai config
         if (($request->check_is_default == 'on') and ($request->old_is_default == 0)) {
             $defaultCounts = ChoirMember::where('choir_id', $request->choir_id)->where('is_default', 1)->count();
-            if ($defaultCounts >= 5) {
-                session()->flash('error-message', 'Default jumlah orang yang tugas maksimum 5. Silahkan hilangkan centang');
+            if ($defaultCounts >= $membersLimit) {
+                session()->flash('error-message', "Default jumlah orang yang tugas maksimum $membersLimit. Silahkan hilangkan centang");
                 return redirect()->back()->withInput();
             }
         }
