@@ -69,6 +69,7 @@
                                 <td>{{ ($schedule->ministrySchedule) ? $schedule->ministrySchedule->choir->name : '' }}</td>
                                 <td>
                                     <a class="btn btn-primary" href="{{route('mass_schedules_all.edit', $schedule->id) }}">Edit</a>
+                                    <a class="btn btn-info" href="{{route('mass_schedules.edit_song', $schedule->id) }}">Isi lagu</a>
                                     <a class="btn btn-secondary" href="{{route('ministry_schedules.fill_by_mass_schedule', $schedule->id) }}">Petugas</a>
 
                                 </td>

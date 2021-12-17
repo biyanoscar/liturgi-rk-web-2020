@@ -17,9 +17,10 @@ class MassScheduleAllController extends Controller
      */
     public function index()
     {
+        $date = Carbon::today()->subDays(7);
         // show semua jadwal
         $massSchedules = MassSchedule::with(['ministrySchedule', 'ministrySchedule.choir'])
-            ->whereDate('schedule_time', '>', Carbon::today())
+            ->whereDate('schedule_time', '>', $date)
             ->orderBy('schedule_time')
             ->get();
 
