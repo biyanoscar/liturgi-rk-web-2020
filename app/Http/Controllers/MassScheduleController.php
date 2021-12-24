@@ -28,7 +28,7 @@ class MassScheduleController extends Controller
 
     public function editSong(MassSchedule $massSchedule)
     {
-        $songs = Song::pluck('title', 'id' );
+        $songs = Song::pluck('title', 'id');
         return view('admin.mass_schedules.edit_song', [
             'massSchedule' => $massSchedule,
             'songs' => $songs,
@@ -188,9 +188,17 @@ class MassScheduleController extends Controller
         $massSchedules = MassSchedule::with(['ministrySchedule', 'ministrySchedule.choir'])
             ->whereDate('schedule_time', '>', Carbon::today())
             ->where('is_daily_mass', '=', 0)
-            ->orderBy('schedule_time')
-            ->get();
-        // dd($massSchedules[0]->ministrySchedule->choir->name);
+            ->orderBy('schedule_time');
+
+        // user can only see the schedule of his own 
+        if (!(auth()->user()->userHasRole('Liturgi'))) {
+            $choirIds = auth()->user()->choirs->pluck('id');
+            $massSchedules = $massSchedules->whereHas('ministrySchedule', function ($q) use ($choirIds) {
+                $q->whereIn('choir_id', $choirIds);
+            });
+        }
+
+        $massSchedules = $massSchedules->get();
 
         return view('admin.mass_schedules.sunday_masses', ['massSchedules' => $massSchedules, 'dayName' => 'All']);
     }
