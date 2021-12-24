@@ -43,6 +43,17 @@
                             <i class="far fa-calendar-alt"></i>Misa All</a>
                     </li>
 
+                    <li class="has-sub {{ request()->is('summary') ? 'active' : '' }}">
+                        <a class="js-arrow" href="#">
+                            <i class="fa fa-table"></i>Summary</a>
+                        <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                            <li>
+                                <a href="{{route('summary.choirSchedule')}}">Jadwal Padus</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+
                     <li class="has-sub">
                         <a class="js-arrow" href="#">
                             <i class="fas fa-user-friends"></i>Petugas</a>

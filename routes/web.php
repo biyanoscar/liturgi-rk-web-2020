@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrganistController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SongController;
+use App\Http\Controllers\Summary\ChoirScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,4 +99,8 @@ Route::middleware(['auth', 'role:liturgi'])->group(function () {
     Route::resource('settings', SettingController::class);
 
     Route::resource('organists', OrganistController::class);
+
+    Route::prefix('summary')->name('summary.')->group(function () {
+        Route::get('/choir-schedule', [ChoirScheduleController::class, 'index'])->name('choirSchedule');
+    });
 });

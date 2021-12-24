@@ -81,4 +81,14 @@ class MassSchedule extends Model
     {
         return $this->belongsTo(Song::class, 'recessional_song_id');
     }
+
+    public function getScheduleTimeFormatted($format='dddd, D MMM Y HH:mm')
+    {
+        return Carbon::parse($this->schedule_time)->isoFormat($format);
+    }
+
+    public function getChoirNameAttribute()
+    {
+        return (isset($this->ministrySchedule->choir_id)) ? $this->ministrySchedule->choir->name : '';
+    }
 }
