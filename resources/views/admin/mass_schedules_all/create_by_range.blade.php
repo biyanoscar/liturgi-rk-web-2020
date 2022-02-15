@@ -47,6 +47,15 @@
                             @enderror
                         </div>
 
+                        <div class="form-group">
+                            <label for="mass_type" class=" form-control-label">Tipe Misa</label>
+
+                            <select name="mass_type" id="mass_type" class="form-control">
+                                <option value="daily">Harian</option>
+                                <option value="sunday" selected>Hari Minggu</option>
+                                <option value="all">All</option>
+                            </select>
+                        </div>
 
 
 

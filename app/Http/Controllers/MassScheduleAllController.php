@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\CreateMassScheduleByDateRange;
 use App\Http\Requests\CreateMassScheduleFormRequest;
 use App\Models\MassSchedule;
 use Carbon\Carbon;
@@ -10,6 +11,13 @@ use Illuminate\Http\Request;
 
 class MassScheduleAllController extends Controller
 {
+    protected $createMassScheduleByDateRange;
+
+    public function __construct(CreateMassScheduleByDateRange $createMassScheduleByDateRange)
+    {
+        $this->createMassScheduleByDateRange = $createMassScheduleByDateRange;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -142,69 +150,12 @@ class MassScheduleAllController extends Controller
     }
 
 
-    public function storeByDateRange()
+    public function storeByDateRange(Request $request)
     {
-        request()->validate([
-            'start_date' => ['required'],
-            'end_date' => ['required']
-        ]);
+        ($this->createMassScheduleByDateRange)($request->all());
 
-        $input = request()->all();
-
-        //tanggal periode awal dan akhir ambil dari form
-        $periods = CarbonPeriod::create($input['start_date'], $input['end_date']); //rentang tanggal yang diisikan misanya
-
-        // Iterate over the period
-        foreach ($periods as $date) {
-            if ($date->dayOfWeek == 0) {
-                //misa hari minggu
-                $this->createSchedule($date, ' 07:00', 0, 1);
-                $this->createSchedule($date, ' 10:00', 0, 1);
-                $this->createSchedule($date, ' 17:30', 0, 1);
-            } elseif ($date->dayOfWeek == 6) {
-                //misa hari sabtu
-                $userDefault = 10;
-                $this->createSchedule($date, ' 06:00', 1, $userDefault);
-
-                $this->createSchedule($date, ' 17:30', 0, 1);
-            } else {
-                switch ($date->dayOfWeek) {
-                    case 1: //'Senin'
-                        $userDefault = 2;
-                        break;
-                    case 2: //Selasa
-                        $userDefault = 3;
-                        break;
-                    case 3:
-                        $userDefault = 4;
-                        break;
-                    case 4:
-                        $userDefault = 5;
-                        break;
-                    case 5:
-                        $userDefault = 6;
-                        break;
-                    default:
-                        $userDefault = 1;
-                }
-
-                $this->createSchedule($date, ' 06:00', 1, $userDefault);
-            }
-        }
-
-        return redirect()->route('mass_schedules_all.index');
-    }
-
-    //function untuk insert jadwal misa. $hour -> format jam, misal 08:00
-    //isDailyMass=1 -> misa harian
-    public function createSchedule($date, $hour, $isDailyMass, $userId, $showGloria = 1)
-    {
-        $schedule = new MassSchedule();
-        $schedule->schedule_time = $date->format('Y-m-d') . $hour;
-        $schedule->mass_title = 'Misa ' . $date->isoFormat('D MMM');
-        $schedule->is_daily_mass = $isDailyMass;
-        $schedule->user_id = $userId; //default user
-        $schedule->show_gloria = $showGloria;
-        $schedule->save();
+        return redirect()
+            ->route('mass_schedules_all.index')
+            ->withSuccess('Successfully insert multiple schedules based on range.');
     }
 }
