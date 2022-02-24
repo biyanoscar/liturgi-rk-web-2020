@@ -82,6 +82,31 @@ class MassSchedule extends Model
         return $this->belongsTo(Song::class, 'recessional_song_id');
     }
 
+    public function song01()
+    {
+        return $this->belongsTo(Song::class, 'song_01_id');
+    }
+
+    public function song02()
+    {
+        return $this->belongsTo(Song::class, 'song_02_id');
+    }
+
+    public function song03()
+    {
+        return $this->belongsTo(Song::class, 'song_03_id');
+    }
+
+    public function song04()
+    {
+        return $this->belongsTo(Song::class, 'song_04_id');
+    }
+
+    public function song05()
+    {
+        return $this->belongsTo(Song::class, 'song_05_id');
+    }
+
     public function getScheduleTimeFormatted($format='dddd, D MMM Y HH:mm')
     {
         return Carbon::parse($this->schedule_time)->isoFormat($format);

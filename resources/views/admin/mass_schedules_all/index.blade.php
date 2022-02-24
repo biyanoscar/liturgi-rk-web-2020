@@ -19,6 +19,12 @@
         </div>
         @endif
 
+        @if(session()->has('schedule-deleted'))
+            <div class="alert alert-danger">
+                {{session('schedule-deleted')}}
+            </div>
+        @endif
+
         @if (count($errors) > 0)
         <div class="alert alert-danger">
             <ul>
@@ -31,19 +37,6 @@
     @endsection
 
     @section('content')
-
-    @if(session('schedule-updated-message'))
-    <div class="alert alert-success" role="alert">
-        {{session('schedule-updated-message')}}
-    </div>
-    @endif
-
-    @if(session()->has('schedule-deleted'))
-    <div class="alert alert-danger">
-        {{session('schedule-deleted')}}
-    </div>
-    @endif
-
     <div class="row">
         <div class="col-lg-12">
             <!-- USER DATA-->

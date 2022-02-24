@@ -54,7 +54,7 @@ class MinistryScheduleController extends Controller
             $item = $this->repository->store($request);
             
             return redirect()->route('mass_schedules_all.index')
-                ->with('schedule-updated-message', 'Minister Schedule created successfully.');
+                ->with('success', 'Minister Schedule created successfully.');
         } catch (Exception $e) {
             Log::error($e->getMessage());
             Log::error($e->__toString());
@@ -109,7 +109,7 @@ class MinistryScheduleController extends Controller
             $item = $this->repository->update($ministrySchedule->id, $request);
 
             return redirect()->route('mass_schedules_all.index')
-                ->with('schedule-updated-message', 'Minister Schedule updated successfully.');
+                ->with('success', 'Minister Schedule updated successfully.');
         } catch (Exception $e) {
             Log::error($e->getMessage());
             Log::error($e->__toString());

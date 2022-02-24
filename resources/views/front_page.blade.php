@@ -183,6 +183,41 @@
                                     <td>Lagu Penutup</td>
                                     <td>{{$schedule->recessional_song}}</td>
                                 </tr>
+
+                                @if ($schedule->song01)
+                                <tr>
+                                    <td>{{$schedule->song_01_notes}}</td>
+                                    <td>{{$schedule->song01->title}}</td>
+                                </tr>
+                                @endif
+
+                                @if ($schedule->song02)
+                                <tr>
+                                    <td>{{$schedule->song_02_notes}}</td>
+                                    <td>{{$schedule->song02->title}}</td>
+                                </tr>
+                                @endif
+
+                                @if ($schedule->song03)
+                                <tr>
+                                    <td>{{$schedule->song_03_notes}}</td>
+                                    <td>{{$schedule->song03->title}}</td>
+                                </tr>
+                                @endif
+
+                                @if ($schedule->song04)
+                                <tr>
+                                    <td>{{$schedule->song_04_notes}}</td>
+                                    <td>{{$schedule->song04->title}}</td>
+                                </tr>
+                                @endif
+
+                                @if ($schedule->song05)
+                                <tr>
+                                    <td>{{$schedule->song_05_notes}}</td>
+                                    <td>{{$schedule->song05->title}}</td>
+                                </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>

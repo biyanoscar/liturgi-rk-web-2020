@@ -88,6 +88,36 @@
             <h3>Penutup: {{ $massSchedule->recessional_song }}</h3>
             <p>{!! nl2br(e($recessionalSongLyrics)) !!}</p>
             <br>
+
+            @if ($massSchedule->song01)
+              <h3>{{ $massSchedule->song_01_notes }} : {{ $massSchedule->song01->title }}</h3>
+              <p>{!! nl2br(e($massSchedule->song01->lyrics)) !!}</p>
+              <br>
+            @endif
+
+            @if ($massSchedule->song02)
+              <h3>{{ $massSchedule->song_02_notes }} : {{ $massSchedule->song02->title }}</h3>
+              <p>{!! nl2br(e($massSchedule->song02->lyrics)) !!}</p>
+              <br>
+            @endif
+
+            @if ($massSchedule->song03)
+              <h3>{{ $massSchedule->song_03_notes }} : {{ $massSchedule->song03->title }}</h3>
+              <p>{!! nl2br(e($massSchedule->song03->lyrics)) !!}</p>
+              <br>
+            @endif
+
+            @if ($massSchedule->song04)
+              <h3>{{ $massSchedule->song_04_notes }} : {{ $massSchedule->song04->title }}</h3>
+              <p>{!! nl2br(e($massSchedule->song04->lyrics)) !!}</p>
+              <br>
+            @endif
+
+            @if ($massSchedule->song05)
+              <h3>{{ $massSchedule->song_05_notes }} : {{ $massSchedule->song05->title }}</h3>
+              <p>{!! nl2br(e($massSchedule->song05->lyrics)) !!}</p>
+              <br>
+            @endif
             
           </div><!-- /.blog-post -->
           

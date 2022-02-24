@@ -47,6 +47,18 @@
                             </label>
                         </div>
 
+                        <div class="form-group form-check-inline form-check">
+                            <label for="check_has_additional_songs" class="form-check-label ">
+                                <input type="checkbox" id="check_has_additional_songs" name="check_has_additional_songs" class="form-check-input" {{ ($massSchedule->has_additional_songs == 1) ? 'checked' : '' }}>Lagu Tambahan
+                            </label>
+                        </div>
+
+                        <div class="form-group form-check-inline form-check">
+                            <label for="check_has_additional_reading" class="form-check-label ">
+                                <input type="checkbox" id="check_has_additional_reading" name="check_has_additional_reading" class="form-check-input" {{ ($massSchedule->has_additional_reading == 1) ? 'checked' : '' }}>Bacaan Tambahan
+                            </label>
+                        </div>
+
 
                         <div class="form-group">
                             <label for="first_reading" class="control-label mb-1">Bacaan 1</label>

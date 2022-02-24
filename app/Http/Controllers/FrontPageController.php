@@ -15,7 +15,8 @@ class FrontPageController extends Controller
     public function index()
     {
         // \DB::enableQueryLog();
-        $massSchedules = MassSchedule::whereDate('schedule_time', '>=', Carbon::today())
+        $massSchedules = MassSchedule::with(['song01', 'song02', 'song03', 'song04', 'song05'])
+            ->whereDate('schedule_time', '>=', Carbon::today())
             ->orderBy('schedule_time')
             ->get();
 

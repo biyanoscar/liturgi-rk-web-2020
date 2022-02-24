@@ -63,11 +63,14 @@ class MassScheduleAllController extends Controller
 
         $formData = $this->getCheckBoxValue($formData, 'check_gloria', 'show_gloria');
         $formData = $this->getCheckBoxValue($formData, 'check_is_daily_mass', 'is_daily_mass');
+        $formData = $this->getCheckBoxValue($formData, 'check_has_additional_songs', 'has_additional_songs');
+        $formData = $this->getCheckBoxValue($formData, 'check_has_additional_reading', 'has_additional_reading');
 
         MassSchedule::create($formData); //Insert data
-        session()->flash('schedule-updated-message', 'Jadwal berhasil ditambahkan: ' . $formData['mass_title']);
 
-        return redirect()->route('mass_schedules_all.index');
+        return redirect()
+            ->route('mass_schedules_all.index')
+            ->with('success', 'Jadwal berhasil ditambahkan: ' . $formData['mass_title']);
     }
 
     /**
@@ -106,12 +109,14 @@ class MassScheduleAllController extends Controller
 
         $formData = $this->getCheckBoxValue($formData, 'check_gloria', 'show_gloria');
         $formData = $this->getCheckBoxValue($formData, 'check_is_daily_mass', 'is_daily_mass');
+        $formData = $this->getCheckBoxValue($formData, 'check_has_additional_songs', 'has_additional_songs');
+        $formData = $this->getCheckBoxValue($formData, 'check_has_additional_reading', 'has_additional_reading');
 
         $massSchedule->update($formData);
 
-        session()->flash('schedule-updated-message', 'Berhasil update jadwal ' . $formData['mass_title']);
-
-        return redirect()->route('mass_schedules_all.index');
+        return redirect()
+            ->route('mass_schedules_all.index')
+            ->with('success', 'Berhasil update jadwal ' . $formData['mass_title']);
     }
 
     /**

@@ -189,6 +189,94 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        @if ($massSchedule->has_additional_songs == 1)
+                        <div class="form-group">
+                            <label for="song_01_id" class="control-label mb-1">Lagu 1</label>
+                            <input type="text" id="song_01_notes" name="song_01_notes" placeholder="Enter label lagu 1" class="form-control" value="{{$massSchedule->song_01_notes}}">
+
+                            <select name="song_01_id" id="song_01_id" class="select2-single form-control @error('song_01_id') is-invalid @enderror">
+                                <option disabled selected value>Please select</option>
+                                @foreach ($songs as $key => $song)
+                                    <option value="{{ $key }}"
+                                        @if ($key == $massSchedule->song_01_id)
+                                            selected
+                                        @endif>
+                                        {{ $song }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="song_02_id" class="control-label mb-1">Lagu 2</label>
+                            <input type="text" id="song_02_notes" name="song_02_notes" placeholder="Enter label lagu 2" class="form-control" value="{{$massSchedule->song_02_notes}}">
+
+                            <select name="song_02_id" id="song_02_id" class="select2-single form-control @error('song_02_id') is-invalid @enderror">
+                                <option disabled selected value>Please select</option>
+                                @foreach ($songs as $key => $song)
+                                    <option value="{{ $key }}"
+                                        @if ($key == $massSchedule->song_02_id)
+                                            selected
+                                        @endif>
+                                        {{ $song }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="song_03_id" class="control-label mb-1">Lagu 3</label>
+                            <input type="text" id="song_03_notes" name="song_03_notes" placeholder="Enter label lagu 3" class="form-control" value="{{$massSchedule->song_03_notes}}">
+
+                            <select name="song_03_id" id="song_03_id" class="select2-single form-control @error('song_03_id') is-invalid @enderror">
+                                <option disabled selected value>Please select</option>
+                                @foreach ($songs as $key => $song)
+                                    <option value="{{ $key }}"
+                                        @if ($key == $massSchedule->song_03_id)
+                                            selected
+                                        @endif>
+                                        {{ $song }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="song_04_id" class="control-label mb-1">Lagu 4</label>
+                            <input type="text" id="song_04_notes" name="song_04_notes" placeholder="Enter label lagu 4" class="form-control" value="{{$massSchedule->song_04_notes}}">
+
+                            <select name="song_04_id" id="song_04_id" class="select2-single form-control @error('song_04_id') is-invalid @enderror">
+                                <option disabled selected value>Please select</option>
+                                @foreach ($songs as $key => $song)
+                                    <option value="{{ $key }}"
+                                        @if ($key == $massSchedule->song_04_id)
+                                            selected
+                                        @endif>
+                                        {{ $song }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="song_05_id" class="control-label mb-1">Lagu 5</label>
+                            <input type="text" id="song_05_notes" name="song_05_notes" placeholder="Enter label lagu 5" class="form-control" value="{{$massSchedule->song_05_notes}}">
+
+                            <select name="song_05_id" id="song_05_id" class="select2-single form-control @error('song_05_id') is-invalid @enderror">
+                                <option disabled selected value>Please select</option>
+                                @foreach ($songs as $key => $song)
+                                    <option value="{{ $key }}"
+                                        @if ($key == $massSchedule->song_05_id)
+                                            selected
+                                        @endif>
+                                        {{ $song }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @endif
+
                         <div>
                             <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                                 <i class="fa fa-save fa-lg"></i>&nbsp;
