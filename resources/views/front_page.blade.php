@@ -108,7 +108,7 @@
                                 @endif
                                 <tr>
                                     <td>Bait Pengantar Injil</td>
-                                    <td>{{$schedule->alleluia_song}} Alleluya</td>
+                                    <td>{{$schedule->alleluia_song}}</td>
                                 </tr>
                                 <tr>
                                     <td>Bacaan Injil</td>
