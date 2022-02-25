@@ -36,49 +36,62 @@
 
                         <div class="form-group">
                             <label for="entrance_song" class="control-label mb-1">Pembukaan</label>
-                            <select name="entrance_song_id" id="entrance_song_id" class="select2-single form-control @error('entrance_song_id') is-invalid @enderror">
-                                <option disabled selected value>Please select</option>
-                                @foreach ($songs as $key => $song)
-                                    <option value="{{ $key }}"
-                                        @if ($key == $massSchedule->entrance_song_id)
-                                            selected
-                                        @endif>
-                                        {{ $song }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            
+                            <div class="input-group">
+                                <select name="entrance_song_id" id="entrance_song_id" class="select2-single form-control @error('entrance_song_id') is-invalid @enderror">
+                                    <option disabled selected value>Please select</option>
+                                    @foreach ($songs as $key => $song)
+                                        <option value="{{ $key }}"
+                                            @if ($key == $massSchedule->entrance_song_id)
+                                                selected
+                                            @endif>
+                                            {{ $song }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" onclick="resetSelect2Btn(event, 'entrance_song_id')">Reset</button>
+                                </div>
+                            </div>
                         </div>
                         @if ($massSchedule->is_daily_mass == 0)
                         <div class="form-group">
                             <label for="kyrie_song" class="control-label mb-1">Tuhan Kasihanilah Kami</label>
 
-                            <select name="kyrie_song_id" id="kyrie_song_id" class="select2-single form-control @error('kyrie_song_id') is-invalid @enderror">
-                                <option disabled selected value>Please select</option>
-                                @foreach ($songs as $key => $song)
-                                    <option value="{{ $key }}"
-                                        @if ($key == $massSchedule->kyrie_song_id)
-                                            selected
-                                        @endif>
-                                        {{ $song }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <div class="input-group">
+                                <select name="kyrie_song_id" id="kyrie_song_id" class="select2-single form-control @error('kyrie_song_id') is-invalid @enderror">
+                                    <option disabled selected value>Please select</option>
+                                    @foreach ($songs as $key => $song)
+                                        <option value="{{ $key }}"
+                                            @if ($key == $massSchedule->kyrie_song_id)
+                                                selected
+                                            @endif>
+                                            {{ $song }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" onclick="resetSelect2Btn(event, 'kyrie_song_id')">Reset</button>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="gloria_song" class="control-label mb-1">Kemuliaan</label>
-
-                            <select name="gloria_song_id" id="gloria_song_id" class="select2-single form-control @error('gloria_song_id') is-invalid @enderror">
-                                <option disabled selected value>Please select</option>
-                                @foreach ($songs as $key => $song)
-                                    <option value="{{ $key }}"
-                                        @if ($key == $massSchedule->gloria_song_id)
-                                            selected
-                                        @endif>
-                                        {{ $song }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <div class="input-group">
+                                <select name="gloria_song_id" id="gloria_song_id" class="select2-single form-control @error('gloria_song_id') is-invalid @enderror">
+                                    <option disabled selected value>Please select</option>
+                                    @foreach ($songs as $key => $song)
+                                        <option value="{{ $key }}"
+                                            @if ($key == $massSchedule->gloria_song_id)
+                                                selected
+                                            @endif>
+                                            {{ $song }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" onclick="resetSelect2Btn(event, 'gloria_song_id')">Reset</button>
+                                </div>
+                            </div>
                         </div>
                         @endif
 
@@ -90,34 +103,42 @@
                         @if ($massSchedule->is_daily_mass == 0)
                         <div class="form-group">
                             <label for="offertory_song" class="control-label mb-1">Persembahan</label>
-
-                            <select name="offertory_song_id" id="offertory_song_id" class="select2-single form-control @error('offertory_song_id') is-invalid @enderror">
-                                <option disabled selected value>Please select</option>
-                                @foreach ($songs as $key => $song)
-                                    <option value="{{ $key }}"
-                                        @if ($key == $massSchedule->offertory_song_id)
-                                            selected
-                                        @endif>
-                                        {{ $song }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <div class="input-group">
+                                <select name="offertory_song_id" id="offertory_song_id" class="select2-single form-control @error('offertory_song_id') is-invalid @enderror">
+                                    <option disabled selected value>Please select</option>
+                                    @foreach ($songs as $key => $song)
+                                        <option value="{{ $key }}"
+                                            @if ($key == $massSchedule->offertory_song_id)
+                                                selected
+                                            @endif>
+                                            {{ $song }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" onclick="resetSelect2Btn(event, 'offertory_song_id')">Reset</button>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label for="sanctus_song" class="control-label mb-1">Kudus</label>
-
-                            <select name="sanctus_song_id" id="sanctus_song_id" class="select2-single form-control @error('sanctus_song_id') is-invalid @enderror">
-                                <option disabled selected value>Please select</option>
-                                @foreach ($songs as $key => $song)
-                                    <option value="{{ $key }}"
-                                        @if ($key == $massSchedule->sanctus_song_id)
-                                            selected
-                                        @endif>
-                                        {{ $song }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <div class="input-group">
+                                <select name="sanctus_song_id" id="sanctus_song_id" class="select2-single form-control @error('sanctus_song_id') is-invalid @enderror">
+                                    <option disabled selected value>Please select</option>
+                                    @foreach ($songs as $key => $song)
+                                        <option value="{{ $key }}"
+                                            @if ($key == $massSchedule->sanctus_song_id)
+                                                selected
+                                            @endif>
+                                            {{ $song }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" onclick="resetSelect2Btn(event, 'sanctus_song_id')">Reset</button>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -127,67 +148,83 @@
 
                         <div class="form-group">
                             <label for="agnus_dei_song" class="control-label mb-1">Anak Domba Allah</label>
-
-                            <select name="agnus_dei_song_id" id="agnus_dei_song_id" class="select2-single form-control @error('agnus_dei_song_id') is-invalid @enderror">
-                                <option disabled selected value>Please select</option>
-                                @foreach ($songs as $key => $song)
-                                    <option value="{{ $key }}"
-                                        @if ($key == $massSchedule->agnus_dei_song_id)
-                                            selected
-                                        @endif>
-                                        {{ $song }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <div class="input-group">
+                                <select name="agnus_dei_song_id" id="agnus_dei_song_id" class="select2-single form-control @error('agnus_dei_song_id') is-invalid @enderror">
+                                    <option disabled selected value>Please select</option>
+                                    @foreach ($songs as $key => $song)
+                                        <option value="{{ $key }}"
+                                            @if ($key == $massSchedule->agnus_dei_song_id)
+                                                selected
+                                            @endif>
+                                            {{ $song }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" onclick="resetSelect2Btn(event, 'agnus_dei_song_id')">Reset</button>
+                                </div>
+                            </div>
                         </div>
                         @endif
 
                         <div class="form-group">
                             <label for="communion_song" class="control-label mb-1">Komuni</label>
-
-                            <select name="communion_song_id" id="communion_song_id" class="select2-single form-control @error('communion_song_id') is-invalid @enderror">
-                                <option disabled selected value>Please select</option>
-                                @foreach ($songs as $key => $song)
-                                    <option value="{{ $key }}"
-                                        @if ($key == $massSchedule->communion_song_id)
-                                            selected
-                                        @endif>
-                                        {{ $song }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <div class="input-group">
+                                <select name="communion_song_id" id="communion_song_id" class="select2-single form-control @error('communion_song_id') is-invalid @enderror">
+                                    <option disabled selected value>Please select</option>
+                                    @foreach ($songs as $key => $song)
+                                        <option value="{{ $key }}"
+                                            @if ($key == $massSchedule->communion_song_id)
+                                                selected
+                                            @endif>
+                                            {{ $song }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" onclick="resetSelect2Btn(event, 'communion_song_id')">Reset</button>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label for="song_of_praise" class="control-label mb-1">Madah Syukur</label>
-
-                            <select name="song_of_praise_id" id="song_of_praise_id" class="select2-single form-control @error('song_of_praise_id') is-invalid @enderror">
-                                <option disabled selected value>Please select</option>
-                                @foreach ($songs as $key => $song)
-                                    <option value="{{ $key }}"
-                                        @if ($key == $massSchedule->song_of_praise_id)
-                                            selected
-                                        @endif>
-                                        {{ $song }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <div class="input-group">
+                                <select name="song_of_praise_id" id="song_of_praise_id" class="select2-single form-control @error('song_of_praise_id') is-invalid @enderror">
+                                    <option disabled selected value>Please select</option>
+                                    @foreach ($songs as $key => $song)
+                                        <option value="{{ $key }}"
+                                            @if ($key == $massSchedule->song_of_praise_id)
+                                                selected
+                                            @endif>
+                                            {{ $song }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" onclick="resetSelect2Btn(event, 'song_of_praise_id')">Reset</button>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label for="recessional_song" class="control-label mb-1">Penutup</label>
-
-                            <select name="recessional_song_id" id="recessional_song_id" class="select2-single form-control @error('recessional_song_id') is-invalid @enderror">
-                                <option disabled selected value>Please select</option>
-                                @foreach ($songs as $key => $song)
-                                    <option value="{{ $key }}"
-                                        @if ($key == $massSchedule->recessional_song_id)
-                                            selected
-                                        @endif>
-                                        {{ $song }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <div class="input-group">
+                                <select name="recessional_song_id" id="recessional_song_id" class="select2-single form-control @error('recessional_song_id') is-invalid @enderror">
+                                    <option disabled selected value>Please select</option>
+                                    @foreach ($songs as $key => $song)
+                                        <option value="{{ $key }}"
+                                            @if ($key == $massSchedule->recessional_song_id)
+                                                selected
+                                            @endif>
+                                            {{ $song }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" onclick="resetSelect2Btn(event, 'recessional_song_id')">Reset</button>
+                                </div>
+                            </div>
                         </div>
 
                         @if ($massSchedule->has_additional_songs == 1)
@@ -195,85 +232,106 @@
                             <label for="song_01_id" class="control-label mb-1">Lagu Tambahan 1</label>
                             <input type="text" id="song_01_notes" name="song_01_notes" placeholder="Enter label lagu 1" class="form-control" value="{{$massSchedule->song_01_notes}}">
 
-                            <select name="song_01_id" id="song_01_id" class="select2-single form-control @error('song_01_id') is-invalid @enderror">
-                                <option disabled selected value>Please select</option>
-                                @foreach ($songs as $key => $song)
-                                    <option value="{{ $key }}"
-                                        @if ($key == $massSchedule->song_01_id)
-                                            selected
-                                        @endif>
-                                        {{ $song }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <div class="input-group">
+                                <select name="song_01_id" id="song_01_id" class="select2-single form-control @error('song_01_id') is-invalid @enderror">
+                                    <option disabled selected value>Please select</option>
+                                    @foreach ($songs as $key => $song)
+                                        <option value="{{ $key }}"
+                                            @if ($key == $massSchedule->song_01_id)
+                                                selected
+                                            @endif>
+                                            {{ $song }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" onclick="resetSelect2Btn(event, 'song_01_id')">Reset</button>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label for="song_02_id" class="control-label mb-1">Lagu Tambahan 2</label>
                             <input type="text" id="song_02_notes" name="song_02_notes" placeholder="Enter label lagu 2" class="form-control" value="{{$massSchedule->song_02_notes}}">
-
-                            <select name="song_02_id" id="song_02_id" class="select2-single form-control @error('song_02_id') is-invalid @enderror">
-                                <option disabled selected value>Please select</option>
-                                @foreach ($songs as $key => $song)
-                                    <option value="{{ $key }}"
-                                        @if ($key == $massSchedule->song_02_id)
-                                            selected
-                                        @endif>
-                                        {{ $song }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <div class="input-group">
+                                <select name="song_02_id" id="song_02_id" class="select2-single form-control @error('song_02_id') is-invalid @enderror">
+                                    <option disabled selected value>Please select</option>
+                                    @foreach ($songs as $key => $song)
+                                        <option value="{{ $key }}"
+                                            @if ($key == $massSchedule->song_02_id)
+                                                selected
+                                            @endif>
+                                            {{ $song }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" onclick="resetSelect2Btn(event, 'song_02_id')">Reset</button>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label for="song_03_id" class="control-label mb-1">Lagu Tambahan 3</label>
                             <input type="text" id="song_03_notes" name="song_03_notes" placeholder="Enter label lagu 3" class="form-control" value="{{$massSchedule->song_03_notes}}">
-
-                            <select name="song_03_id" id="song_03_id" class="select2-single form-control @error('song_03_id') is-invalid @enderror">
-                                <option disabled selected value>Please select</option>
-                                @foreach ($songs as $key => $song)
-                                    <option value="{{ $key }}"
-                                        @if ($key == $massSchedule->song_03_id)
-                                            selected
-                                        @endif>
-                                        {{ $song }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <div class="input-group">
+                                <select name="song_03_id" id="song_03_id" class="select2-single form-control @error('song_03_id') is-invalid @enderror">
+                                    <option disabled selected value>Please select</option>
+                                    @foreach ($songs as $key => $song)
+                                        <option value="{{ $key }}"
+                                            @if ($key == $massSchedule->song_03_id)
+                                                selected
+                                            @endif>
+                                            {{ $song }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" onclick="resetSelect2Btn(event, 'song_03_id')">Reset</button>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label for="song_04_id" class="control-label mb-1">Lagu Tambahan 4</label>
                             <input type="text" id="song_04_notes" name="song_04_notes" placeholder="Enter label lagu 4" class="form-control" value="{{$massSchedule->song_04_notes}}">
-
-                            <select name="song_04_id" id="song_04_id" class="select2-single form-control @error('song_04_id') is-invalid @enderror">
-                                <option disabled selected value>Please select</option>
-                                @foreach ($songs as $key => $song)
-                                    <option value="{{ $key }}"
-                                        @if ($key == $massSchedule->song_04_id)
-                                            selected
-                                        @endif>
-                                        {{ $song }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <div class="input-group">
+                                <select name="song_04_id" id="song_04_id" class="select2-single form-control @error('song_04_id') is-invalid @enderror">
+                                    <option disabled selected value>Please select</option>
+                                    @foreach ($songs as $key => $song)
+                                        <option value="{{ $key }}"
+                                            @if ($key == $massSchedule->song_04_id)
+                                                selected
+                                            @endif>
+                                            {{ $song }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" onclick="resetSelect2Btn(event, 'song_04_id')">Reset</button>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label for="song_05_id" class="control-label mb-1">Lagu Tambahan 5</label>
                             <input type="text" id="song_05_notes" name="song_05_notes" placeholder="Enter label lagu 5" class="form-control" value="{{$massSchedule->song_05_notes}}">
-
-                            <select name="song_05_id" id="song_05_id" class="select2-single form-control @error('song_05_id') is-invalid @enderror">
-                                <option disabled selected value>Please select</option>
-                                @foreach ($songs as $key => $song)
-                                    <option value="{{ $key }}"
-                                        @if ($key == $massSchedule->song_05_id)
-                                            selected
-                                        @endif>
-                                        {{ $song }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <div class="input-group">
+                                <select name="song_05_id" id="song_05_id" class="select2-single form-control @error('song_05_id') is-invalid @enderror">
+                                    <option disabled selected value>Please select</option>
+                                    @foreach ($songs as $key => $song)
+                                        <option value="{{ $key }}"
+                                            @if ($key == $massSchedule->song_05_id)
+                                                selected
+                                            @endif>
+                                            {{ $song }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" onclick="resetSelect2Btn(event, 'song_05_id')">Reset</button>
+                                </div>
+                            </div>
                         </div>
                         @endif
 
@@ -304,6 +362,14 @@
         function setSongText(sel, inputId) {
             comboText = sel.options[sel.selectedIndex].text;
             document.getElementById(inputId).value = comboText;
+        }
+
+        function resetSelect2Btn(e, buttonId) {
+            $('#'+buttonId).val(null).trigger('change');
+
+            //here I want to prevent default
+            e = e || window.event;
+            e.preventDefault();
         }
     </script>
     @endsection

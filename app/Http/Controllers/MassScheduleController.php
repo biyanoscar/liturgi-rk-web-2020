@@ -57,21 +57,59 @@ class MassScheduleController extends Controller
         }
     }
 
+    protected function setSongDataPayload(Request $request)
+    {
+        $entranceSongId = $request->input('entrance_song_id');
+        $kyrieSongId = $request->input('kyrie_song_id');
+        $gloriaSongId = $request->input('gloria_song_id');
+        $offertorySongId = $request->input('offertory_song_id');
+        $sanctusSongId = $request->input('sanctus_song_id');
+        $agnusDeiSongId = $request->input('agnus_dei_song_id');
+        $communionSongId = $request->input('communion_song_id');
+        $songOfPraiseSongId = $request->input('song_of_praise_id');
+        $recessionalSongId = $request->input('recessional_song_id');
+
+        return [
+            'entrance_song' => ($entranceSongId) ? Song::findOrFail($entranceSongId)->title : null,
+            'kyrie_song' => ($kyrieSongId) ? Song::findOrFail($kyrieSongId)->title : null,
+            'gloria_song' => ($gloriaSongId) ? Song::findOrFail($gloriaSongId)->title : null,
+            'offertory_song' => ($offertorySongId) ? Song::findOrFail($offertorySongId)->title : null,
+            'sanctus_song' => ($sanctusSongId) ? Song::findOrFail($sanctusSongId)->title : null,
+            'agnus_dei_song' => ($agnusDeiSongId) ? Song::findOrFail($agnusDeiSongId)->title : null,
+            'communion_song' => ($communionSongId) ? Song::findOrFail($communionSongId)->title : null,
+            'song_of_praise' => ($songOfPraiseSongId) ? Song::findOrFail($songOfPraiseSongId)->title : null,
+            'recessional_song' => ($recessionalSongId) ? Song::findOrFail($recessionalSongId)->title : null,
+
+            'alleluia_song' => $request->input('alleluia_song'),
+            'lords_prayer_song' => $request->input('lords_prayer_song'),
+
+            'entrance_song_id' => $entranceSongId,
+            'kyrie_song_id' => $kyrieSongId,
+            'gloria_song_id' => $gloriaSongId,
+            'offertory_song_id' => $offertorySongId,
+            'sanctus_song_id' => $sanctusSongId,
+            'agnus_dei_song_id' => $agnusDeiSongId,
+            'communion_song_id' => $communionSongId,
+            'song_of_praise' => $songOfPraiseSongId,
+            'recessional_song_id' => $recessionalSongId,
+
+            // additional song
+            'song_01_notes' => $request->input('song_01_notes'),
+            'song_01_id' => $request->input('song_01_id'),
+            'song_02_notes' => $request->input('song_02_notes'),
+            'song_02_id' => $request->input('song_02_id'),
+            'song_03_notes' => $request->input('song_03_notes'),
+            'song_03_id' => $request->input('song_03_id'),
+            'song_04_notes' => $request->input('song_04_notes'),
+            'song_04_id' => $request->input('song_04_id'),
+            'song_05_notes' => $request->input('song_05_notes'),
+            'song_05_id' => $request->input('song_05_id'),
+        ];
+    }
+
     public function updateSong(Request $request, MassSchedule $massSchedule)
     {
-        //disave sesuai user yg login
-        // auth()->user()->massSchedules()->save($massSchedule);
-        $data = $request->all();
-
-        $data['entrance_song'] = isset($data['entrance_song_id']) ? Song::findOrFail($data['entrance_song_id'])->title : null;
-        $data['kyrie_song'] = isset($data['kyrie_song_id']) ? Song::findOrFail($data['kyrie_song_id'])->title : null;
-        $data['gloria_song'] = isset($data['gloria_song_id']) ? Song::findOrFail($data['gloria_song_id'])->title : null;
-        $data['offertory_song'] = isset($data['offertory_song_id']) ? Song::findOrFail($data['offertory_song_id'])->title : null;
-        $data['sanctus_song'] = isset($data['sanctus_song_id']) ? Song::findOrFail($data['sanctus_song_id'])->title : null;
-        $data['agnus_dei_song'] = isset($data['agnus_dei_song_id']) ? Song::findOrFail($data['agnus_dei_song_id'])->title : null;
-        $data['communion_song'] = isset($data['communion_song_id']) ? Song::findOrFail($data['communion_song_id'])->title : null;
-        $data['song_of_praise'] = isset($data['song_of_praise_id']) ? Song::findOrFail($data['song_of_praise_id'])->title : null;
-        $data['recessional_song'] = isset($data['recessional_song_id']) ? Song::findOrFail($data['recessional_song_id'])->title : null;
+        $data = $this->setSongDataPayload($request);
 
         $massSchedule->update($data);
 
