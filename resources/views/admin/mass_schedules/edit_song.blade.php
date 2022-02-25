@@ -140,6 +140,7 @@
                                 @endforeach
                             </select>
                         </div>
+                        @endif
 
                         <div class="form-group">
                             <label for="communion_song" class="control-label mb-1">Komuni</label>
@@ -172,7 +173,6 @@
                                 @endforeach
                             </select>
                         </div>
-                        @endif
 
                         <div class="form-group">
                             <label for="recessional_song" class="control-label mb-1">Penutup</label>
