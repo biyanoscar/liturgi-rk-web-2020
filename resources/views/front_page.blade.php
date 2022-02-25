@@ -106,6 +106,42 @@
                                     <td>{{$schedule->second_reading}}</td>
                                 </tr>
                                 @endif
+
+                                @if ($schedule->reading_01)
+                                <tr>
+                                    <td>{{$schedule->reading_01_notes}}</td>
+                                    <td>{{$schedule->reading_01}}</td>
+                                </tr>
+                                @endif
+
+                                @if ($schedule->reading_02)
+                                <tr>
+                                    <td>{{$schedule->reading_02_notes}}</td>
+                                    <td>{{$schedule->reading_02}}</td>
+                                </tr>
+                                @endif
+
+                                @if ($schedule->reading_03)
+                                <tr>
+                                    <td>{{$schedule->reading_03_notes}}</td>
+                                    <td>{{$schedule->reading_03}}</td>
+                                </tr>
+                                @endif
+
+                                @if ($schedule->reading_04)
+                                <tr>
+                                    <td>{{$schedule->reading_04_notes}}</td>
+                                    <td>{{$schedule->reading_04}}</td>
+                                </tr>
+                                @endif
+
+                                @if ($schedule->reading_05)
+                                <tr>
+                                    <td>{{$schedule->reading_05_notes}}</td>
+                                    <td>{{$schedule->reading_05}}</td>
+                                </tr>
+                                @endif
+                                
                                 <tr>
                                     <td>Bait Pengantar Injil</td>
                                     <td>{{$schedule->alleluia_song}}</td>

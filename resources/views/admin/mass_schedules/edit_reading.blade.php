@@ -73,6 +73,38 @@
                         </div>
                         @endif
 
+                        @if ($massSchedule->has_additional_reading == 1)
+                            <div class="form-group">
+                                <label for="reading_01" class="control-label mb-1">Bacaan Tambahan 1</label>
+                                <input type="text" id="reading_01_notes" name="reading_01_notes" placeholder="Enter label bacaan 1" class="form-control" value="{{$massSchedule->reading_01_notes}}">
+                                <input id="reading_01" name="reading_01" type="text" class="form-control" value="{{$massSchedule->reading_01}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reading_02" class="control-label mb-1">Bacaan Tambahan 2</label>
+                                <input type="text" id="reading_02_notes" name="reading_02_notes" placeholder="Enter label bacaan 2" class="form-control" value="{{$massSchedule->reading_02_notes}}">
+                                <input id="reading_02" name="reading_02" type="text" class="form-control" value="{{$massSchedule->reading_02}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reading_03" class="control-label mb-1">Bacaan Tambahan 3</label>
+                                <input type="text" id="reading_03_notes" name="reading_03_notes" placeholder="Enter label bacaan 3" class="form-control" value="{{$massSchedule->reading_03_notes}}">
+                                <input id="reading_03" name="reading_03" type="text" class="form-control" value="{{$massSchedule->reading_03}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reading_04" class="control-label mb-1">Bacaan Tambahan 4</label>
+                                <input type="text" id="reading_04_notes" name="reading_04_notes" placeholder="Enter label bacaan 4" class="form-control" value="{{$massSchedule->reading_04_notes}}">
+                                <input id="reading_04" name="reading_04" type="text" class="form-control" value="{{$massSchedule->reading_04}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reading_05" class="control-label mb-1">Bacaan Tambahan 5</label>
+                                <input type="text" id="reading_05_notes" name="reading_05_notes" placeholder="Enter label bacaan 5" class="form-control" value="{{$massSchedule->reading_05_notes}}">
+                                <input id="reading_05" name="reading_05" type="text" class="form-control" value="{{$massSchedule->reading_05}}">
+                            </div>
+                        @endif
+
 
                         <div>
                             <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
