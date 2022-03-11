@@ -90,7 +90,7 @@ class MassScheduleController extends Controller
             'sanctus_song_id' => $sanctusSongId,
             'agnus_dei_song_id' => $agnusDeiSongId,
             'communion_song_id' => $communionSongId,
-            'song_of_praise' => $songOfPraiseSongId,
+            'song_of_praise_id' => $songOfPraiseSongId,
             'recessional_song_id' => $recessionalSongId,
 
             // additional song
