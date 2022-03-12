@@ -1,17 +1,18 @@
 <?php
 
-use App\Http\Controllers\ChoirController;
-use App\Http\Controllers\ChoirMemberController;
-use App\Http\Controllers\FrontPageController;
-use App\Http\Controllers\MassScheduleAllController;
-use App\Http\Controllers\MassScheduleController;
-use App\Http\Controllers\MinistryScheduleController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\OrganistController;
-use App\Http\Controllers\SettingController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SongController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ChoirController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\OrganistController;
+use App\Http\Controllers\DriveLinkController;
+use App\Http\Controllers\FrontPageController;
+use App\Http\Controllers\ChoirMemberController;
+use App\Http\Controllers\MassScheduleController;
+use App\Http\Controllers\MassScheduleAllController;
+use App\Http\Controllers\MinistryScheduleController;
 use App\Http\Controllers\Summary\ChoirScheduleController;
 
 /*
@@ -97,6 +98,8 @@ Route::middleware(['auth', 'role:liturgi'])->group(function () {
     Route::resource('mass_schedules_all', MassScheduleAllController::class);
     
     Route::resource('settings', SettingController::class);
+
+    Route::resource('drive-links', DriveLinkController::class);
 
     Route::resource('organists', OrganistController::class);
 

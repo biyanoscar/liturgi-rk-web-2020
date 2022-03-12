@@ -63,6 +63,11 @@
                             <i class="fa fa-cog"></i>Setting</a>
                     </li>
 
+                    <li class="{{ (str_contains(url()->current(), 'drive-links')) ? 'active' : '' }}">
+                        <a href="{{route('drive-links.index')}}">
+                            <i class="fa fa-link"></i>Drive Links</a>
+                    </li>
+
                 @endif
                 
 
