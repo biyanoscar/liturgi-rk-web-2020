@@ -17,4 +17,9 @@ class DriveLink extends Model
         $this->attributes['name'] = $value;
         $this->attributes['slug'] = Str::slug($value, '-');
     }
+
+    public function scopeActive($query)
+    {
+        $query->where('active', 1);
+    }
 }

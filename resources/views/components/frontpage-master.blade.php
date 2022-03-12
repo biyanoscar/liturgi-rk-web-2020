@@ -49,6 +49,10 @@
                     <a class="nav-link" href="{{route('front_page.show_mass_text')}}">Teks Misa</a>
                   </li>
 
+                  <li class="nav-item {{ (str_contains(url()->current(), 'links')) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{route('front_page.links')}}">Links</a>
+                  </li>
+
             </ul>
 
             <ul class="navbar-nav ml-auto">

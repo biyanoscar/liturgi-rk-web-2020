@@ -32,6 +32,7 @@ use App\Http\Controllers\Summary\ChoirScheduleController;
 Route::get('/', [FrontPageController::class, 'index'])->name('front_page.index');
 Route::get('/jadwal-petugas', [FrontPageController::class, 'schedule'])->name('front_page.schedule');
 Route::get('/teks-misa', [FrontPageController::class, 'showMassText'])->name('front_page.show_mass_text');
+Route::get('/links', [FrontPageController::class, 'driveLinksPage'])->name('front_page.links');
 
 // Auth::routes(['register' => false]);
 Auth::routes();

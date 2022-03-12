@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Choir;
 use App\Models\ChoirMember;
+use App\Models\DriveLink;
 use App\Models\MassSchedule;
 use App\Models\Organist;
 use App\Models\Setting;
@@ -65,5 +66,12 @@ class FrontPageController extends Controller
         $setting = Setting::where('slug', '=', 'drive-link-id')->first();
         $driveLinkId = ($setting) ? $setting->value : '1DLpmGMJXHHpFL9KynT_dAqQXJ-d_C29_' ;
         return view('show_mass_text_page', ['driveLinkId' => $driveLinkId]);
+    }
+
+    public function driveLinksPage()
+    {
+        $driveLinks = DriveLink::active()->orderBy('order_num')->get();
+        
+        return view('frontpages.drive_links', ['driveLinks' => $driveLinks]);
     }
 }
