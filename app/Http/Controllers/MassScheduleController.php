@@ -240,10 +240,4 @@ class MassScheduleController extends Controller
 
         return view('admin.mass_schedules.sunday_masses', ['massSchedules' => $massSchedules, 'dayName' => 'All']);
     }
-
-    //show song lyrics for one mass schedule
-    public function showLyrics(MassSchedule $massSchedule)
-    {
-        return view('lyrics_page', ['massSchedule' => $massSchedule]);
-    }
 }

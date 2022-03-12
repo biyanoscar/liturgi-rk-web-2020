@@ -33,17 +33,16 @@ Route::get('/', [FrontPageController::class, 'index'])->name('front_page.index')
 Route::get('/jadwal-petugas', [FrontPageController::class, 'schedule'])->name('front_page.schedule');
 Route::get('/teks-misa', [FrontPageController::class, 'showMassText'])->name('front_page.show_mass_text');
 Route::get('/links', [FrontPageController::class, 'driveLinksPage'])->name('front_page.links');
+Route::get('lyrics/{massSchedule}', [FrontPageController::class, 'showLyrics'])->name('lyrics');
 
 // Auth::routes(['register' => false]);
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/cool', function () {
-    return view('admin.cool');
-});
-
-Route::get('lyrics/{massSchedule}', [MassScheduleController::class, 'showLyrics'])->name('lyrics');
+// Route::get('/cool', function () {
+//     return view('admin.cool');
+// });
 
 Route::middleware('auth')->group(function () {
     Route::prefix('mass_schedules')->name('mass_schedules.')->group(function () {
