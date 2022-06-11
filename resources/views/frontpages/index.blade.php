@@ -190,6 +190,13 @@
                                     <td>Saat penerimaan komuni</td>
                                     <td>{{$schedule->communion_song?$schedule->communion_song:'Lagu Komuni Batin (diperdengarkan sayup-sayup)'}}</td>
                                 </tr>
+                                <?php if ($schedule->communionSong2nd) : ?>
+                                    <tr>
+                                        <td></td>
+                                        <td>{{$schedule->communionSong2nd->title}}</td>
+                                    </tr>
+                                <?php endif ?>
+                                
                                 <?php if ($schedule->song_of_praise) : ?>
                                     <tr>
                                         <td></td>
@@ -207,14 +214,16 @@
                                     </td>
                                 </tr>
                                 @endif
+
                                 <tr>
                                     <td></td>
                                     <td><span class="text-danger font-italic">Ditayangkan Doa Komuni Batin</span></td>
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td><span class="text-danger font-italic">Mendaraskan doa pembangunan pastoran gereja</span></td>
+                                    <td><span class="text-danger font-italic">Mendaraskan doa Ardas Keuskupan Surabaya</span></td>
                                 </tr>
+                                
                                 <tr>
                                     <td>Lagu Penutup</td>
                                     <td>{{$schedule->recessional_song}}</td>

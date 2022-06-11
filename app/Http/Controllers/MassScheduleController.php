@@ -90,6 +90,7 @@ class MassScheduleController extends Controller
             'sanctus_song_id' => $sanctusSongId,
             'agnus_dei_song_id' => $agnusDeiSongId,
             'communion_song_id' => $communionSongId,
+            'communion_song_2nd_id' => $request->input('communion_song_2nd_id'),
             'song_of_praise_id' => $songOfPraiseSongId,
             'recessional_song_id' => $recessionalSongId,
 

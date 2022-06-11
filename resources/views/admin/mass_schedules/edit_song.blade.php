@@ -188,6 +188,26 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="communion_song_2nd" class="control-label mb-1">Komuni 2</label>
+                            <div class="input-group">
+                                <select name="communion_song_2nd_id" id="communion_song_2nd_id" class="select2-single form-control @error('communion_song_2nd_id') is-invalid @enderror">
+                                    <option disabled selected value>Please select</option>
+                                    @foreach ($songs as $key => $song)
+                                        <option value="{{ $key }}"
+                                            @if ($key == $massSchedule->communion_song_2nd_id)
+                                                selected
+                                            @endif>
+                                            {{ $song }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" onclick="resetSelect2Btn(event, 'communion_song_2nd_id')">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label for="song_of_praise" class="control-label mb-1">Madah Syukur</label>
                             <div class="input-group">
                                 <select name="song_of_praise_id" id="song_of_praise_id" class="select2-single form-control @error('song_of_praise_id') is-invalid @enderror">

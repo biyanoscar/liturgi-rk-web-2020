@@ -72,6 +72,11 @@ class MassSchedule extends Model
         return $this->belongsTo(Song::class, 'communion_song_id');
     }
 
+    public function communionSong2nd()
+    {
+        return $this->belongsTo(Song::class, 'communion_song_2nd_id');
+    }
+
     public function songOfPraise()
     {
         return $this->belongsTo(Song::class, 'song_of_praise_id');

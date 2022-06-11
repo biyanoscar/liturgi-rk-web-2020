@@ -35,6 +35,7 @@
         $lordsPrayerSongLyrics = ($massSchedule->lordsPrayerSong)? $massSchedule->lordsPrayerSong->lyrics : '';
         $agnusDeiSongLyrics = ($massSchedule->agnusDeiSong)? $massSchedule->agnusDeiSong->lyrics : '';
         $communionSongLyrics = ($massSchedule->communionSong)? $massSchedule->communionSong->lyrics : '';
+        $communionSong2ndLyrics = ($massSchedule->communionSong2nd)? $massSchedule->communionSong2nd->lyrics : '';
         $songOfPraiseLyrics = ($massSchedule->songOfPraise)? $massSchedule->songOfPraise->lyrics : '';
         $recessionalSongLyrics = ($massSchedule->recessionalSong)? $massSchedule->recessionalSong->lyrics : '';
     @endphp
@@ -79,6 +80,10 @@
 
             <h3>Komuni : {{ $massSchedule->communion_song }}</h3>
             <p>{!! nl2br(e($communionSongLyrics)) !!}</p>
+            <br>
+
+            <h3>Komuni 2: {{ $massSchedule->communionSong2nd->title }}</h3>
+            <p>{!! nl2br(e($communionSong2ndLyrics)) !!}</p>
             <br>
 
             <h3>Madah Syukur : {{ $massSchedule->song_of_praise }}</h3>
