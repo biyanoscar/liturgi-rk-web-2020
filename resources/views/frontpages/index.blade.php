@@ -265,6 +265,7 @@
                                 @endif
                             </tbody>
                         </table>
+                        <p><em>Last Updated: {{($schedule->updated_at) ? $schedule->updated_at->diffForHumans() : ''}}</em></p>
                     </div>
                 </li>
                 @endforeach
