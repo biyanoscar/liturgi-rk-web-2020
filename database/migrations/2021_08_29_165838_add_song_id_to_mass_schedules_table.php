@@ -47,7 +47,17 @@ class AddSongIdToMassSchedulesTable extends Migration
     public function down()
     {
         Schema::table('mass_schedules', function (Blueprint $table) {
-            $table->dropColumn(['lords_prayer', 'entrance_song_id', 'kyrie_song_id', 'gloria_song_id', 'offertory_song_id', 'sanctus_song_id', 'agnus_dei_song_id', 'communion_song_id', 'song_of_praise_id', 'recessional_song_id']);
+            $table->dropForeign(['entrance_song_id']);
+            $table->dropForeign(['kyrie_song_id']);
+            $table->dropForeign(['gloria_song_id']);
+            $table->dropForeign(['offertory_song_id']);
+            $table->dropForeign(['sanctus_song_id']);
+            $table->dropForeign(['lords_prayer_song_id']);
+            $table->dropForeign(['agnus_dei_song_id']);
+            $table->dropForeign(['communion_song_id']);
+            $table->dropForeign(['song_of_praise_id']);
+            $table->dropForeign(['recessional_song_id']);
+            $table->dropColumn(['lords_prayer_song', 'entrance_song_id', 'kyrie_song_id', 'gloria_song_id', 'offertory_song_id', 'sanctus_song_id', 'agnus_dei_song_id', 'communion_song_id', 'song_of_praise_id', 'recessional_song_id']);
         });
     }
 }

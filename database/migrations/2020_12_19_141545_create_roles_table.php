@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateRolesTable extends Migration
 {
@@ -19,6 +20,11 @@ class CreateRolesTable extends Migration
             $table->string('slug')->unique();
             $table->timestamps();
         });
+
+        DB::table('roles')->insert([
+            ['name' => 'Admin', 'slug' => 'admin'],
+            ['name' => 'Liturgi', 'slug' => 'liturgi'],
+        ]);
     }
 
     /**
