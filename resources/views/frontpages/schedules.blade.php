@@ -17,7 +17,6 @@
                     <th scope="col">Waktu</th>
                     <th scope="col">Paduan Suara</th>
                     <th scope="col">Organis</th>
-                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -28,20 +27,7 @@
                         <td>{{$scheduleTime->isoFormat('dddd, D MMM Y HH:mm')}}</td>
                         <th>{{$schedule->choir_name}}</th>
                         <th>{{$schedule->organist_name}}</th>
-                        <td>{{$schedule->organist_no_kk}}</td>
                     </tr>
-                        @if($schedule->choir_members)
-                        @foreach($schedule->choir_members  as $member)
-                        <tr>
-                            <td></td>
-                            <td>{{$member->name}}</td>
-                            <td>{{$member->no_kk}}</td>
-                            <td></td>
-                            <td></td>
-                            <?php //var_dump($member) ?>
-                        </tr>
-                        @endforeach
-                        @endif
 
                     <tr class="blank_row">
                         <td colspan="5"></td>

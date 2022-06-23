@@ -26,7 +26,7 @@ class FrontPageController extends Controller
     public function schedule()
     {
         $massSchedules = MassSchedule::whereDate('schedule_time', '>=', Carbon::today())
-            ->with(['ministrySchedule', 'ministrySchedule.choir', 'ministrySchedule.organist', 'ministrySchedule.choirMember' ])
+            ->with(['ministrySchedule', 'ministrySchedule.choir', 'ministrySchedule.organist' ])
             ->orderBy('schedule_time')
             ->get();
 
@@ -39,20 +39,11 @@ class FrontPageController extends Controller
 
             //add organist on schedule list table
             $organistName = '';
-            $organistNoKK = '';
             if (isset($ministrySchedule->organist_id)) {
                 $organist = $ministrySchedule->organist;
                 $organistName = $organist->name;
-                $organistNoKK = $organist->no_kk;
             }
             $massSchedules[$key]['organist_name'] = $organistName;
-            $massSchedules[$key]['organist_no_kk'] = $organistNoKK;
-            
-            //tambahkan anggota koor
-            if ($ministrySchedule) {
-                $members = $ministrySchedule->choirMember;
-                $massSchedules[$key]['choir_members'] = $members;
-            }
         }
 
         return view('frontpages.schedules', ['massSchedules' => $massSchedules]);

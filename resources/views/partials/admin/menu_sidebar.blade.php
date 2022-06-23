@@ -18,11 +18,6 @@
                         <i class="far fa-calendar"></i>Misa Hari Minggu</a>
                 </li>
 
-                <li class="{{ request()->is('choirs') ? 'active' : '' }}">
-                    <a href="{{route('choirs.index')}}">
-                        <i class="fa fa-music"></i>Paduan Suara</a>
-                </li>
-
                 <li class="{{ request()->is('songs') ? 'active' : '' }}">
                     <a href="{{route('songs.index')}}">
                         <i class="fa fa-book"></i>Lagu</a>
@@ -31,6 +26,11 @@
 
 
                 @if(auth()->user()->userHasRole('Liturgi'))
+                    <li class="{{ request()->is('choirs') ? 'active' : '' }}">
+                        <a href="{{route('choirs.index')}}">
+                            <i class="fa fa-music"></i>Paduan Suara</a>
+                    </li>
+
                     <li class="{{ request()->is('mass_schedules_all') ? 'active' : '' }}">
                         <a href="{{route('mass_schedules_all.index')}}">
                             <i class="far fa-calendar-alt"></i>Misa All</a>
