@@ -77,7 +77,9 @@
 
 
                                     @if(auth()->user()->userHasRole('Liturgi'))
-                                        <a class="btn btn-secondary" href="{{route('ministry_schedules.show', $schedule->ministrySchedule->id) }}">Padus</a>
+                                        @if (isset($schedule->ministrySchedule->id))
+                                            <a class="btn btn-secondary" href="{{route('ministry_schedules.show', $schedule->ministrySchedule->id) }}">Padus</a>
+                                        @endif
                                         <a class="btn btn-info" href="{{route('mass_schedules.edit_reading', $schedule->id) }}">Isi Bacaan</a>
                                     @endif
                                 </td>
