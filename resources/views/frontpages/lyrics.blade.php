@@ -82,7 +82,7 @@
             <p>{!! nl2br(e($communionSongLyrics)) !!}</p>
             <br>
 
-            <h3>Komuni 2: {{ $massSchedule->communionSong2nd->title }}</h3>
+            <h3>Komuni 2: {{ $massSchedule->communionSong2nd ? $massSchedule->communionSong2nd->title : '' }}</h3>
             <p>{!! nl2br(e($communionSong2ndLyrics)) !!}</p>
             <br>
 
