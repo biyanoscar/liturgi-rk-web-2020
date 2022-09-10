@@ -78,9 +78,10 @@ class CreateMassScheduleByDateRange
         foreach ($periods as $date) {
             if ($date->dayOfWeek == 0) {
                 //misa hari minggu
-                $this->createSchedule($date, ' 07:00', 0, 1);
-                $this->createSchedule($date, ' 10:00', 0, 1);
-                $this->createSchedule($date, ' 17:30', 0, 1);
+                $sundayMassTimes = config('general.mass_times.sunday');
+                foreach ($sundayMassTimes as $massTime) {
+                    $this->createSchedule($date, ' '. $massTime, 0, 1);
+                }
             } elseif ($date->dayOfWeek == 6) {
                 //misa hari sabtu
                 $this->createSchedule($date, ' 17:30', 0, 1);
