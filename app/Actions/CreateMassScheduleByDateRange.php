@@ -84,7 +84,7 @@ class CreateMassScheduleByDateRange
                 }
             } elseif ($date->dayOfWeek == 6) {
                 //misa hari sabtu
-                $this->createSchedule($date, ' 17:30', 0, 1);
+                $this->createSchedule($date, ' 17:00', 0, 1);
             }
         }
     }
