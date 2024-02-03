@@ -23,14 +23,26 @@ class MassScheduleAllController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $date = Carbon::today()->subDays(7);
         // show semua jadwal
         $massSchedules = MassSchedule::with(['ministrySchedule', 'ministrySchedule.choir'])
-            ->whereDate('schedule_time', '>', $date)
-            ->orderBy('schedule_time')
-            ->get();
+            ->orderBy('schedule_time');
+
+        if (! $request->filled('start_date')) {
+            $date = Carbon::today()->subDays(7);
+            $massSchedules = $massSchedules->whereDate('schedule_time', '>=', $date);
+        }
+
+        if ($request->filled('start_date')) {
+            $massSchedules = $massSchedules->whereDate('schedule_time', '>=', $request->input('start_date'));
+        }
+
+        if ($request->filled('end_date')) {
+            $massSchedules = $massSchedules->whereDate('schedule_time', '<', $request->input('end_date'));
+        }
+
+        $massSchedules =$massSchedules->get();
 
         return view('admin.mass_schedules_all.index', ['massSchedules' => $massSchedules, 'dayName' => 'All']);
     }

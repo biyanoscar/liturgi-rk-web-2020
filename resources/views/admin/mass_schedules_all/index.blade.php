@@ -47,7 +47,17 @@
 
                 <div class="tool-3 table-data__tool">
                     <div class="table-data__tool-left">
-
+                        <form action="">
+                            <div class="rs-select2--light">
+                                <label for="start_date" class="control-label">Tanggal Awal</label>
+                                <input id="start_date" name="start_date" value="{{ request()->get('start_date') }}" />
+                            </div>
+                            <div class="rs-select2--light">
+                                <label for="end_date" class="control-label">Tanggal Akhir</label>
+                                <input id="end_date" name="end_date" value="{{ request()->get('end_date') }}" />
+                            </div>
+                            <button class="btn btn-warning" type="submit">Filter</button>
+                        </form>
                     </div>
 
                     <div class="table-data__tool-right">
@@ -110,6 +120,8 @@
     @section('scripts')
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
     <script>
         // Call the dataTables jQuery plugin
@@ -125,6 +137,18 @@
                     "searchable": false
                 }]
             });
+        });
+    </script>
+
+    <script>
+        $('#start_date').datepicker({
+            uiLibrary: 'bootstrap4',
+            format: 'yyyy-mm-dd'
+        });
+
+        $('#end_date').datepicker({
+            uiLibrary: 'bootstrap4',
+            format: 'yyyy-mm-dd'
         });
     </script>
     @endsection
